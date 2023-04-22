@@ -1,0 +1,26 @@
+name: Node.js CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ""
+        username: "root"
+        password: "!2Zc727cI1"
+        port: 22
+        script: |
+          cd ~/apps/cyclershub
+          git reset --hard HEAD
+          git clean -f -d
+          git pull origin main
+          git status
+          pnpm install
+          bash build-application.sh

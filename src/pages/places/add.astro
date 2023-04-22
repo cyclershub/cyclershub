@@ -1,0 +1,17 @@
+---
+import AddPlaceContent from "~/components/AddPlaceContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+import { getUser, isLoggedIn } from "~/lib/SharedVerification";
+
+const loggedIn = isLoggedIn(Astro);
+
+const user = getUser(Astro);
+
+if (!user || !loggedIn) {
+	return Astro.redirect("/user/login");
+}
+---
+
+<Layout title="Add a Place | CyclersHub">
+	<AddPlaceContent client:only></AddPlaceContent>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import { isLoggedIn } from '~/lib/SharedVerification';
+
+export type Props = {
+	fullwidth: boolean;
+}
+
+const { fullwidth } = Astro.props;
+
+const loggedIn = await isLoggedIn(Astro);
+---
+
+<header class="h-[60px] items-center flex border-b">
+	<div class="mx-auto w-full px-4 flex flex-row justify-between" style={`max-width: ${fullwidth ? "100%" : "1200px"};`}>
+		<a href="/"><img src="/logo-no-text.svg" alt="CyclersHub" width="80"></a>
+		<div class="flex flex-row gap-4 items-center">
+			<a href="">Home</a>
+			<a href="/forum">Forum</a>
+			<a href="/groups">Groups</a>
+			{loggedIn ? <a href="/user" class="button">Profile</a> : <a href="/user/login" class="button">Login</a>}
+		</div>
+	</div>
+</header>

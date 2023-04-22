@@ -1,0 +1,47 @@
+* {
+	box-sizing: border-box;
+}
+
+a:not(.button) {
+	@apply text-blue-900 font-normal border-b border-b-transparent;
+
+	&:hover {
+		@apply border-b border-b-blue-900;
+	}
+}
+
+button, .button {
+	@apply py-2 px-4 rounded-lg  bg-blue-600 text-white font-medium outline-none border-none;
+
+	&:hover {
+		@apply bg-blue-700;
+	}
+
+	&:active {
+		@apply bg-blue-800;
+	}
+}
+
+h1 {
+	@apply text-3xl font-medium mb-2;
+}
+
+h2 {
+	@apply text-2xl font-medium mb-2;
+}
+
+p {
+	@apply text-lg mb-4;
+}
+
+input, textarea, select {
+	@apply rounded-lg px-3 py-1.5 text-lg outline-none border w-full;
+
+	&:hover {
+		@apply bg-gray-50;
+	}
+
+	&:focus {
+		@apply bg-gray-100;
+	}
+}

@@ -1,0 +1,54 @@
+---
+import Card from "../components/Card.svelte";
+import HeroCard from "../components/HeroCard.svelte";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="CyclersHub">
+		<HeroCard
+			image="https://cdn.shopify.com/s/files/1/0384/0233/files/bicycle_touring_break.jpg?v=1560873299">
+			<h1>CyclersHub</h1>
+			<p>
+				Welcome to the CyclersHub, a place for fellow cyclists to share
+				experiences, routes, photos and much more!
+			</p>
+			<p>
+				Explore our <a href="/forum">forum</a>, browse around in the <a
+					href="/gallery">
+					gallery
+				</a> or <a href="/stories">read stories</a> and <a href="/tracks">
+					explore tracks
+				</a>. If you like what you see, consider supporting us on <a
+					href="https://github.com/Letsmoe">
+					GitHub
+				</a> or <a href="https://patreon.com/Letsmoe">Patreon</a>
+			</p>
+			<p>
+				Create a new account to become part of an evergrowing community of cyclists around the globe!
+			</p>
+			<a
+				class="button"
+				href="/user/signup">
+				Sign Up
+			</a>
+		</HeroCard>
+		<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-20">
+			<Card href="/forum">
+				<h2>Forum</h2>
+				<p>Exchange your ideas with others to get feedback and suggestions for your projects.</p>
+			</Card>
+			<Card href="/tracks">
+				<h2>Tracks</h2>
+				<p>Share your tracks with others and let them be part of your journey.</p>
+			</Card>
+			<Card href="/groups">
+				<h2>Groups</h2>
+				<p>Find groups of cyclists and become a part of a community of support and exchange between like-minded cyclists.</p>
+			</Card>
+		</div>
+		<HeroCard>
+				<h1>Camp</h1>
+				<p>Find new places to camp.</p>
+				<a href="/places/map" class="button">Try Now</a>
+		</HeroCard>
+</Layout>

@@ -1,0 +1,19 @@
+---
+import Card from "../../components/Card.svelte";
+import HeroCard from "../../components/HeroCard.svelte";
+import Layout from "../../layouts/Layout.astro"
+
+---
+
+<Layout title="Groups">
+	<HeroCard image="/group-chat.svg" width={600}>
+		<h1>Groups</h1>
+		<p>There are many group chats for cyclists all around the world. We've compiled a list of the ones we know about for every major service out there.</p>
+	</HeroCard>
+	<div class="grid grid-cols-3 gap-4">
+		<Card image="/groups/whatsapp.png" href="/groups/whatsapp">
+			<h2>WhatsApp</h2>
+			<p>A major part of the cycling community. Almost anyone has WhatsApp and many admire it for its simplicity.</p>
+		</Card>
+	</div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+import GroupList from "../../components/GroupList.svelte";
+import WorldMap from "../../components/WorldMap.svelte";
+import Layout from "../../layouts/Layout.astro";
+
+const groups = [{
+	name: "Cycling Europe 🚵",
+	image: "https://pps.whatsapp.net/v/t61.24694-24/167957129_880841332765810_7257096463142760243_n.jpg?ccb=11-4&oh=01_AdTjRbeDLWv5BFOqnButZKonrB_hiuLo33wxLH1f9oAnZw&oe=644F526E",
+	link: "https://chat.whatsapp.com/ITxb9OzZHBhGHNCXK9wK3r",
+	desc: "",
+	category: "Europe"
+},{
+	name: "Bicycle Travel Creators",
+	image: "https://pps.whatsapp.net/v/t61.24694-24/342309356_3495716317371070_8367593783647738956_n.jpg?ccb=11-4&oh=01_AdTN8Ac6nYAuIQI0N6oR-rDA1D5hR90M6EGK6_43rPUq5w&oe=644F616E",
+	link: "https://chat.whatsapp.com/DQnOPFMcsmhEatCnrKSBmp",
+	desc: `Exchange your experience as a bicycle traveller, creating content on social media. Find likeminded creators, Exchange knowledge, Exchange faced challenges, Ask for and receive feedback, Motivate each other and face challenges together`,
+category: "Other"
+}]
+
+---
+
+<Layout title="WhatsApp Groups">
+	<WorldMap />
+
+	<div class="flex flex-col gap-4">
+		<GroupList groups={groups}></GroupList>
+		</div>
+</Layout>

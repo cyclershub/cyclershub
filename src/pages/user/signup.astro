@@ -1,0 +1,17 @@
+---
+import RegisterContent from "~/components/RegisterContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+
+import { isLoggedIn } from "~/lib/SharedVerification";
+
+const loggedIn = await isLoggedIn(Astro);
+
+if (loggedIn) {
+	return Astro.redirect("/user")
+}
+
+---
+
+<Layout title="Signup | CyclersHub">
+	<RegisterContent client:load></RegisterContent>
+</Layout>

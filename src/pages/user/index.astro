@@ -1,0 +1,16 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import { getUser, isLoggedIn } from "~/lib/SharedVerification";
+
+const loggedIn = isLoggedIn(Astro);
+
+if (!loggedIn) {
+	return Astro.redirect("/user/login");
+}
+
+const user = await getUser(Astro);
+---
+
+<Layout title="Dashboard | CyclersHub">
+	<h1>Hey there, {user.username}!</h1>
+</Layout>
