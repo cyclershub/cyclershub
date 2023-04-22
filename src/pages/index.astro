@@ -6,11 +6,10 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="CyclersHub">
 		<HeroCard
-			image="https://cdn.shopify.com/s/files/1/0384/0233/files/bicycle_touring_break.jpg?v=1560873299">
+			image="/start-image.jpeg">
 			<h1>CyclersHub</h1>
 			<p>
-				Welcome to the CyclersHub, a place for fellow cyclists to share
-				experiences, routes, photos and much more!
+				Welcome to CyclersHub, where cycling enthusiasts come to share their experiences, photos, and routes - without the risk of getting hit by a car!
 			</p>
 			<p>
 				Explore our <a href="/forum">forum</a>, browse around in the <a
@@ -21,7 +20,7 @@ import Layout from "../layouts/Layout.astro";
 				</a>. If you like what you see, consider supporting us on <a
 					href="https://github.com/Letsmoe">
 					GitHub
-				</a> or <a href="https://patreon.com/Letsmoe">Patreon</a>
+				</a> or <a href="https://patreon.com/Letsmoe">Patreon</a> so we can keep the wheels spinning and the puns rolling
 			</p>
 			<p>
 				Create a new account to become part of an evergrowing community of cyclists around the globe!
@@ -35,20 +34,22 @@ import Layout from "../layouts/Layout.astro";
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-20">
 			<Card href="/forum">
 				<h2>Forum</h2>
-				<p>Exchange your ideas with others to get feedback and suggestions for your projects.</p>
+				<p>Explore our forum, where you can join in on heated debates about the best bike gear and argue over who has the better bike..</p>
 			</Card>
 			<Card href="/tracks">
 				<h2>Tracks</h2>
-				<p>Share your tracks with others and let them be part of your journey.</p>
+				<p>Read stories from fellow cyclists and live vicariously through their epic adventures, or check out our tracks section to plan your next ride and avoid getting lost like the last time.</p>
 			</Card>
-			<Card href="/groups">
-				<h2>Groups</h2>
-				<p>Find groups of cyclists and become a part of a community of support and exchange between like-minded cyclists.</p>
+			<Card href="/gallery">
+				<h2>Gallery</h2>
+				<p>Take a spin around our gallery, where you can admire breathtaking views of nature and get some serious FOMO for not being there yourself.</p>
 			</Card>
 		</div>
-		<HeroCard>
-				<h1>Camp</h1>
-				<p>Find new places to camp.</p>
-				<a href="/places/map" class="button">Try Now</a>
+		<HeroCard reverse={true}>
+				<h1>Spot Search</h1>
+				<p>Looking for a new camping adventure? CyclersHub has you covered! We offer a comprehensive search tool to help you find the perfect spot for your next outdoor getaway.</p>
+				<p>Once you've found your ideal camping spot, be sure to check out our camping stories section for inspiration and advice.</p>
+				<p>So start your search for the perfect camping spot today with CyclersHub and discover new and exciting places to camp!</p>
+				<a href="/places/map" class="button">Try Now!</a>
 		</HeroCard>
 </Layout>

@@ -1066,7 +1066,7 @@
 		"replaceSpace": "_",
 		"color": "transparent",
 		"sideSelections": true,
-		"isDirty": true,
+		"isDirty": false,
 		"storedin": {
 			"major": 6,
 			"minor": 2,
@@ -1103,7 +1103,7 @@
 			"indexes": true,
 			"relations": true
 		},
-		"lastSaved": "Sat Apr 22 2023 15:32:38 GMT+0400 (Georgia Standard Time)"
+		"lastSaved": "Sat Apr 22 2023 15:40:01 GMT+0400 (Georgia Standard Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {

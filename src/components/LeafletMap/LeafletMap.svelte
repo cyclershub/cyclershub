@@ -67,6 +67,8 @@
 		clickMarker.on("click", () => {
 			manuallyActivatedCurrentMarker = true;
 			currentlyVisibleMarker = location;
+			latitude = location.lat;
+			longitude = location.lng;
 		})
 
 		return marker;
@@ -117,9 +119,17 @@
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(async (position) => {
-				map.setView([position.coords.latitude, position.coords.longitude], 12);
+				if (!latitude) {
+					latitude = position.coords.latitude;
+				}
 
-				let marker = createCanvasMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "LOC");
+				if (!longitude) {
+					longitude = position.coords.longitude;
+				}
+
+				map.setView([latitude, longitude], 12);
+
+				let marker = createCanvasMarker({ lat: latitude, lng: longitude }, "LOC");
 				marker.addTo(map)
 				updateMarkers();
 			});

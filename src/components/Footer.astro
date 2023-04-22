@@ -1,0 +1,14 @@
+---
+export type Props = {
+	fullwidth: boolean;
+}
+
+const { fullwidth } = Astro.props;
+---
+
+<footer class="h-[60px] items-center flex border-t">
+	<div class="mx-auto w-full h-full px-4 flex flex-row items-center justify-between" style={`max-width: ${fullwidth ? "100%" : "1200px"};`}>
+		<p class="mb-0">The CyclersHub</p>
+		<p class="mb-0">&copy; CyclersHub Inc.</p>
+	</div>
+</footer>

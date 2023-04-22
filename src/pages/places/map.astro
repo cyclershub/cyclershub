@@ -5,8 +5,11 @@ import MapLayout from "../../layouts/MapLayout.astro";
 
 const user = await getUser(Astro);
 
+const lat = Astro.url.searchParams.get("lat")
+const lng = Astro.url.searchParams.get("lng")
+
 ---
 
 <MapLayout title="Camping Spots | CyclersHub">
-	<Places user={user} client:only></Places>
+	<Places user={user} latitude={lat} longitude={lng} client:only></Places>
 </MapLayout>
