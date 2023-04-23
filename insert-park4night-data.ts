@@ -5,7 +5,7 @@ const db = knex({
 	client: "pg",
 	connection: {
 		host: "localhost",
-		port: 5436,
+		port: Number(process.env.DB_PORT),
 		user: "main",
 		password: "jz@K5HWe%WMKJVhS",
 		database: "main",
@@ -15,8 +15,11 @@ const db = knex({
 const places = JSON.parse(fs.readFileSync("./park4night-result.json", "utf-8"));
 
 
-await db.batchInsert("Places",
+db.batchInsert("Places",
 	places.map((place: any) => {
+		if (!place) {
+			return;
+		}
 		return {
 			title: place.title_short || "",
 			description: place.description,
@@ -29,6 +32,8 @@ await db.batchInsert("Places",
 			images: JSON.stringify(place.images),
 			type: place.type.code,
 		};
-	}),
+	}).filter((x: any) => x),
 	200
-);
+).then(() => {
+	console.log("Done")
+});
