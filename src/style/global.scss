@@ -48,3 +48,11 @@ body select {
 		@apply bg-gray-100;
 	}
 }
+
+
+section:not(.reverse) {
+	@apply lg:grid-cols-[1fr,2fr];
+}
+.reverse {
+	@apply lg:grid-cols-[2fr,1fr];
+}

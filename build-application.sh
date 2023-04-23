@@ -26,7 +26,7 @@ git_pull_force;
 cd ~/apps/$APP_NAME
 docker stop $APP_NAME
 docker rm $APP_NAME
-docker build -t $APP_NAME .
+docker build --no-cache -t $APP_NAME .
 
 # Danach machen wir ein Backup der Datenbank, falls bei der Migration etwas schiefgehen sollte.
 cd ~/backups/
@@ -45,7 +45,7 @@ docker volume create $DB_VOLUME
 
 # Und starten einen neuen "database" container.
 cd ~/apps/$DB_CONTAINER_NAME
-docker build -t $DB_CONTAINER_NAME .
+docker build --no-cache -t $DB_CONTAINER_NAME .
 docker run -d --name $DB_CONTAINER_NAME -e POSTGRES_USER=$DB_USER -e POSTGRES_PASSWORD=$DB_PASSWORD -p $DB_PORT:5432 -v $DB_VOLUME:/var/lib/postgresql/data $DB_CONTAINER_NAME
 
 # Wir müssen warten bis die Datenbank wieder läuft.

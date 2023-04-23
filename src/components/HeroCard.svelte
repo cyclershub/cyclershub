@@ -27,14 +27,3 @@
 			class="ml-auto rounded-br-lg rounded-bl-lg lg:rounded-tr-lg lg:rounded-br-lg lg:rounded-bl-none h-full object-cover" />
 	{/if}
 </section>
-
-<style lang="scss">
-	@media (min-width: 1024px) {
-		section:not(.reverse) {
-			@apply grid-cols-[1fr,2fr];
-		}
-		.reverse {
-			@apply grid-cols-[2fr,1fr];
-		}
-	}
-</style>
