@@ -22,7 +22,9 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install -y nodejs;
 
 # Install Packages
-cd cyclershub;
+mkdir apps/cyclershub -r;
+cd apps/cyclershub;
+git clone https://github.com/cyclershub/cyclershub .;
 npm i -g npm;
 npm i -g pnpm;
 pnpm install;
