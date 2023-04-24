@@ -19,5 +19,5 @@ sudo certbot certonly --standalone;
 sudo certbot renew --dry-run;
 
 # Spin the server back up
-touch ./.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ./.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ./.env
-docker run -d --name $APP_NAME --link $DB_CONTAINER_NAME -p "80:80" -e DB_CONNECTION=postgresql://$DB_USER:$DB_PASSWORD@${DB_CONTAINER_NAME}:$DB_PORT/$DB_NAME -e DB_PORT=$DB_PORT $APP_NAME --env-file ./.env;
+touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env
+docker run --name $APP_NAME --link $DB_CONTAINER_NAME -p "80:80" -e DB_CONNECTION=postgresql://$DB_USER:$DB_PASSWORD@${DB_CONTAINER_NAME}:$DB_PORT/$DB_NAME -e DB_PORT=$DB_PORT --env-file ./.env $APP_NAME;
