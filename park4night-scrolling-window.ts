@@ -1,12 +1,19 @@
 import * as fs from "fs";
 
-const last = JSON.parse(fs.readFileSync("./park4night-result.json", "utf-8")) || [];
+let last = [];
+
+try {
+	last = JSON.parse(fs.readFileSync("./park4night-result.json", "utf-8")) || [];
+} catch(e) {
+
+}
+
 const map = new Map(last);
 
-async function fetchWindow(lat, lng) {
+async function fetchWindow(lat: string, lng: string) {
 	let response;
 	try {
-		response = await fetch(`https://park4night.com/api/places/around?lat=${lat}&lng=${lng}&radius=200&lang=en`);
+		response = await fetch(`https://park4night.com/api/places/around?lat=${lat}&lng=${lng}&radius=100&lang=en`);
 	} catch(e) {
 		console.log("Fetch failed! Resuming anyway!")
 		return;

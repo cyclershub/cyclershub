@@ -56,7 +56,9 @@ done
 # Und wenden das Backup an.
 gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER
 
+# Wir legen einen .env file für unsere letsencrypt keys an.
+touch ./.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ./.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ./.env
 # Danach starten wir unsere App wieder.
-docker run -d --name $APP_NAME --link $DB_CONTAINER_NAME -p "80:80" -e DB_CONNECTION=postgresql://$DB_USER:$DB_PASSWORD@${DB_CONTAINER_NAME}:$DB_PORT/$DB_NAME -e DB_PORT=$DB_PORT $APP_NAME
+docker run -d --name $APP_NAME --link $DB_CONTAINER_NAME -p "80:80" -e DB_CONNECTION=postgresql://$DB_USER:$DB_PASSWORD@${DB_CONTAINER_NAME}:$DB_PORT/$DB_NAME -e DB_PORT=$DB_PORT $APP_NAME --env-file ./.env;
 
 # Das Backup lassen wir da, falls irgendwas schief gehen sollte.
