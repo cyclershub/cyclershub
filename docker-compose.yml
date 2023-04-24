@@ -7,9 +7,12 @@ services:
     links:
       - cyclershub-db
     environment:
-      PORT: 3000
-      DB_CONNECTION: cyclershub-db
+      DB_NAME: main
+      DB_PASS: kCKF3ZdUIbCPZF7fwREUJLEevSyyZGWbS68vJSZx5ze4W9PyM9ZXHevtGgScnmRu
+      DB_USER: main
       DB_PORT: 5432
+      DB_HOST: database
+      PORT: 3000
       NODE_ENV: "development"
     ports:
       - 3000:3000
@@ -18,6 +21,7 @@ services:
     networks:
       - postgres
   cyclershub-db:
+    container_name: database
     build: ../database
     ports:
       - "5436:5432"

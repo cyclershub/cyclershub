@@ -50,7 +50,7 @@ docker network create $NETWORK;
 # Und starten einen neuen "database" container.
 cd ~/apps/$DB_CONTAINER_NAME
 docker build --no-cache -t $DB_CONTAINER_NAME .
-docker run -d --name $DB_CONTAINER_NAME --network $NETWORK -e POSTGRES_USER=$DB_USER -e POSTGRES_PASSWORD=$DB_PASSWORD -p $DB_PORT:5432 -v $DB_VOLUME:/var/lib/postgresql/data $DB_CONTAINER_NAME
+docker run -d --name $DB_CONTAINER_NAME --network $NETWORK -e POSTGRES_USER=$DB_USER -e POSTGRES_PASSWORD=$DB_PASSWORD -p "$DB_PORT:5432" -v $DB_VOLUME:/var/lib/postgresql/data $DB_CONTAINER_NAME
 
 # Wir müssen warten bis die Datenbank wieder läuft.
 while ! docker exec $DB_CONTAINER_NAME pg_isready -U $DB_USER -h localhost -p $DB_PORT > /dev/null 2>&1; do
