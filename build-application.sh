@@ -1,14 +1,16 @@
 #!/bin/bash
 
 # Define your environment variables here
-APP_NAME="cyclershub"
-DB_CONTAINER_NAME="database"
-DB_NAME="main"
-DB_USER="main"
-DB_PASSWORD="kCKF3ZdUIbCPZF7fwREUJLEevSyyZGWbS68vJSZx5ze4W9PyM9ZXHevtGgScnmRu"
-DB_PORT=5432
-DB_VOLUME="postgres_data"
+APP_NAME="cyclershub";
+DB_CONTAINER_NAME="database";
+DB_NAME="main";
+DB_USER="main";
+DB_PASSWORD="kCKF3ZdUIbCPZF7fwREUJLEevSyyZGWbS68vJSZx5ze4W9PyM9ZXHevtGgScnmRu";
+DB_PORT=5432;
+DB_VOLUME="postgres_data";
 NETWORK="cyclershub-network";
+
+npm i -g pnpm;
 
 git_pull_force() {
 	git reset --hard HEAD
@@ -25,6 +27,7 @@ git_pull_force;
 
 # Dann bauen wir das Docker Image unserer Application
 cd ~/apps/$APP_NAME
+pnpm install
 docker stop $APP_NAME
 docker rm $APP_NAME
 docker build --no-cache -t $APP_NAME .
