@@ -8,6 +8,7 @@ DB_USER="main"
 DB_PASSWORD="jz@K5HWe%WMKJVhS"
 DB_PORT=5432
 DB_VOLUME="postgres_data"
+NETWORK="cyclershub-network";
 
 git_pull_force() {
 	git reset --hard HEAD
@@ -43,10 +44,13 @@ docker rm $DB_CONTAINER_NAME
 docker volume rm $DB_VOLUME
 docker volume create $DB_VOLUME
 
+docker network rm $NETWORK;
+docker network create $NETWORK;
+
 # Und starten einen neuen "database" container.
 cd ~/apps/$DB_CONTAINER_NAME
 docker build --no-cache -t $DB_CONTAINER_NAME .
-docker run -d --name $DB_CONTAINER_NAME -e POSTGRES_USER=$DB_USER -e POSTGRES_PASSWORD=$DB_PASSWORD -p $DB_PORT:5432 -v $DB_VOLUME:/var/lib/postgresql/data $DB_CONTAINER_NAME
+docker run -d --name $DB_CONTAINER_NAME --network $NETWORK -e POSTGRES_USER=$DB_USER -e POSTGRES_PASSWORD=$DB_PASSWORD -p $DB_PORT:5432 -v $DB_VOLUME:/var/lib/postgresql/data $DB_CONTAINER_NAME
 
 # Wir müssen warten bis die Datenbank wieder läuft.
 while ! docker exec $DB_CONTAINER_NAME pg_isready -U $DB_USER -h localhost -p $DB_PORT > /dev/null 2>&1; do
@@ -57,8 +61,9 @@ done
 gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER
 
 # Wir legen einen .env file für unsere letsencrypt keys an.
+rm -f ~/apps/$APP_NAME/.env;
 touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env
 # Danach starten wir unsere App wieder.
-docker run -d --name $APP_NAME --link $DB_CONTAINER_NAME -p "80:80" -e DB_CONNECTION=postgresql://$DB_USER:$DB_PASSWORD@${DB_CONTAINER_NAME}:$DB_PORT/$DB_NAME -e DB_PORT=$DB_PORT $APP_NAME --env-file ./.env;
+docker run -d --name $APP_NAME --network $NETWORK -p "80:80" -e DB_CONNECTION=postgresql://$DB_USER:$DB_PASSWORD@$DB_CONTAINER_NAME:$DB_PORT/$DB_NAME -e DB_PORT=$DB_PORT --env-file ~/apps/$APP_NAME/.env $APP_NAME;
 
 # Das Backup lassen wir da, falls irgendwas schief gehen sollte.
