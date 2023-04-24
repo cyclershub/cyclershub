@@ -3,7 +3,7 @@ APP_NAME="cyclershub"
 DB_CONTAINER_NAME="database"
 DB_NAME="main"
 DB_USER="main"
-DB_PASSWORD="jz@K5HWe%WMKJVhS"
+DB_PASSWORD="kCKF3ZdUIbCPZF7fwREUJLEevSyyZGWbS68vJSZx5ze4W9PyM9ZXHevtGgScnmRu"
 DB_PORT=5432
 DB_VOLUME="postgres_data"
 

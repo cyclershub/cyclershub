@@ -7,7 +7,7 @@ const db = knex({
 		host: "localhost",
 		port: Number(process.env.DB_PORT),
 		user: "main",
-		password: "jz@K5HWe%WMKJVhS",
+		password: "kCKF3ZdUIbCPZF7fwREUJLEevSyyZGWbS68vJSZx5ze4W9PyM9ZXHevtGgScnmRu",
 		database: "main",
 	},
 });
