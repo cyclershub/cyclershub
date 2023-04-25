@@ -1,0 +1,24 @@
+---
+import CreateThreadContent from "~/components/CreateThreadContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+import { isLoggedIn } from "~/lib/SharedVerification";
+import { db } from "~/lib/shared";
+
+const { forum_id } = Astro.params;
+
+const forum = db("forums").select("*").where("uid", forum_id).first();
+
+if (!forum) {
+	return Astro.redirect("/forum")
+}
+
+const loggedIn = await isLoggedIn(Astro);
+
+if (!loggedIn) {
+	return Astro.redirect("/user/login")
+}
+---
+
+<Layout title="Forum | CyclersHub">
+	<CreateThreadContent client:load forum={forum_id}></CreateThreadContent>
+</Layout>

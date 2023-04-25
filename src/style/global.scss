@@ -2,15 +2,6 @@
 	box-sizing: border-box;
 }
 
-body a:not(.button) {
-	@apply text-blue-800 font-normal border-b border-b-transparent;
-
-	&:hover {
-		@apply border-b border-b-blue-900;
-	}
-}
-
-body button,
 body .button {
 	@apply py-2 px-4 rounded-lg bg-blue-600 text-white font-medium outline-none border-none;
 

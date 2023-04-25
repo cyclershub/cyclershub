@@ -5,7 +5,7 @@
 </script>
 
 <a
-	class="rounded-lg shadow-sm w-full h-auto border flex flex-col gap-4"
+	class="rounded-lg shadow-sm w-full h-auto border flex flex-col gap-4 hover:shadow-md transition-shadow"
 	{href}>
 	{#if image}
 		<img

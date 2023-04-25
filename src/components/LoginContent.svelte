@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
 	import cookie from "cookiejs"
+  import { addNotification } from "./NotificationStore";
 
 	let username: string;
 	let password: string;
@@ -20,6 +21,13 @@
 			localStorage.setItem("token", result.data.token);
 			localStorage.setItem("expires", result.data.expires);
 			window.location.href = "/user";
+		} else {
+			addNotification({
+				message: "That didn't work! Did you enter your username and password correctly?",
+				type: "error",
+				dismissible: false,
+				timeout: 3000
+			})
 		}
 	}
 </script>

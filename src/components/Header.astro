@@ -1,5 +1,8 @@
 ---
-import { isLoggedIn } from '~/lib/SharedVerification';
+import { getUser, isLoggedIn } from '~/lib/SharedVerification';
+import Notifications from './Icons/Notifications.svelte';
+import NotificationSystem from './NotificationSystem.svelte';
+import Bookmark from './Icons/Bookmark.svelte';
 
 export type Props = {
 	fullwidth: boolean;
@@ -8,6 +11,7 @@ export type Props = {
 const { fullwidth } = Astro.props;
 
 const loggedIn = await isLoggedIn(Astro);
+const user = await getUser(Astro);
 ---
 
 <header class="h-[60px] items-center flex border-b">
@@ -17,7 +21,10 @@ const loggedIn = await isLoggedIn(Astro);
 			<a href="">Home</a>
 			<a href="/forum">Forum</a>
 			<a href="/groups">Groups</a>
-			{loggedIn ? <a href="/user" class="button">Profile</a> : <a href="/user/login" class="button">Login</a>}
+			{loggedIn ? <Notifications width={25} height={25}></Notifications> : ""}
+			<NotificationSystem client:load></NotificationSystem>
+			{loggedIn ? <a href="/bookmarks"><Bookmark width={25} height={25}></Bookmark></a> : ""}
+			{loggedIn ? <a href="/user"><img class="rounded-full w-10 h-10" src={user.profile_picture || "/user-placeholder.svg"}></a> : <a href="/user/login" class="button">Login</a>}
 		</div>
 	</div>
 </header>

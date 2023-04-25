@@ -3,11 +3,11 @@ export interface Place {
 	lat: number;
 	lng: number;
 	street: string;
-	zipcode: string;
+	zip: string;
 	city: string;
 	country: string;
 	description: string;
-	CreatedOn: string;
+	created_on: string;
 	distance: number;
 	id: number;
 	images: {

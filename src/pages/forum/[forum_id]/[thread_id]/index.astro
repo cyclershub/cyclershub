@@ -1,0 +1,41 @@
+---
+import ThreadContent from "~/components/ThreadContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+import { getUser } from "~/lib/SharedVerification";
+import { db } from "~/lib/shared";
+import type { Message, User } from "~/lib/types";
+
+const { forum_id, thread_id } = Astro.params;
+
+const user = await getUser(Astro);
+
+if (user) {
+	// Get the thread.
+	const thread = await db("threads").select("*").where("uid", thread_id).first();
+
+	if (!thread) {
+		return Astro.redirect(`/forum/${forum_id}`)
+	}
+
+	// Insert a new view.
+	const result = await db("thread_views").insert({ users_id: user.id, threads_id: thread.id }).onConflict(['users_id', 'threads_id']).ignore();
+
+	if (result.rowCount > 0) {
+		await db("threads").increment("view_count", 1).where("id", thread.id);
+	}
+}
+
+const currentThread = await db("threads").select(db.raw("threads.*, array_agg(tags.tag) tags")).leftJoin("threads_tags", "threads_tags.threads_id", "threads.id").leftJoin("tags", "tags.id", "threads_tags.tags_id").where("uid", thread_id).groupBy("threads.id").first();
+
+if (!currentThread) {
+	return Astro.redirect(`/forum/${forum_id}`)
+}
+
+
+
+const messages = await db<Message & User>("messages").select(db.raw("messages.*, to_json(users) user")).leftJoin("users", "users.id", "messages.users_id").where("messages.threads_id", currentThread.id).orderBy("created_on", "asc")
+---
+
+<Layout title="Forum | CyclersHub">
+	<ThreadContent messages={messages} thread={currentThread} forum={forum_id} client:load></ThreadContent>
+</Layout>

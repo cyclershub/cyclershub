@@ -5,37 +5,30 @@ import { ApiRouteSuccess } from "~/lib/ApiRouteSuccess";
 import { getUser, isLoggedIn } from "~/lib/SharedVerification";
 import { db } from "~/lib/shared";
 
-export const get: APIRoute = async ({ url }) => {
-	const lat = url.searchParams.get("lat");
-	const lng = url.searchParams.get("lng");
-	const radius = Number(url.searchParams.get("radius"));
-	
+const PlaceSearchValidator = z.object({
+	lat: z.number(),
+	lng: z.number(),
+	radius: z.number(),
+	limit: z.number().max(250).int().optional().default(200)
+})
 
-	if (!lat || !lng || !radius) {
-		return new Response(JSON.stringify({
-			code: 405,
-			type: "error",
-			errors: ["Missing lat | lng | radius in request."]
-		}))
+export const post: APIRoute = async ({ request }) => {
+	const body: z.infer<typeof PlaceSearchValidator> = await request.json();
+
+	const validate = PlaceSearchValidator.safeParse(body);
+	if (!validate.success) {
+		return ApiRouteError(validate.error.issues.map(x => x.message));
 	}
 
-	if (radius > 200) {
-		return ApiRouteError(["'radius' must be smaller than 200!"]);
-	}
 
 	const result = await db.raw(`SELECT *
 	FROM (
 		SELECT *, haversine(lat, lng, ?, ?) AS distance 
-		FROM "Places" 
+		FROM places 
 	) AS subquery
 	WHERE distance <= ?
 	ORDER BY distance ASC 
-	LIMIT ?`, [lat, lng, radius, 500]);
-	/* const result = await db("Places").select(db.raw("*, haversine(lat, lng, ?, ?) AS distance", [lat, lng])).where("distance", "<=", radius).orderBy("distance").limit(500); */
-
-	/* const response = await fetch(`https://park4night.com/api/places/around?lat=${lat}&lng=${lng}&radius=200&lang=en`);
-
-	const json = await response.json(); */
+	LIMIT ?`, [body.lat, body.lng, Math.round(body.radius), body.limit]);
 
 	return new Response(JSON.stringify({
 		type: "success",
@@ -67,7 +60,7 @@ export const put: APIRoute = async ({ request, cookies }) => {
 		return ApiRouteError(["User is not logged in."]);
 	}
 
-	const id = await db("Places").insert({
+	const id = await db("places").insert({
 		title: body.title,
 		description: body.description,
 		lat: body.lat,

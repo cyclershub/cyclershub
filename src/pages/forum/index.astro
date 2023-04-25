@@ -1,8 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro"
+import { db } from "~/lib/shared";
+import Layout from "../../layouts/Layout.astro";
+import ForumList from "~/components/ForumList.svelte";
+
+const forums = await db("forums").select("*")
 
 ---
 
 <Layout title="Forum | CyclersHub">
-	
+	<ForumList client:load forums={forums}></ForumList>
 </Layout>

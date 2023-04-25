@@ -15,7 +15,7 @@ export class User {
 			return null;
 		}
 
-		const user = await db<UserType>("Users").select("*").where("uid", uid).first();
+		const user = await db<UserType>("users").select("*").where("uid", uid).first();
 
 		if (!user) {
 			return null;
@@ -29,7 +29,7 @@ export class User {
 			return null;
 		}
 
-		const user = await db<UserType>("Users").select("*").where("email", email).first();
+		const user = await db<UserType>("users").select("*").where("email", email).first();
 
 		if (!user) {
 			return null;
@@ -43,7 +43,7 @@ export class User {
 			return null;
 		}
 
-		const user = await db<UserType>("Users").select("*").where("username", username).first();
+		const user = await db<UserType>("users").select("*").where("username", username).first();
 
 		if (!user) {
 			return null;
@@ -62,7 +62,7 @@ export class User {
 			return null;
 		}
 
-		const user = await db<UserType>("Users").select("*").where("id", id).first();
+		const user = await db<UserType>("users").select("*").where("id", id).first();
 
 		if (!user) {
 			return null;
@@ -79,7 +79,7 @@ export class User {
 		const uid = uuid();
 		const hashedPassword = hashPassword(user.password);
 
-		const result = await db<UserType>("Users").insert({
+		const result = await db<UserType>("users").insert({
 			username: user.username,
 			email: user.email,
 			password: hashedPassword,

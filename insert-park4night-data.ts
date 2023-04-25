@@ -15,7 +15,7 @@ const db = knex({
 const places = JSON.parse(fs.readFileSync("./park4night-result.json", "utf-8"));
 
 
-db.batchInsert("Places",
+db.batchInsert("places",
 	places.map((place: any) => {
 		if (!place) {
 			return;
