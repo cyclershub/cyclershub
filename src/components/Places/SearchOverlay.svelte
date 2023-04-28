@@ -12,6 +12,7 @@
 	export let history: Map<string, Map<number, Place>>;
 	export let activePanel: number | boolean;
 	export let showCity: string;
+	export let saved: Map<number, Place>;
 
 	let showImageGallery: boolean = false;
 	let searchQuery: string = "";
@@ -118,7 +119,11 @@
 						<span class="text-blue-700 text-sm">Maps</span>
 					</a>
 					<button
-						on:click={() => {}}
+						on:click={() => {
+							saved.set(poi.id, poi);
+							localStorage.setItem("saved", JSON.stringify(Array.from(saved)));
+							saved = saved;
+						}}
 						class="flex flex-col items-center gap-2 w-fit">
 						<Bookmark
 							width={15}
@@ -141,6 +146,32 @@
 				<p class="break-words">{poi.description}</p>
 				<strong>{poi.street} {poi.zip} {poi.city}</strong>
 			</div>
+		</Panel>
+		<Panel>
+			<hr class="mt-20" />
+			{#each Array.from(saved) as [id, place]}
+				<div
+					class="flex flex-row gap-4 mx-4 my-4 items-center hover:bg-gray-100 rounded-lg p-2 cursor-pointer select-none"
+					on:click={() => {
+						poi = place;
+						latitude = poi.lat;
+						longitude = poi.lng;
+						activePanel = 1;
+					}}>
+					<img
+						src={place.images[0]?.thumb || "/landscape-placeholder.svg"}
+						alt=""
+						class="w-[60px] rounded-lg h-full object-cover" />
+					<div>
+						<h3 class="font-semibold">
+							{place.street}
+							{place.zip}
+							{place.city}
+						</h3>
+						<span>{place.description.substring(0, 40)}...</span>
+					</div>
+				</div>
+			{/each}
 		</Panel>
 	</Panels>
 

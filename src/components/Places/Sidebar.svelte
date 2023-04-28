@@ -6,6 +6,7 @@
 	export let history: Map<string, Map<number, Place>>;
 	export let activePanel: number | boolean;
 	export let showCity: string;
+	export let saved: Map<number, Place>;
 
 	let placesArray: [string, Place[]][] = [];
 
@@ -16,7 +17,12 @@
 
 <div class="w-[80px] bg-white border-r flex flex-col items-center py-4">
 	<div class="flex flex-col items-center gap-2 cursor-pointer">
-		<Bookmark width={20} height={20}></Bookmark>
+		<button class="relative" on:click={() => {
+			activePanel = 2;
+		}}>
+			<Bookmark width={20} height={20}></Bookmark>
+			<span class="text-xs absolute top-3 right-[-8px] z-[100] text-black font-bold px-0.5">{Array.from(saved).length}</span>
+		</button>
 		<span class="text-xs break-all text-gray-400">Saved</span>
 	</div>
 	<hr class="border my-4 w-full mx-2">

@@ -6,6 +6,9 @@ export interface Place {
 	zip: string;
 	city: string;
 	country: string;
+
+	marker?: Symbol
+
 	description: string;
 	created_on: string;
 	distance: number;

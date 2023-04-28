@@ -12,8 +12,9 @@
 	export let longitude: number;
 
 	let history = new Map<string, Map<number, Place>>();
-	let activePanel: number = 0;
+	let activePanel: number = 3;
 	let showCity: string = "";
+	let saved = new Map<number, Place>();
 
 	$: {
 		if (poi) {
@@ -30,7 +31,7 @@
 </script>
 
 <div class="grid grid-cols-[80px,1fr] w-full h-full">
-	<Sidebar bind:poi bind:history bind:activePanel bind:showCity />
+	<Sidebar bind:poi bind:history bind:activePanel bind:showCity bind:saved />
 	<LeafletMap
 		bind:poi
 		bind:activePanel
@@ -39,6 +40,7 @@
 </div>
 
 <SearchOverlay
+bind:saved
 bind:poi
 bind:showCity
 bind:longitude

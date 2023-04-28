@@ -78,6 +78,10 @@ Thanks for joining us at The Cyclershub. Now let's ride off into the sunset (or,
 - [ ] Advanced Search Functionality for Camping Spots, Tracks, and Stories
 - [ ] Social Media Integration for Sharing Content
 - [ ] User Preferences and Customization Options
+- [ ] CyclersHub MeetUp
+  - [ ] Submitting a User's Position
+  - [ ] Finding Users depending on location
+  - [ ] Chat Integration (WhatsApp/Discord)
 
 ## Phase 3: Optimization and Expansion
 

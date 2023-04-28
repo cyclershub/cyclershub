@@ -1,6 +1,7 @@
 <script lang="ts">
 	import "leaflet-canvas-markers";
-	import L, { LatLngExpression } from "leaflet";
+	import L from "leaflet";
+	import { IconCanvasLayer } from "./IconCanvasLayer";
 	import type { Place } from "../Places";
 	let map: L.Map;
 
@@ -10,11 +11,12 @@
 
 	let manuallyActivatedCurrentMarker: boolean = false;
 
-	let initialView: LatLngExpression = [0, 0];
-	// Get the current user location.
+	const placeLayer = new IconCanvasLayer({
+		sparse: 1/14
+	});
 
 	function createMap(container: HTMLElement) {
-		let map = L.map(container, { preferCanvas: true, maxZoom: 14, minZoom: 6, zoomControl: false }).setView(initialView, 12);
+		let map = L.map(container, { preferCanvas: true, maxZoom: 14, minZoom: 6, zoomControl: false });
 		L.control.zoom({
 			position: "bottomright"
 		}).addTo(map);
@@ -30,31 +32,15 @@
 		return map;
 	}
 
-	function createCanvasMarker(
-		location: { lat: number; lng: number },
-		type: string
-	) {
-		let marker = L.canvasMarker(
-			{ lat: location.lat, lng: location.lng },
-			{
-				img: {
-					url: `/icons/${type}.svg`,
-					size: [28, 38],
-					rotate: 0,
-					offset: { x: 0, y: -19 },
-				},
-			}
-		);
-
-		return marker;
-	}
-
 	export let poi: Place | null;
-	async function createMarker(location: Place): Promise<L.Marker<any>> {
-		const marker = createCanvasMarker(
-			{ lat: location.lat, lng: location.lng },
-			location.type
-		);
+	async function createMarker(location: Place): Promise<Symbol> {
+		if (location.marker) {
+			placeLayer.removePlace(location.marker);
+		}
+
+		const marker = await placeLayer.addPlace(location);
+
+		location.marker = marker;
 
 		let clickMarker = L.marker(
 			{ lat: location.lat, lng: location.lng },
@@ -62,19 +48,11 @@
 		).addTo(map);
 
 		clickMarker.on("mouseover", () => {
-			if (marker.options.img) {
-				marker.options.img.offset.y = -24;
-			}
-			map.removeLayer(marker);
-			map.addLayer(marker);
+			// TODO: zoom The image bigger or something.
 		});
 
 		clickMarker.on("mouseout", () => {
-			if (marker.options.img) {
-				marker.options.img.offset.y = -14;
-			}
-			map.removeLayer(marker);
-			map.addLayer(marker);
+			// TODO: zoom The image smaller or something.
 			map.setView(map.getCenter());
 		});
 
@@ -130,12 +108,11 @@
 
 		if (json.type == "success") {
 			for (const place of json.data) {
-				if (places.has(place.id)) {
+				if (places.has(place.id) || place.id === poi?.id) {
 					continue;
 				}
 				places.set(place.id, place);
-				let marker = await createMarker(place);
-				marker.addTo(map);
+				await createMarker(place);
 			}
 
 			const focus = json.data.sort(
@@ -150,7 +127,6 @@
 
 	function mapAction(container: HTMLElement) {
 		map = createMap(container);
-		map.on("dragend", updateMarkers);
 		map.on("zoomend", updateMarkers);
 
 		map.on("click", () => {
@@ -158,6 +134,12 @@
 			poi = null;
 			activePanel = false;
 		});
+
+		map.on("moveend", () => placeLayer.needRedraw())
+		map.on("zoom", () => {
+			placeLayer.options.sparse = 1 / map.getZoom();
+			placeLayer.needRedraw();
+		})
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(async (position) => {
@@ -171,14 +153,13 @@
 
 				map.setView([latitude, longitude], 14);
 
-				let marker = createCanvasMarker(
-					{ lat: latitude, lng: longitude },
-					"LOC"
-				);
-				marker.addTo(map);
+
+				const location = placeLayer.addCustomIcon("LOC", L.latLng(latitude, longitude));
 				updateMarkers();
 			});
 		}
+
+		placeLayer.addTo(map);
 
 		return {
 			destroy: () => {
@@ -194,8 +175,8 @@
 	}
 
 	$: {
-		if (map) {
-			map.setView({ lat: latitude, lng: longitude }, 14);
+		if (map && latitude && longitude) {
+			
 			updateMarkers();
 		}
 	}
