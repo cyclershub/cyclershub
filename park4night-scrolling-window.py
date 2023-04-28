@@ -4,15 +4,12 @@ import concurrent.futures
 import signal
 import sys
 
-last = []
-
 try:
-		with open("./park4night-result.json", "r") as file:
-				last = json.load(file) or []
+	with open("./park4night-result.json", "r") as file:
+		map = json.load(file) or {}
 except FileNotFoundError:
-		pass
+	map = {}
 
-map = {}
 
 sector = 0
 
@@ -41,7 +38,7 @@ def main():
 				futures = []
 
 				for i in range(-60, 75):
-						for j in range(-90, 90):
+						for j in range(-180, 180):
 								future = executor.submit(fetchWindow, f"{i}.0000000", f"{j}.0000000")
 								futures.append(future)
 
