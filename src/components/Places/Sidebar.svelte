@@ -15,11 +15,11 @@
 	})
 </script>
 
-<div class="w-[80px] bg-white border-r flex flex-col items-center py-4">
-	<div class="flex flex-col items-center gap-2 cursor-pointer">
-		<button class="relative" on:click={() => {
-			activePanel = 2;
-		}}>
+<div class="w-[80px] bg-white border-r flex flex-col items-center py-4 overflow-y-auto overflow-x-hidden scrollbar-hide">
+	<div class="flex flex-col items-center gap-2 cursor-pointer" on:click={() => {
+		activePanel = 2;
+	}}>
+		<button class="relative" >
 			<Bookmark width={20} height={20}></Bookmark>
 			<span class="text-xs absolute top-3 right-[-8px] z-[100] text-black font-bold px-0.5">{Array.from(saved).length}</span>
 		</button>

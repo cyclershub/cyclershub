@@ -5,7 +5,8 @@
 	import TriangleUp from "./Icons/TriangleUp.svelte";
 	import TriangleDown from "./Icons/TriangleDown.svelte";
 	import Bookmark from "./Icons/Bookmark.svelte";
-  import Badge from "./Badge.svelte";
+	import Badge from "./Badge.svelte";
+	import { addNotification } from "./NotificationStore";
 
 	type MessageFromUser = Message & { user: User };
 
@@ -77,12 +78,47 @@
 			messages = messages;
 		}
 	}
+
+	async function shareThread() {
+		try {
+			const response = await fetch("https://shrty.it/api/shorten.json", {
+				method: "POST",
+				body: JSON.stringify({
+					url: window.location.href,
+				}),
+			});
+
+			const json = await response.json();
+			if (json.success == false) {
+				addNotification({
+					dismissible: true,
+					message:
+						"Sorry, we couldn't copy to your clipboard. Please just copy the URL right from your search bar.",
+					timeout: 5000,
+					type: "error",
+				});
+				return;
+			}
+
+			await copyLinkToClipboard(`https://shrty.it/${json.data.shortcode}`);
+		} catch (e) {
+			addNotification({
+				dismissible: true,
+				message:
+					"Sorry, the 'Shrty' servers seem to be unreachable right now. We copied the full URL to your clipboard.",
+				timeout: 5000,
+				type: "error",
+			});
+
+			await copyLinkToClipboard(window.location.href);
+		}
+	}
 </script>
 
 {#each messages as message, i}
 	<div class="flex flex-row gap-4 border rounded-lg p-2">
 		<div class="flex flex-col py-2 px-4 w-max items-center">
-			<a href="/user/{message.user.uid}">
+			<a href="/user/{message.user.username}">
 				<img
 					src={message.user.profile_picture || "/user-placeholder.svg"}
 					alt=""
@@ -108,33 +144,13 @@
 		</div>
 		<div class="w-full">
 			{#if i == 0}
-				<h1 class="flex flex-row items-center gap-4 justify-between">
+				<h1 class="flex flex-row items-center gap-4 justify-between break-all">
 					{thread.title}
 					<div class="flex flex-row gap-4 items-center">
 						<Share
 							width={25}
 							height={25}
-							on:click={async () => {
-								const response = await fetch(
-									"https://shrty.it/api/shorten.json",
-									{
-										method: "POST",
-										body: JSON.stringify({
-											url: window.location.href,
-										}),
-									}
-								);
-
-								const json = await response.json();
-
-								if (json.success == false) {
-									return;
-								}
-
-								await copyLinkToClipboard(
-									`https://shrty.it/${json.data.shortcode}`
-								);
-							}}
+							on:click={shareThread}
 							class="cursor-pointer inline hover:bg-gray-200 rounded-lg p-2 w-10 h-10" />
 						<Bookmark
 							width={25}
@@ -142,15 +158,26 @@
 							class="cursor-pointer inline hover:bg-gray-200 rounded-lg p-2 w-10 h-10" />
 					</div>
 				</h1>
-				<span class="text-gray-400">Asked by <a class="text-blue-500 hover:text-blue-700" href="/user/{message.user.uid}">{message.user.username}</a> on {moment(message.created_on).format("MMM DD, YYYY")}</span>
+				<span class="text-gray-400">
+					Asked by <a
+						class="text-blue-500 hover:text-blue-700"
+						href="/user/{message.user.username}">
+						{message.user.username}
+					</a>
+					on {moment(message.created_on).format("MMM DD, YYYY")}
+				</span>
 				<div class="flex flex-row gap-4">
 					{#each thread.tags || [] as tag}
-					<Badge block={true} href="/forum/{forum}/?t={tag}">{tag}</Badge>
-				{/each}
+						<Badge
+							block={true}
+							href="/forum/{forum}/?t={tag}">
+							{tag}
+						</Badge>
+					{/each}
 				</div>
-				<hr class="my-2 border-dashed">
+				<hr class="my-2 border-dashed" />
 			{/if}
-			<p>{message.body}</p>
+			<p class="break-all">{message.body}</p>
 		</div>
 	</div>
 {/each}

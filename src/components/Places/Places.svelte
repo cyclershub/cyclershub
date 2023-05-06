@@ -12,7 +12,7 @@
 	export let longitude: number;
 
 	let history = new Map<string, Map<number, Place>>();
-	let activePanel: number = 3;
+	let activePanel: number | boolean = false;
 	let showCity: string = "";
 	let saved = new Map<number, Place>();
 

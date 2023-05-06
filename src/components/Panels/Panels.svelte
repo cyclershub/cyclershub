@@ -2,15 +2,15 @@
   export const PANELS = {};
 </script>
 
-<script>
+<script lang="ts">
   import { setContext, onDestroy } from 'svelte';
   import { writable } from 'svelte/store';
 
-  const panels = [];
+  const panels: any[]= [];
   const selectedPanel = writable(null);
 
   setContext(PANELS, {
-    registerPanel: panel => {
+    registerPanel: (panel: any) => {
       panels.push(panel);
       selectedPanel.update(current => current || panel);
 
@@ -21,17 +21,17 @@
       });
     },
 
-    setSelectedPanel: index => {
+    setSelectedPanel: (index: number) => {
       selectedPanel.set(panels[index]);
     },
 
     selectedPanel
   });
 
-	export let activePanel
+	export let activePanel: number | boolean;
 
 	$: {
-		if (activePanel <= panels.length - 1) {
+		if (typeof activePanel == "number" && activePanel <= panels.length - 1) {
 			selectedPanel.set(panels[activePanel])
 		}
 	}

@@ -13,7 +13,6 @@ if (!forum) {
 }
 
 const threads = await db("threads").select("*").where("forums_id", forum.id).orderBy("created_on", "desc");
-
 ---
 
 <Layout title="Forum | CyclersHub">

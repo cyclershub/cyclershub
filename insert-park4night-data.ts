@@ -5,7 +5,7 @@ const db = knex({
 	client: "pg",
 	connection: {
 		host: "localhost",
-		port: Number(process.env.DB_PORT),
+		port: 5436,
 		user: "main",
 		password: "kCKF3ZdUIbCPZF7fwREUJLEevSyyZGWbS68vJSZx5ze4W9PyM9ZXHevtGgScnmRu",
 		database: "main",

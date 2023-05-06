@@ -1,0 +1,21 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import { getUser } from "~/lib/SharedVerification";
+import { User } from "~/lib/User";
+
+const { username } = Astro.params;
+
+if (!username) {
+	return Astro.redirect("/404");
+}
+
+const requestedUser = await User.fromUsername(username);
+
+if (!requestedUser) {
+	return Astro.redirect("/404");
+}
+---
+
+<Layout title="Forum | CyclersHub">
+	<h1>My name is {requestedUser.username}</h1>
+</Layout>

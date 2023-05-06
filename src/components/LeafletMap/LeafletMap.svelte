@@ -16,16 +16,16 @@
 	});
 
 	function createMap(container: HTMLElement) {
-		let map = L.map(container, { preferCanvas: true, maxZoom: 14, minZoom: 6, zoomControl: false });
+		let map = L.map(container, { preferCanvas: true, maxZoom: 18, minZoom: 6, zoomControl: false });
 		L.control.zoom({
 			position: "bottomright"
 		}).addTo(map);
 		L.tileLayer(
-			"https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+			"https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}@2r.png",
 			{
 				attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>`,
 				subdomains: "abcd",
-				maxZoom: 14,
+				maxZoom: 18,
 			}
 		).addTo(map);
 
@@ -151,7 +151,7 @@
 					longitude = position.coords.longitude;
 				}
 
-				map.setView([latitude, longitude], 14);
+				map.setView([latitude, longitude], 12);
 
 
 				const location = placeLayer.addCustomIcon("LOC", L.latLng(latitude, longitude));
@@ -176,7 +176,7 @@
 
 	$: {
 		if (map && latitude && longitude) {
-			
+			map.setView([latitude, longitude], map.getZoom())
 			updateMarkers();
 		}
 	}

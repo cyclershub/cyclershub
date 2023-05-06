@@ -1,6 +1,8 @@
 <script lang="ts">
   import moment from "moment";
   import type { Thread } from "~/lib/types";
+  import Heart from "./Icons/Heart.svelte";
+  import EyeOpen from "./Icons/EyeOpen.svelte";
 
 	
 
@@ -12,12 +14,12 @@
 	{#each threads as thread}
 		<a class="rounded-lg px-4 py-2 border shadow-sm flex flex-row gap-4" href="/forum/{forum}/{thread.uid}">
 			<div class="flex flex-col">
-				<span>{thread.votes} {thread.votes == 1 ? "vote" : "votes"}</span>
-				<span>{thread.view_count} {thread.view_count == 1 ? "view" : "views"}</span>
+				<span class="flex flex-row gap-4 items-center"><Heart width={20} height={20} /> {thread.votes}</span>
+				<span class="flex flex-row gap-4 items-center"><EyeOpen width={20} height={20} /> {thread.view_count}</span>
 			</div>
 			<div>
 				<span>{moment(thread.created_on).format("MM.YYYY")}</span>
-				<h2>{thread.title}</h2>
+				<h2 class="break-all">{thread.title}</h2>
 			</div>
 		</a>
 	{/each}
