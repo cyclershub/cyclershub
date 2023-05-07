@@ -3,11 +3,8 @@
 	import L from "leaflet";
 	import { IconCanvasLayer } from "./IconCanvasLayer";
 	import type { Place } from "../Places";
+  import { hideAllPlaces, latitude, longitude, placesVisible, showSinglePlace } from "../Places/shared";
 	let map: L.Map;
-
-	export let latitude: number;
-	export let longitude: number;
-	export let activePanel: number | boolean;
 
 	let manuallyActivatedCurrentMarker: boolean = false;
 
@@ -32,7 +29,6 @@
 		return map;
 	}
 
-	export let poi: Place | null;
 	async function createMarker(location: Place): Promise<Symbol> {
 		if (location.marker) {
 			placeLayer.removePlace(location.marker);
@@ -58,10 +54,9 @@
 
 		clickMarker.on("click", () => {
 			manuallyActivatedCurrentMarker = true;
-			poi = location;
-			latitude = location.lat;
-			longitude = location.lng;
-			activePanel = 1;
+			latitude.set(location.lat)
+			longitude.set(location.lng);
+			showSinglePlace(location)
 		});
 
 		return marker;
@@ -108,7 +103,7 @@
 
 		if (json.type == "success") {
 			for (const place of json.data) {
-				if (places.has(place.id) || place.id === poi?.id) {
+				if (places.has(place.id) || place.id === $placesVisible[0]?.id) {
 					continue;
 				}
 				places.set(place.id, place);
@@ -120,7 +115,7 @@
 			);
 
 			if (focus.length > 0 && !manuallyActivatedCurrentMarker) {
-				poi = focus[0];
+				showSinglePlace(focus[0]);
 			}
 		}
 	}
@@ -131,11 +126,14 @@
 
 		map.on("click", () => {
 			manuallyActivatedCurrentMarker = false;
-			poi = null;
-			activePanel = false;
+			hideAllPlaces();
 		});
 
-		map.on("moveend", () => placeLayer.needRedraw())
+		map.on("moveend", () => {
+			placeLayer.needRedraw()
+			latitude.set(map.getCenter().lat);
+			longitude.set(map.getCenter().lng);
+		})
 		map.on("zoom", () => {
 			placeLayer.options.sparse = 1 / map.getZoom();
 			placeLayer.needRedraw();
@@ -143,18 +141,18 @@
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(async (position) => {
-				if (!latitude) {
-					latitude = position.coords.latitude;
+				if (!$latitude) {
+					latitude.set(position.coords.latitude);
 				}
 
-				if (!longitude) {
-					longitude = position.coords.longitude;
+				if (!$longitude) {
+					longitude.set(position.coords.longitude);
 				}
 
-				map.setView([latitude, longitude], 12);
+				map.setView([$latitude, $longitude], 12);
 
 
-				const location = placeLayer.addCustomIcon("LOC", L.latLng(latitude, longitude));
+				const location = placeLayer.addCustomIcon("LOC", L.latLng($latitude, $longitude));
 				updateMarkers();
 			});
 		}
@@ -175,8 +173,8 @@
 	}
 
 	$: {
-		if (map && latitude && longitude) {
-			map.setView([latitude, longitude], map.getZoom())
+		if (map && $latitude && $longitude) {
+			map.setView([$latitude, $longitude], map.getZoom())
 			updateMarkers();
 		}
 	}

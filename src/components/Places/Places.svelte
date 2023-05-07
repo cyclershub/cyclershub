@@ -5,6 +5,7 @@
 	import AddButton from "../AddButton.svelte";
 	import Sidebar from "./Sidebar.svelte";
 	import SearchOverlay from "./SearchOverlay.svelte";
+  import { placesVisible } from "./shared";
 
 	export let user: UserType;
 
@@ -12,40 +13,29 @@
 	export let longitude: number;
 
 	let history = new Map<string, Map<number, Place>>();
-	let activePanel: number | boolean = false;
 	let showCity: string = "";
 	let saved = new Map<number, Place>();
 
 	$: {
-		if (poi) {
-			if (!history.has(poi.city)) {
-				history.set(poi.city, new Map());
+		if ($placesVisible.length > 0) {
+			if (!history.has($placesVisible[0].city)) {
+				history.set($placesVisible[0].city, new Map());
 			}
 
-			history.get(poi.city)?.set(poi.id, poi);
+			history.get($placesVisible[0].city)?.set($placesVisible[0].id, $placesVisible[0]);
 			history = history;
 		}
 	}
-
-	let poi: Place;
 </script>
 
 <div class="grid grid-cols-[80px,1fr] w-full h-full">
-	<Sidebar bind:poi bind:history bind:activePanel bind:showCity bind:saved />
-	<LeafletMap
-		bind:poi
-		bind:activePanel
-		bind:latitude
-		bind:longitude />
+	<Sidebar bind:history bind:showCity bind:saved />
+	<LeafletMap />
 </div>
 
 <SearchOverlay
 bind:saved
-bind:poi
 bind:showCity
-bind:longitude
-bind:activePanel
-bind:latitude
 bind:history />
 
 {#if user}
