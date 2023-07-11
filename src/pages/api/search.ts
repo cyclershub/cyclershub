@@ -17,7 +17,7 @@ export const post: APIRoute = async ({ request }) => {
 
 	const validate = PlaceQueryValidator.safeParse(body);
 	if (!validate.success) {
-		return ApiRouteError(validate.error.issues.map(x => x.message));
+		return ApiRouteError(validate.error.issues);
 	}
 
 

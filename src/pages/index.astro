@@ -5,51 +5,55 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="CyclersHub">
-		<HeroCard
-			image="/start-image.jpeg">
-			<h1>CyclersHub</h1>
-			<p>
-				Welcome to CyclersHub, where cycling enthusiasts come to share their experiences, photos, and routes - without the risk of getting hit by a car!
-			</p>
-			<p>
-				Explore our <a href="/forum">forum</a>, browse around in the <a
-					href="/gallery">
-					gallery
-				</a> or <a href="/stories">read stories</a> and <a href="/tracks">
-					explore tracks
-				</a>. If you like what you see, consider supporting us on <a
-					href="https://github.com/Letsmoe">
-					GitHub
-				</a> or <a href="https://patreon.com/Letsmoe">Patreon</a> so we can keep the wheels spinning and the puns rolling
-			</p>
-			<p>
-				Create a new account to become part of an evergrowing community of cyclists around the globe!
-			</p>
-			<a
-				class="button"
-				href="/user/signup">
-				Sign Up
-			</a>
-		</HeroCard>
-		<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-20">
-			<Card href="/forum">
-				<h2>Forum</h2>
-				<p>Explore our forum, where you can join in on heated debates about the best bike gear and argue over who has the better bike..</p>
-			</Card>
-			<Card href="/tracks">
-				<h2>Tracks</h2>
-				<p>Read stories from fellow cyclists and live vicariously through their epic adventures, or check out our tracks section to plan your next ride and avoid getting lost like the last time.</p>
-			</Card>
-			<Card href="/gallery">
-				<h2>Gallery</h2>
-				<p>Take a spin around our gallery, where you can admire breathtaking views of nature and get some serious FOMO for not being there yourself.</p>
-			</Card>
+		<div class="flex flex-col gap-32">
+			<div class="flex flex-col lg:flex-row justify-between gap-16 h-[calc(100vh-80px)] py-16">
+				<div class="flex flex-col w-3/5">
+					<h1 class="text-7xl font-semibold w-5/6 uppercase">Connect,<br> Learn, and Share with Fellow Cyclists!</h1>
+					<hr class="my-16">
+					<div class="flex flex-row gap-4 mb-8">
+						<div class="flex flex-row">
+							<img src="/images/face-1.jpg" class="rounded-full w-[60px] h-[60px] object-cover">
+							<img src="/images/face-2.jpg" class="rounded-full w-[60px] h-[60px] object-cover ml-[-20px]">
+							<img src="/images/face-3.jpg" class="rounded-full w-[60px] h-[60px] object-cover ml-[-20px]">
+							<img src="/images/face-4.jpg" class="rounded-full w-[60px] h-[60px] object-cover ml-[-20px]">
+						</div>
+						<p class="font-normal">JOIN OUR COMMUNITY<br> OF 1+ AVID CYCLISTS</p>
+					</div>
+					<div class="flex flex-row gap-4">
+						<a href="/forum" class="bg-slate-900 text-white text-lg font-medium px-8 py-4 rounded-tr-xl rounded-tl-xl rounded-br-xl hover:bg-slate-800 transition-colors">Start Exploring</a>
+						<a href="/user/login" class="bg-transparent text-slate-900 border border-neutral-400 text-lg font-medium px-8 py-4 rounded-tr-xl rounded-tl-xl rounded-bl-xl rounded-br-xl hover:bg-neutral-100 transition-colors">Become A Member!</a>
+					</div>
+				</div>
+				<div class="flex flex-col w-2/5 gap-4">
+					<img src="/images/mountain-with-bike-in-front.jpg" class="w-full h-full object-cover rounded-tl-2xl rounded-br-2xl">
+					<span class="text-neutral-400 text-sm">Photo by <a href="https://unsplash.com/@ocampos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">O'car Johann Campos</a></span>
+					<div class="flex flex-row gap-4">
+					</div>
+				</div>
+			</div>
+	
+			<div class="flex flex-col gap-16 h-[100vh]">
+				<h2 class="text-center font-semibold text-4xl">Find quality reads on any topic</h2>
+				<div class="flex flex-row gap-32 h-full">
+					<div class="w-2/4 h-full overflow-hidden rounded-xl relative">
+						<img src="/images/bicycle-on-mountain.jpg" class="h-full w-auto object-cover rounded-xl hover:scale-105 transition-transform cursor-pointer">
+						<div class="absolute bottom-0 left-0 px-4 py-4 w-full h-auto z-10 bg-slate-900 opacity-60 backdrop-filter-[blur(16px)]">
+							<p class="text-white">12 Timeless Sci-Fi Books: Journey to Uncharted Worlds</p>
+						</div>
+					</div>
+					<div class="w-2/4 h-full">
+						<h2>Trending Keywords</h2>
+					</div>
+				</div>
+			</div>
+	
+			<div class="flex flex-col gap-8 py-12 px-16 w-full rounded-xl bg-slate-200 border-2 border-slate-800 items-center">
+				<h2 class="text-center font-semibold text-4xl">Get started for free!</h2>
+				<p>You can become a reader, an author, or both! Join today, cancel anytime, no commitment. </p>
+				<div class="flex flex-row gap-8">
+					<a href="" class="bg-slate-900 text-white text-lg font-medium px-8 py-4 rounded-tr-full rounded-tl-full rounded-br-full hover:bg-slate-800 transition-colors">Sign up for an account</a>
+					<a href="" class="bg-white text-slate-900 border border-neutral-400 text-lg font-medium px-8 py-4 rounded-full hover:bg-neutral-100 transition-colors">Log in</a>
+				</div>
+			</div>
 		</div>
-		<HeroCard reverse={true}>
-				<h1>Spot Search</h1>
-				<p>Looking for a new camping adventure? CyclersHub has you covered! We offer a comprehensive search tool to help you find the perfect spot for your next outdoor getaway.</p>
-				<p>Once you've found your ideal camping spot, be sure to check out our camping stories section for inspiration and advice.</p>
-				<p>So start your search for the perfect camping spot today with CyclersHub and discover new and exciting places to camp!</p>
-				<a href="/places/map" class="button">Try Now!</a>
-		</HeroCard>
 </Layout>

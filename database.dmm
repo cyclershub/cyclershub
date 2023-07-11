@@ -19,12 +19,12 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "a8ea0610-949e-4c21-8f4f-dc56e8a8d834",
@@ -40,10 +40,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "b4bc38fc-3fb3-43f7-a2f1-6380e6124583",
@@ -59,10 +59,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "b6d86e30-8360-4a36-8106-ab0be12f42e8",
@@ -78,10 +78,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "ab9a6849-3b99-4f73-8484-f6ceff626b36",
@@ -97,10 +97,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "19d78b51-40b1-4d97-8c14-26b68a0536a0",
@@ -116,8 +116,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -154,7 +156,8 @@
 				"storageParameters": "",
 				"partition": "",
 				"partitionNames": []
-			}
+			},
+			"customCode": ""
 		},
 		"54e4e6e3-ba97-4a81-bde6-aaaa347b5b67": {
 			"id": "54e4e6e3-ba97-4a81-bde6-aaaa347b5b67",
@@ -175,12 +178,12 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "9b21d461-16f5-4d44-9ef6-184fab3586b1",
@@ -196,10 +199,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "855a405e-2773-4656-be74-bef71c6dd73f",
@@ -215,10 +218,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "b4cc6ffe-4fdd-49a8-8c31-b838dee7c63e",
@@ -234,10 +237,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "6e864576-e77c-4d8f-a72c-36a77d29d339",
@@ -253,10 +256,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "42df8109-8714-437a-a0be-17ee15d73b4e",
@@ -272,10 +275,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "e1848b66-ef0b-4a76-befc-52acde6d6ea0",
@@ -291,8 +294,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -325,7 +330,8 @@
 				"storageParameters": "",
 				"partition": "",
 				"partitionNames": []
-			}
+			},
+			"customCode": ""
 		},
 		"fdda6ad1-e127-47a9-8e48-b06016132cc6": {
 			"id": "fdda6ad1-e127-47a9-8e48-b06016132cc6",
@@ -346,12 +352,12 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "d6079f43-e09c-408a-aa15-3c29776833de",
@@ -367,10 +373,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "67e5a5a0-27c0-4f66-a828-f17685a2354d",
@@ -386,10 +392,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "9d05f6f2-8728-4a72-a08c-50484e41dc2d",
@@ -405,10 +411,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "2b1959ed-04f9-43ed-bba4-5e6f129fbb6b",
@@ -422,13 +428,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"fk": true,
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "718f65a8-2ff8-46ce-bdd5-affcdbb597bf",
@@ -442,13 +448,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"fk": true,
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "f5e38da1-7095-4264-9836-2bd1be78bc0f",
@@ -464,10 +470,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "1aa75b34-eeb7-4805-af65-705571da9f45",
@@ -483,8 +489,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				},
 				{
 					"id": "fdb68ea7-98cf-43ec-a132-2de3fdc2097b",
@@ -500,8 +508,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -538,7 +548,8 @@
 				"storageParameters": "",
 				"partition": "",
 				"partitionNames": []
-			}
+			},
+			"customCode": ""
 		},
 		"d279fbea-27ee-46e5-bef3-4b2e66c75b43": {
 			"id": "d279fbea-27ee-46e5-bef3-4b2e66c75b43",
@@ -559,12 +570,12 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "ae12726c-4fb6-481e-b338-8b57e4b33f4f",
@@ -580,8 +591,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				},
 				{
 					"id": "8248095e-c001-4701-96b8-fd4ce71f2d36",
@@ -597,10 +610,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "92eb57b5-4cf4-45b7-ac77-8f80e307df36",
@@ -616,10 +629,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "5c827de0-b578-4de4-9b55-dfd11617bb7f",
@@ -635,10 +648,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "0235daca-695e-49f3-8bf7-29e27ec14c3e",
@@ -652,13 +665,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"fk": true,
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "8ab6a0d1-c6f6-4043-bad5-2f6bc46ba278",
@@ -672,13 +685,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"fk": true,
 					"param": "",
 					"list": false,
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -713,7 +726,8 @@
 				"storageParameters": "",
 				"partition": "",
 				"partitionNames": []
-			}
+			},
+			"customCode": ""
 		},
 		"820cd9fc-3223-44d6-b5f9-c546dc0d2396": {
 			"id": "820cd9fc-3223-44d6-b5f9-c546dc0d2396",
@@ -734,7 +748,8 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
@@ -754,7 +769,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -772,7 +788,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -790,7 +807,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -808,7 +826,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -826,7 +845,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -844,7 +864,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -862,7 +883,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -880,7 +902,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -898,7 +921,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -916,7 +940,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -934,7 +959,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -952,7 +978,8 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"estimatedSize": ""
 				},
@@ -968,13 +995,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
 					"estimatedSize": "",
-					"fk": true,
-					"binary": false
+					"fk": true
 				},
 				{
 					"id": "4b2ca2fd-61ae-47da-a27c-eea9b57cb2ab",
@@ -990,10 +1017,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
-					"estimatedSize": "",
-					"binary": false
+					"estimatedSize": ""
 				},
 				{
 					"id": "218287cb-5d8b-420d-9c9e-f7dc7800973b",
@@ -1009,8 +1036,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -1043,7 +1072,8 @@
 				"storageParameters": "",
 				"partition": "",
 				"partitionNames": []
-			}
+			},
+			"customCode": ""
 		},
 		"27e769a5-ae5e-4198-a992-80742780cc9f": {
 			"id": "27e769a5-ae5e-4198-a992-80742780cc9f",
@@ -1064,14 +1094,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
 					"estimatedSize": "",
-					"fk": true,
-					"binary": false,
-					"ref": "Threads"
+					"fk": true
 				},
 				{
 					"id": "71a2b654-6344-4798-beaf-9bc9e1f87675",
@@ -1085,14 +1114,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
 					"estimatedSize": "",
-					"fk": true,
-					"binary": false,
-					"ref": "Users"
+					"fk": true
 				}
 			],
 			"relations": [
@@ -1124,8 +1152,14 @@
 			"objectType": "table",
 			"pg": {
 				"rowsecurity": false,
-				"schema": ""
-			}
+				"schema": "",
+				"tablespace": "",
+				"inherits": "",
+				"storageParameters": "",
+				"partition": "",
+				"partitionNames": []
+			},
+			"customCode": ""
 		},
 		"7b2ecff2-c4da-48dc-9644-1b988d07c84f": {
 			"id": "7b2ecff2-c4da-48dc-9644-1b988d07c84f",
@@ -1146,14 +1180,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
 					"estimatedSize": "",
-					"fk": true,
-					"binary": false,
-					"ref": "Users"
+					"fk": true
 				},
 				{
 					"id": "56b228aa-b1bb-4b63-b29e-cd4bdbf9b361",
@@ -1167,14 +1200,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
 					"estimatedSize": "",
-					"fk": true,
-					"binary": false,
-					"ref": "Messages"
+					"fk": true
 				},
 				{
 					"id": "d78c25f3-cf80-4d09-8709-4cdea8aba016",
@@ -1190,8 +1222,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -1227,8 +1261,14 @@
 			"objectType": "table",
 			"pg": {
 				"rowsecurity": false,
-				"schema": ""
-			}
+				"schema": "",
+				"tablespace": "",
+				"inherits": "",
+				"storageParameters": "",
+				"partition": "",
+				"partitionNames": []
+			},
+			"customCode": ""
 		},
 		"6e2f9fdb-240e-4947-8cab-0ea9ed324051": {
 			"id": "6e2f9fdb-240e-4947-8cab-0ea9ed324051",
@@ -1249,8 +1289,12 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"param": "",
+					"list": false,
+					"estimatedSize": ""
 				},
 				{
 					"id": "ac445ef6-d68e-4cd7-8a46-b812bb0cf7d8",
@@ -1266,8 +1310,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				},
 				{
 					"id": "bac10921-6f13-43d6-a203-cbb5f68fe91e",
@@ -1283,8 +1329,10 @@
 					"list": false,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
-					}
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
@@ -1310,16 +1358,24 @@
 					"name": "tags_tag_unique",
 					"unique": true,
 					"algorithm": "",
-					"pg": {},
+					"pg": {
+						"tablespace": "",
+						"desc": "",
+						"storageParameters": "",
+						"expression": ""
+					},
 					"cols": [
 						{
 							"id": "dc57f232-f2f5-4fcc-81c2-50197d3df810",
-							"colid": "ac445ef6-d68e-4cd7-8a46-b812bb0cf7d8"
+							"colid": "ac445ef6-d68e-4cd7-8a46-b812bb0cf7d8",
+							"pg": {
+								"desc": false,
+								"nullsLast": false,
+								"collate": "",
+								"expression": ""
+							}
 						}
-					],
-					"fulltext": false,
-					"using": "na",
-					"lockoption": "na"
+					]
 				}
 			],
 			"embeddable": false,
@@ -1328,8 +1384,14 @@
 			"objectType": "table",
 			"pg": {
 				"rowsecurity": false,
-				"schema": ""
-			}
+				"schema": "",
+				"tablespace": "",
+				"inherits": "",
+				"storageParameters": "",
+				"partition": "",
+				"partitionNames": []
+			},
+			"customCode": ""
 		},
 		"d331b739-9bad-4915-a98f-6c9c70f64f47": {
 			"id": "d331b739-9bad-4915-a98f-6c9c70f64f47",
@@ -1350,10 +1412,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"fk": true,
-					"ref": "tags"
+					"param": "",
+					"list": false,
+					"estimatedSize": ""
 				},
 				{
 					"id": "a94c0f8c-2f07-4b13-bd3f-00cce4502c74",
@@ -1367,14 +1432,13 @@
 					"collation": null,
 					"after": "",
 					"pg": {
-						"generatedIdentity": "no"
+						"generatedIdentity": "no",
+						"generated": ""
 					},
 					"param": "",
 					"list": false,
 					"estimatedSize": "",
-					"fk": true,
-					"binary": false,
-					"ref": "threads"
+					"fk": true
 				}
 			],
 			"relations": [
@@ -1406,8 +1470,14 @@
 			"objectType": "table",
 			"pg": {
 				"rowsecurity": false,
-				"schema": ""
-			}
+				"schema": "",
+				"tablespace": "",
+				"inherits": "",
+				"storageParameters": "",
+				"partition": "",
+				"partitionNames": []
+			},
+			"customCode": ""
 		}
 	},
 	"relations": {
@@ -1434,7 +1504,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"22ceedf8-68c7-47a7-af25-661855db686e": {
 			"id": "22ceedf8-68c7-47a7-af25-661855db686e",
@@ -1459,7 +1530,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"bffef436-63c9-4f6e-9bbe-c814ec049ece": {
 			"id": "bffef436-63c9-4f6e-9bbe-c814ec049ece",
@@ -1484,7 +1556,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"decae424-1de1-4eef-9971-9116c97387a7": {
 			"id": "decae424-1de1-4eef-9971-9116c97387a7",
@@ -1509,7 +1582,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"e2185778-4624-4143-8c47-e8305e49530d": {
 			"id": "e2185778-4624-4143-8c47-e8305e49530d",
@@ -1534,7 +1608,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"2320e529-5665-435e-a411-5789ddf7cfb5": {
 			"id": "2320e529-5665-435e-a411-5789ddf7cfb5",
@@ -1559,7 +1634,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"7e372b4b-c465-4910-bcd0-610d7254a87d": {
 			"id": "7e372b4b-c465-4910-bcd0-610d7254a87d",
@@ -1584,7 +1660,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"0ae7865b-b546-4a70-8a9f-71cff6fe1514": {
 			"id": "0ae7865b-b546-4a70-8a9f-71cff6fe1514",
@@ -1609,7 +1686,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"a15fd7db-1e0f-4092-b486-5607bddb7353": {
 			"id": "a15fd7db-1e0f-4092-b486-5607bddb7353",
@@ -1634,7 +1712,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"c6515647-52b5-43ca-bd42-01a2f60861d1": {
 			"id": "c6515647-52b5-43ca-bd42-01a2f60861d1",
@@ -1659,7 +1738,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		},
 		"60285a7f-26b5-4b3d-9200-aa0a4d38d430": {
 			"id": "60285a7f-26b5-4b3d-9200-aa0a4d38d430",
@@ -1684,7 +1764,8 @@
 				}
 			],
 			"generate": true,
-			"generateCustomCode": true
+			"generateCustomCode": true,
+			"customCode": ""
 		}
 	},
 	"notes": {},
@@ -1708,12 +1789,7 @@
 			"minor": 2,
 			"extra": 0
 		},
-		"embeddedInParentsIsDisplayed": true,
-		"schemaContainerIsDisplayed": false,
-		"cardinalityIsDisplayed": false,
-		"estimatedSizeIsDisplayed": false,
 		"writeFileParam": false,
-		"currentDisplayMode": "metadata",
 		"def_coltopk": true,
 		"pg": {
 			"schema": ""
@@ -1739,7 +1815,10 @@
 			"indexes": true,
 			"relations": true
 		},
-		"lastSaved": "Tue Apr 25 2023 12:47:06 GMT+0400 (Georgia Standard Time)"
+		"lastSaved": "4/25/2023",
+		"authorName": "",
+		"companyDetails": "",
+		"companyUrl": ""
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -1764,7 +1843,8 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"54e4e6e3-ba97-4a81-bde6-aaaa347b5b67": {
 					"referencedItemId": "54e4e6e3-ba97-4a81-bde6-aaaa347b5b67",
@@ -1775,7 +1855,8 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"fdda6ad1-e127-47a9-8e48-b06016132cc6": {
 					"referencedItemId": "fdda6ad1-e127-47a9-8e48-b06016132cc6",
@@ -1786,7 +1867,8 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"d279fbea-27ee-46e5-bef3-4b2e66c75b43": {
 					"referencedItemId": "d279fbea-27ee-46e5-bef3-4b2e66c75b43",
@@ -1797,7 +1879,8 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"820cd9fc-3223-44d6-b5f9-c546dc0d2396": {
 					"referencedItemId": "820cd9fc-3223-44d6-b5f9-c546dc0d2396",
@@ -1808,7 +1891,8 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"27e769a5-ae5e-4198-a992-80742780cc9f": {
 					"referencedItemId": "27e769a5-ae5e-4198-a992-80742780cc9f",
@@ -1819,7 +1903,8 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"7b2ecff2-c4da-48dc-9644-1b988d07c84f": {
 					"referencedItemId": "7b2ecff2-c4da-48dc-9644-1b988d07c84f",
@@ -1830,18 +1915,20 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"6e2f9fdb-240e-4947-8cab-0ea9ed324051": {
 					"referencedItemId": "6e2f9fdb-240e-4947-8cab-0ea9ed324051",
 					"x": 898,
 					"y": 269,
-					"gHeight": 81,
+					"gHeight": 110,
 					"gWidth": 219,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				},
 				"d331b739-9bad-4915-a98f-6c9c70f64f47": {
 					"referencedItemId": "d331b739-9bad-4915-a98f-6c9c70f64f47",
@@ -1852,14 +1939,34 @@
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
-					"autoExpand": true
+					"autoExpand": true,
+					"backgroundOpacity": "10"
 				}
 			},
 			"scroll": {
 				"x": 0,
 				"y": 0
 			},
-			"type": "erd"
+			"type": "erd",
+			"showColumns": true,
+			"showColumnDataTypes": true,
+			"showSampleData": false,
+			"showTableIndexes": true,
+			"showTableDescriptions": false,
+			"showEstimatedSize": false,
+			"showSchemaContainer": true,
+			"showEmbeddedInParents": true,
+			"showCardinalityCaptions": true,
+			"showRelations": true,
+			"backgroundImage": "na",
+			"descriptionsColor": "transparent",
+			"showHorizontal": true,
+			"showDescriptions": false,
+			"showIndicators": true,
+			"showProgress": true,
+			"lineWidth": "2",
+			"boxSize": "0",
+			"showIndicatorCaptions": true
 		}
 	},
 	"order": [

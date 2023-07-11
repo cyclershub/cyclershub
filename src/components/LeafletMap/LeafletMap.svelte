@@ -4,6 +4,7 @@
 	import { IconCanvasLayer } from "./IconCanvasLayer";
 	import type { Place } from "../Places";
   import { hideAllPlaces, latitude, longitude, placesVisible, showSinglePlace } from "../Places/shared";
+	import { onMount } from "svelte";
 	let map: L.Map;
 
 	let manuallyActivatedCurrentMarker: boolean = false;
@@ -15,7 +16,7 @@
 	function createMap(container: HTMLElement) {
 		let map = L.map(container, { preferCanvas: true, maxZoom: 18, minZoom: 6, zoomControl: false });
 		L.control.zoom({
-			position: "bottomright"
+			position: "bottomleft"
 		}).addTo(map);
 		L.tileLayer(
 			"https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}@2r.png",
@@ -25,9 +26,62 @@
 				maxZoom: 18,
 			}
 		).addTo(map);
+		map.setView([0, 0], 6);
 
 		return map;
 	}
+
+	onMount(async () => {
+		const allPlaces = await fetch("/api/places.stream", {
+			method: "POST",
+			body: JSON.stringify({
+				limit: 5000
+			})
+		}).then(res => res.json())
+
+		let result = btoa(allPlaces.data);
+		
+		// Convert the received data into a Uint8Array
+		const uint8Array = new Uint8Array(result.length);
+		for (let i = 0; i < result.length; i++) {
+			uint8Array[i] = result.charCodeAt(i);
+		}
+
+		// Byte Length
+		let bl = 9;
+		// Decode the places
+		const numPlaces = uint8Array.length / bl;
+		const decodedPlaces = [];
+
+		for (let i = 0; i < numPlaces; i++) {
+			const lat = int16BEToFloat(uint8Array[i * bl], uint8Array[i * bl + 1]) / 100 - 90;
+			const lng = int16BEToFloat(uint8Array[i * bl + 2], uint8Array[i * bl + 3]) / 100 - 180;
+			const id = int32BEToFloat(uint8Array[i * bl + 4], uint8Array[i * bl + 5], uint8Array[i * bl + 6], uint8Array[i * bl + 7]);
+			const type = uint8Array[i * bl + 8];
+
+			decodedPlaces.push({ lat, lng, type: "P", id });
+		}
+
+		function int32BEToFloat(byte1, byte2, byte3, byte4) {
+			const int32 = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+			return int32;
+		}
+
+		// Helper function to convert 16-bit signed integer to floating-point number
+		function int16BEToFloat(byte1, byte2) {
+			const int16 = (byte1 << 8) | byte2;
+			return int16;
+		}
+
+		for (const place of decodedPlaces) {
+				if (places.has(place.id) || place.id === $placesVisible[0]?.id) {
+					continue;
+				}
+				places.set(place.id, place);
+				
+				//await createMarker(place);
+			}
+	})
 
 	async function createMarker(location: Place): Promise<Symbol> {
 		if (location.marker) {
@@ -98,6 +152,7 @@
 				limit: 250,
 			}),
 		});
+		
 
 		const json = await response.json();
 
@@ -107,15 +162,8 @@
 					continue;
 				}
 				places.set(place.id, place);
+				
 				await createMarker(place);
-			}
-
-			const focus = json.data.sort(
-				(a: Place, b: Place) => a.distance - b.distance
-			);
-
-			if (focus.length > 0 && !manuallyActivatedCurrentMarker) {
-				showSinglePlace(focus[0]);
 			}
 		}
 	}

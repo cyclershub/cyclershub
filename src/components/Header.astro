@@ -15,12 +15,11 @@ const user = await getUser(Astro);
 ---
 
 <header class="h-[60px] items-center flex border-b">
-	<div class="mx-auto w-full px-4 flex flex-row justify-between" style={`max-width: ${fullwidth ? "100%" : "1200px"};`}>
+	<div class="mx-auto w-full px-4 flex flex-row justify-between" style={`max-width: ${fullwidth ? "100%" : "1440px"};`}>
 		<a href="/"><img src="/logo-no-text.svg" alt="CyclersHub" width="80"></a>
 		<div class="flex flex-row gap-4 items-center">
-			<a href="">Home</a>
+			<a href="">How it works</a>
 			<a href="/forum">Forum</a>
-			<a href="/groups">Groups</a>
 			{loggedIn ? <Notifications width={25} height={25}></Notifications> : ""}
 			<NotificationSystem client:load></NotificationSystem>
 			{loggedIn ? <a href="/bookmarks"><Bookmark width={25} height={25}></Bookmark></a> : ""}

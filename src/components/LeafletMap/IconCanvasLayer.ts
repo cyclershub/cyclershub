@@ -146,7 +146,7 @@ export class IconCanvasLayer extends CanvasLayer {
 
 		ctx.clearRect(0, 0, info.canvas.width, info.canvas.height);
 
-		this.sortPlacesIntoBuckets(info);
+		//this.sortPlacesIntoBuckets(info);
 		for (const [symbol, { img, poi }] of Array.from(this.places)) {
 			if (info.bounds.contains([poi.lat, poi.lng])) {
 				const { x, y } = info.layer.map.latLngToContainerPoint({

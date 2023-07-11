@@ -63,7 +63,7 @@ Thanks for joining us at The Cyclershub. Now let's ride off into the sunset (or,
 - [x] Website Launch
 - [x] Homepage Design and Layout
 - [x] Basic Camping Spot Search
-- [ ] Forum Feature Implementation
+- [x] Forum Feature Implementation
 - [x] User Account Creation and Login
 - [ ] Basic User Profile Pages
 - [x] Basic Navigation Menu

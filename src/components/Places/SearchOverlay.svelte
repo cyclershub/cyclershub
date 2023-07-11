@@ -33,10 +33,10 @@
 		const response = await fetch(`/api/search`, {
 			method: "POST",
 			body: JSON.stringify({
-				lat: latitude,
-				lng: longitude,
+				lat: $latitude,
+				lng: $longitude,
 				radius: 50,
-				limit: 10,
+				limit: 25,
 				query: searchQuery,
 			}),
 		});
