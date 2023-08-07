@@ -5,6 +5,7 @@ import Parallax from "~/components/Parallax.svelte";
 import Slide from "~/components/Slide.svelte";
 import ImageCategory from "~/components/LandingPage/ImageCategory.svelte";
 import Flag from "~/components/Flag.svelte";
+import Arrow from "~/components/Arrow.svelte";
 ---
 
 <Layout title="CyclersHub">
@@ -29,9 +30,7 @@ import Flag from "~/components/Flag.svelte";
 						class="uppercase text-white text-base font-bold tracking-wider h-[30px] group-hover:opacity-0 group-hover:h-0 block transition-all">
 						By Nancy Matthews
 					</span>
-					<span class="pointer group-hover:opacity-100 group-hover:h-[30px]">
-						Read More
-					</span>
+					<Arrow class="group-hover:opacity-100 group-hover:h-[30px] group-hover:visible h-0 opacity-0 bg-white invisible" style="width: 140px;">Read More</Arrow>
 				</a>
 			</div>
 		</Slide>
@@ -126,31 +125,8 @@ import Flag from "~/components/Flag.svelte";
 	</div>
 </Layout>
 
-<style is:global lang="css">
+<style is:global>
 	.parallax {
 		filter: brightness(0.6);
-	}
-
-	.pointer {
-		width: 116px;
-		height: 0;
-		overflow: hidden;
-		-webkit-clip-path: polygon(
-			95% 0,
-			100% 50%,
-			95% 100%,
-			0% 100%,
-			5% 50%,
-			0% 0%
-		);
-		clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);
-		@apply text-black-brown items-center flex justify-center text-xs font-semibold transition-all;
-		opacity: 0;
-		background-color: #ffffff;
-		margin: 0px auto;
-		text-align: center;
-		letter-spacing: 0.1em;
-		line-height: 1em;
-		text-transform: uppercase;
 	}
 </style>
