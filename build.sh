@@ -45,9 +45,9 @@ PERSISTENT_DIR="${HOME}/persistent/cyclershub";
 mkdir -p $PERSISTENT_DIR;
 
 # Danach machen wir ein Backup der Datenbank, falls bei der Migration etwas schiefgehen sollte.
-BACKUP_FILENAME="~/backups/$(date +"%Y-%m-%d_%H-%M-%S").sql.gz";
-touch $BACKUP_FILENAME;
+BACKUP_FILENAME="$HOME/backups/$(date +"%Y-%m-%d_%H-%M-%S").sql.gz";
 docker exec -t $DB_CONTAINER_NAME pg_dumpall -c -U $DB_USER | gzip > $BACKUP_FILENAME
+
 
 # Wir stoppen die Datenbank und rebuilden das Backup
 docker stop $DB_CONTAINER_NAME
@@ -73,12 +73,23 @@ while ! docker exec $DB_CONTAINER_NAME pg_isready -U $DB_USER -h localhost -p $D
 done
 
 # Und wenden das Backup an.
-gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER
+gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER main
 
 # Wir legen einen .env file für unsere letsencrypt keys an.
 rm -f ~/apps/$APP_NAME/.env;
 touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env
 # Danach starten wir unsere App wieder.
-docker run -d --name $APP_NAME --network $NETWORK -v "${PERSISTENT_DIR}:/persistent" \ -p "80:80" -p "443:443" -e DB_NAME=$DB_NAME -e DB_PASS=$DB_PASSWORD -e DB_USER=$DB_USER -e DB_PORT=$DB_PORT -e DB_HOST=$DB_CONTAINER_NAME --env-file ~/apps/$APP_NAME/.env $APP_NAME;
+docker run -d \
+	--name $APP_NAME \
+	--network $NETWORK \
+	-v "${PERSISTENT_DIR}:/persistent" \ \
+	-p "80:80" \
+	-p "443:443" \
+	-e DB_NAME=$DB_NAME \
+	-e DB_PASS=$DB_PASSWORD \
+	-e DB_USER=$DB_USER \
+	-e DB_PORT=$DB_PORT \
+	-e DB_HOST=$DB_CONTAINER_NAME \
+	--env-file ~/apps/$APP_NAME/.env $APP_NAME;
 
 # Das Backup lassen wir da, falls irgendwas schief gehen sollte.
