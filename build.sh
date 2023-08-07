@@ -45,8 +45,8 @@ PERSISTENT_DIR="${HOME}/persistent/cyclershub";
 mkdir -p $PERSISTENT_DIR;
 
 # Danach machen wir ein Backup der Datenbank, falls bei der Migration etwas schiefgehen sollte.
-cd ~/backups/
-BACKUP_FILENAME="$(date +"%Y-%m-%d_%H-%M-%S").sql.gz"
+BACKUP_FILENAME="~/backups/$(date +"%Y-%m-%d_%H-%M-%S").sql.gz";
+touch $BACKUP_FILENAME;
 docker exec -t $DB_CONTAINER_NAME pg_dumpall -c -U $DB_USER | gzip > $BACKUP_FILENAME
 
 # Wir stoppen die Datenbank und rebuilden das Backup
