@@ -23,4 +23,4 @@ jobs:
           git pull origin main
           git status
           pnpm install
-          bash build-application.sh
+          bash build.sh

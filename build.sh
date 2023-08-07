@@ -32,6 +32,18 @@ docker stop $APP_NAME
 docker rm $APP_NAME
 docker build --no-cache -t $APP_NAME .
 
+# SECTION: Startup jobs zu crontab hinzufügen.
+# Erstmal den cronfile leeren.
+crontab -r;
+
+# Alle builds schlagen fehl wenn die Datenbank nicht da ist, also muss der Container zuerst gebaut werden.
+(crontab -l ; echo "@reboot sudo ~/apps/database/build.sh &") | crontab -;
+(crontab -l ; echo "@reboot sudo ~/apps/cyclershub/build.sh &") | crontab -;
+
+# Wir legen ein persistent directory an
+PERSISTENT_DIR="${HOME}/persistent/cyclershub";
+mkdir -p $PERSISTENT_DIR;
+
 # Danach machen wir ein Backup der Datenbank, falls bei der Migration etwas schiefgehen sollte.
 cd ~/backups/
 BACKUP_FILENAME="$(date +"%Y-%m-%d_%H-%M-%S").sql.gz"
@@ -67,6 +79,6 @@ gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER
 rm -f ~/apps/$APP_NAME/.env;
 touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env
 # Danach starten wir unsere App wieder.
-docker run -d --name $APP_NAME --network $NETWORK -p "80:80" -p "443:443" -e DB_NAME=$DB_NAME -e DB_PASS=$DB_PASSWORD -e DB_USER=$DB_USER -e DB_PORT=$DB_PORT -e DB_HOST=$DB_CONTAINER_NAME --env-file ~/apps/$APP_NAME/.env $APP_NAME;
+docker run -d --name $APP_NAME --network $NETWORK -v "${PERSISTENT_DIR}:/persistent" \ -p "80:80" -p "443:443" -e DB_NAME=$DB_NAME -e DB_PASS=$DB_PASSWORD -e DB_USER=$DB_USER -e DB_PORT=$DB_PORT -e DB_HOST=$DB_CONTAINER_NAME --env-file ~/apps/$APP_NAME/.env $APP_NAME;
 
 # Das Backup lassen wir da, falls irgendwas schief gehen sollte.
