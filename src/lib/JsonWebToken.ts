@@ -6,5 +6,5 @@ export function encodeToken(data: Record<string, any>) {
 }
 
 export function decodeToken(token: string) {
-	return jwt.decode(token, "yIvbgS$k7Bfc+mpV%TWDZAhje9#uJad4");
+	return jwt.decode(token, "yIvbgS$k7Bfc+mpV%TWDZAhje9#uJad4", true);
 }

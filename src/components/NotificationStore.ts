@@ -31,6 +31,20 @@ export function addNotification(notification: NotificationType) {
 	return id;
 }
 
+export function updateNotification(id: number, data: NotificationType) {
+	notifications.update((all) => {
+		const index = all.findIndex(x => x.id === id);
+		if (index === -1) return all;
+		all[index] = {...all[index], ...data};
+		if (all[index].timeout) {
+			setTimeout(() => {
+				dismissNotification(id);
+			}, all[index].timeout);
+		}
+		return all;
+	})
+}
+
 export function dismissNotification(id: number) {
 	notifications.update((all) => all.filter(x => x.id !== id))
 }

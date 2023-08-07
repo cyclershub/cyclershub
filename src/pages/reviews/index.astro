@@ -1,0 +1,23 @@
+---
+import Preview from "~/components/Gallery/Preview.svelte";
+import Layout from "~/layouts/Layout.astro";
+
+---
+
+<Layout title="Reviews | The CyclersHub">
+	<div class="bg-stone-200 py-16 px-32 text-center">
+		<span class="uppercase text-stone-900 font-bold tracking-wide text-sm">Category</span>
+		<h1 class="font-bold tracking-wide m-0">Bicycle Touring Gear</h1>
+		<h2 class="font-bold text-lg tracking-wider mb-4">Reviews And Roundups</h2>
+		<p class="font-semibold text-base max-w-[800px] mx-auto">A growing compilation of reviews, from bikepacking bags to bike components, apparel and camping gear. Sort through reviews by category, or find the latest below.</p>
+	</div>
+	<div class="bg-stone-100 py-16 px-32 text-center">
+		<div class="columns-3 gap-8 [&>*]:mb-8">
+			<Preview entry={{title: "Simworks taco pedals review", author: "Danny Moody", cover: "/images/camping-gear.jpg"}} href="/reviews/awd" />
+			<Preview entry={{title: "Simworks taco pedals review", author: "Danny Moody", cover: "/images/camping-spot.jpg"}} href="/reviews/awd" />
+			<Preview entry={{title: "Simworks taco pedals review", author: "Danny Moody", cover: "/images/camping-spot.jpg"}} href="/reviews/awd" />
+			<Preview entry={{title: "Simworks taco pedals review", author: "Danny Moody", cover: "/images/camping-gear.jpg"}} href="/reviews/awd" />
+			<Preview entry={{title: "Simworks taco pedals review", author: "Danny Moody", cover: "/images/camping-gear.jpg"}} href="/reviews/awd" />
+		</div>
+	</div>
+</Layout>

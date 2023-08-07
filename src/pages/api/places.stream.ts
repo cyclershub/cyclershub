@@ -4,7 +4,7 @@ import { ApiRouteError } from "~/lib/ApiRouteError";
 import { db } from "~/lib/shared";
 
 const PlaceSearchValidator = z.object({
-	limit: z.number().max(50000).int().optional().default(10000)
+	limit: z.number().max(250000).int().optional().default(10000)
 })
 
 export const post: APIRoute = async ({ request }) => {
@@ -39,6 +39,7 @@ export const post: APIRoute = async ({ request }) => {
 		stream.writeUInt16BE(lng, i * bl + 2);
 		stream.writeUInt32BE(place.id, i * bl + 4);
 		stream.writeUint8(0, i * bl + 8);
+		
 	}
 	
 

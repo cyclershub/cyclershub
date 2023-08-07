@@ -1,59 +1,156 @@
 ---
-import Card from "../components/Card.svelte";
-import HeroCard from "../components/HeroCard.svelte";
 import Layout from "../layouts/Layout.astro";
+import Slideshow from "~/components/Slideshow.svelte";
+import Parallax from "~/components/Parallax.svelte";
+import Slide from "~/components/Slide.svelte";
+import ImageCategory from "~/components/LandingPage/ImageCategory.svelte";
+import Flag from "~/components/Flag.svelte";
 ---
 
 <Layout title="CyclersHub">
-		<div class="flex flex-col gap-32">
-			<div class="flex flex-col lg:flex-row justify-between gap-16 h-[calc(100vh-80px)] py-16">
-				<div class="flex flex-col w-3/5">
-					<h1 class="text-7xl font-semibold w-5/6 uppercase">Connect,<br> Learn, and Share with Fellow Cyclists!</h1>
-					<hr class="my-16">
-					<div class="flex flex-row gap-4 mb-8">
-						<div class="flex flex-row">
-							<img src="/images/face-1.jpg" class="rounded-full w-[60px] h-[60px] object-cover">
-							<img src="/images/face-2.jpg" class="rounded-full w-[60px] h-[60px] object-cover ml-[-20px]">
-							<img src="/images/face-3.jpg" class="rounded-full w-[60px] h-[60px] object-cover ml-[-20px]">
-							<img src="/images/face-4.jpg" class="rounded-full w-[60px] h-[60px] object-cover ml-[-20px]">
-						</div>
-						<p class="font-normal">JOIN OUR COMMUNITY<br> OF 1+ AVID CYCLISTS</p>
+	<Slideshow slide={0}>
+		<Slide>
+			<div class="relative h-[100vh] cursor-pointer">
+				<Parallax
+					src="/images/setups/3.jpg"
+					client:only
+				/>
+				<a
+					class="group absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] select-none text-center">
+					<div class="flex flex-row gap-2 justify-center">
+						<span class="text-white text-base font-bold tracking-wider">
+							Rider & Rig
+						</span>
 					</div>
-					<div class="flex flex-row gap-4">
-						<a href="/forum" class="bg-slate-900 text-white text-lg font-medium px-8 py-4 rounded-tr-xl rounded-tl-xl rounded-br-xl hover:bg-slate-800 transition-colors">Start Exploring</a>
-						<a href="/user/login" class="bg-transparent text-slate-900 border border-neutral-400 text-lg font-medium px-8 py-4 rounded-tr-xl rounded-tl-xl rounded-bl-xl rounded-br-xl hover:bg-neutral-100 transition-colors">Become A Member!</a>
-					</div>
-				</div>
-				<div class="flex flex-col w-2/5 gap-4">
-					<img src="/images/mountain-with-bike-in-front.jpg" class="w-full h-full object-cover rounded-tl-2xl rounded-br-2xl">
-					<span class="text-neutral-400 text-sm">Photo by <a href="https://unsplash.com/@ocampos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">O'car Johann Campos</a></span>
-					<div class="flex flex-row gap-4">
-					</div>
-				</div>
+					<h1 class="uppercase text-white text-5xl font-bold tracking-wider">
+						Handlebar Harnesses And Rolls
+					</h1>
+					<span
+						class="uppercase text-white text-base font-bold tracking-wider h-[30px] group-hover:opacity-0 group-hover:h-0 block transition-all">
+						By Nancy Matthews
+					</span>
+					<span class="pointer group-hover:opacity-100 group-hover:h-[30px]">
+						Read More
+					</span>
+				</a>
 			</div>
-	
-			<div class="flex flex-col gap-16 h-[100vh]">
-				<h2 class="text-center font-semibold text-4xl">Find quality reads on any topic</h2>
-				<div class="flex flex-row gap-32 h-full">
-					<div class="w-2/4 h-full overflow-hidden rounded-xl relative">
-						<img src="/images/bicycle-on-mountain.jpg" class="h-full w-auto object-cover rounded-xl hover:scale-105 transition-transform cursor-pointer">
-						<div class="absolute bottom-0 left-0 px-4 py-4 w-full h-auto z-10 bg-slate-900 opacity-60 backdrop-filter-[blur(16px)]">
-							<p class="text-white">12 Timeless Sci-Fi Books: Journey to Uncharted Worlds</p>
-						</div>
+		</Slide>
+		<Slide>
+			<div class="relative h-[100vh]">
+				<Parallax
+					src="/images/setups/5.jpg"
+					client:only
+				/>
+				<a
+					class="absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] select-none text-center">
+					<div class="flex flex-row gap-2 justify-center">
+						<span class="text-white text-base font-bold tracking-wider">
+							Rider & Rig
+						</span>
 					</div>
-					<div class="w-2/4 h-full">
-						<h2>Trending Keywords</h2>
-					</div>
-				</div>
+					<h1 class="uppercase text-white text-5xl font-bold tracking-wider">
+						Black Mountain Cycles La Cabra Review
+					</h1>
+					<span class="uppercase text-white text-base font-bold tracking-wider">
+						By Polly Collier
+					</span>
+				</a>
 			</div>
-	
-			<div class="flex flex-col gap-8 py-12 px-16 w-full rounded-xl bg-slate-200 border-2 border-slate-800 items-center">
-				<h2 class="text-center font-semibold text-4xl">Get started for free!</h2>
-				<p>You can become a reader, an author, or both! Join today, cancel anytime, no commitment. </p>
-				<div class="flex flex-row gap-8">
-					<a href="" class="bg-slate-900 text-white text-lg font-medium px-8 py-4 rounded-tr-full rounded-tl-full rounded-br-full hover:bg-slate-800 transition-colors">Sign up for an account</a>
-					<a href="" class="bg-white text-slate-900 border border-neutral-400 text-lg font-medium px-8 py-4 rounded-full hover:bg-neutral-100 transition-colors">Log in</a>
+		</Slide>
+	</Slideshow>
+	<div class="flex flex-col items-center py-8 px-16 bg-gray-100">
+		<h3 class="font-semibold text-xl tracking-wide">DISPATCH</h3>
+		<div class="grid grid-cols-4 gap-8">
+			<a class="group cursor-pointer">
+				<span class="text-xs text-gray-500 font-semibold">Aug 4</span>
+				<div class="overflow-hidden">
+					<img
+						src="/images/setups/8.png"
+						alt=""
+						class="group-hover:scale-105 aspect-video object-cover my-2 transition-transform w-full h-full"
+					/>
 				</div>
-			</div>
+				<p class="uppercase font-semibold text-xs line">
+					FRIDAY DEBRIEF: CARGO BIKEPACKING, PSYCHIC MEDIUM BAGS, NEW ZPACKS
+					TENT, AND MORE
+				</p>
+			</a>
 		</div>
+		<button
+			class="uppercase text-sm font-bold tracking-wide text-gray-600 hover:text-gray-400 transition-colors">
+			Load 4 More
+		</button>
+	</div>
+	<div class="flex flex-col items-center py-16 px-16 bg-stone-200 gap-16">
+		<p class="text-base font-semibold text-center max-w-[800px]">
+			Welcome to the CyclersHub, your ultimate destination for discovering the
+			most thrilling <a href="/routes/map">bikepacking routes</a>, <a
+				href="/reviews">
+				in-depth gear reviews
+			</a>, <a href="/blog">inspiring tales of adventure</a>, <a href="/advice">
+				expert planning tips
+			</a>, <a href="/news">latest news</a>, and <a href="/events">
+				exciting events
+			</a> in the world of cycling.
+		</p>
+		<a href="">
+			<img src="/images/Bikepacking-101-home-collage-scaled.jpg" />
+		</a>
+		<div class="flex flex-row relative">
+			<Flag class="bg-stone-900 border text-white absolute top-[-15px] left-[50%] translate-x-[-50%] z-10">Explore</Flag>
+			<ImageCategory
+				href="/routes/map"
+				src="/images/tour-view.jpg"
+				heading="Bikepacking Routes"
+				subheading="A Growing List"
+			/>
+			<ImageCategory
+				href="/reviews"
+				src="/images/camping-gear.jpg"
+				heading="Bikepacking Gear"
+				subheading="Reviews & DIY"
+			/>
+			<ImageCategory
+				href="/gallery"
+				src="/images/bikepacking-bike.jpg"
+				heading="Bike Setups"
+				subheading="& Touring Rigs"
+			/>
+			<ImageCategory
+				href="/places/map"
+				src="/images/camping-spot.jpg"
+				heading="Wildcamping"
+				subheading="Advice & Spots"
+			/>
+		</div>
+	</div>
 </Layout>
+
+<style is:global>
+	.parallax {
+		filter: brightness(0.6);
+	}
+
+	.pointer {
+		width: 116px;
+		height: 0;
+		overflow: hidden;
+		-webkit-clip-path: polygon(
+			95% 0,
+			100% 50%,
+			95% 100%,
+			0% 100%,
+			5% 50%,
+			0% 0%
+		);
+		clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);
+		@apply text-black-brown items-center flex justify-center text-xs font-semibold transition-all;
+		opacity: 0;
+		background-color: #ffffff;
+		margin: 0px auto;
+		text-align: center;
+		letter-spacing: 0.1em;
+		line-height: 1em;
+		text-transform: uppercase;
+	}
+</style>

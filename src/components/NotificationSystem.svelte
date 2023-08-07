@@ -9,7 +9,7 @@
 		class="fixed top-[76px] left-4 w-auto h-auto flex flex-col gap-4">
 		{#each $notifications as notification (notification.id)}
 			<div
-				class="px-4 py-2 flex flex-row items-center gap-2 justify-between notification border-l-8 border-2"
+				class="px-4 py-2 flex flex-row items-center gap-2 justify-between notification border-l-8 border-2 rounded-xl"
 				class:bg-red-100={notification.type == "error"}
 				class:bg-green-100={notification.type == "success"}
 				class:bg-blue-100={notification.type == "info"}

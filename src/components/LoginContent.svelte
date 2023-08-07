@@ -18,8 +18,6 @@
 		if (result.success == true) {
 			cookie.set("token", result.data.token);
 			cookie.set("expires", result.data.expires);
-			localStorage.setItem("token", result.data.token);
-			localStorage.setItem("expires", result.data.expires);
 			window.location.href = "/user";
 		} else {
 			addNotification({
@@ -32,12 +30,13 @@
 	}
 </script>
 
-<div
-	class="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[350px] w-[100%] p-4"
+<div class="w-full h-full flex justify-center items-center">
+	<div
+	class="max-w-[350px]"
 >
 	<div class="flex flex-col gap-4">
 		<div class="flex flex-col gap-2">
-			<span>Username</span>
+			<span class="text-slate-900 text-lg font-semibold">Username</span>
 			<input
 				type="text"
 				placeholder="YourUsername"
@@ -45,7 +44,7 @@
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			<span>Password</span>
+			<span class="text-slate-900 text-lg font-semibold">Password</span>
 			<input
 				type="password"
 				placeholder="********"
@@ -59,4 +58,5 @@
 			<a href="/user/signup">Register instead</a>
 		</div>
 	</div>
+</div>
 </div>

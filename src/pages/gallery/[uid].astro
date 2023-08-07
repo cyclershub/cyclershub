@@ -1,0 +1,36 @@
+---
+import "../../style/splendor.scss";
+
+import Layout from "../../layouts/Layout.astro";
+import Images from "~/components/Gallery/Images.svelte";
+import { db } from "~/lib/shared";
+import moment from "moment";
+import {marked} from "marked";
+
+const uid = Astro.params.uid;
+
+if (!uid) {
+	return Astro.redirect("/gallery");
+}
+
+const entry = await db("setups").select("*").where({ uid }).first();
+
+
+
+// For each entry, select all images and add them to the entry
+const images = await db("setups_images").select(db.raw("images.uid, images.alt, images.category")).leftJoin("images", "setups_images.images_id", "images.id").where("setups_images.setups_id", entry.id);
+const author = await db("users").select("*").where({ id: entry.users_id }).first();
+
+const html = marked(entry.body);
+---
+
+<Layout title="Gallery | CyclersHub">
+	<Images images={images.map(image => `/api/image/${image.uid}.png`)} client:load></Images>
+	<article class="max-w-[900px] mx-auto mt-16">
+		<div>
+			<span class="text-beaver-gray">{author.username} · {moment(entry.created_on).format("Do MMMM YYYY")}</span>
+		</div>
+		<h1>{entry.title}</h1>
+		<div set:html={html}></div>
+	</article>
+</Layout>

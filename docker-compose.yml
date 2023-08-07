@@ -1,6 +1,7 @@
 version: '3'
 services:
   cyclershub:
+    entrypoint: ["/bin/sh", "./shutdown-handler.bash"]
     build: ./
     container_name: cyclershub
     command: pnpm run dev --host
@@ -18,6 +19,7 @@ services:
       - 3000:3000
     volumes:
       - ./:/cyclershub
+      - ./persistent:/persistent
     networks:
       - postgres
   cyclershub-db:

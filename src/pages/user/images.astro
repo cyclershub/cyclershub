@@ -1,0 +1,21 @@
+---
+import ImageContent from "~/components/User/ImageContent.svelte";
+import ProfileContent from "~/components/User/ProfileContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+import { getUser, isLoggedIn } from "~/lib/SharedVerification";
+import { db } from "~/lib/shared";
+
+const loggedIn = await isLoggedIn(Astro);
+
+if (!loggedIn) {
+	return Astro.redirect("/user/login");
+}
+
+const user = await getUser(Astro);
+
+const images = await db<{ uid: string, alt: string, category: string, created_on: string }>("images").where("users_id", user.id).limit(100);
+---
+
+<Layout title="Dashboard | CyclersHub">
+	<ImageContent images={images} user={user} client:load></ImageContent>
+</Layout>

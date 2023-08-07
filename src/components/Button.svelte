@@ -1,5 +1,5 @@
 <button
-	class="bg-blue-600 w-min text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors active:bg-blue-800"
+	class="bg-light-driftwood w-min text-white font-semibold px-6 py-3 text-lg rounded-xl rounded-bl-none hover:bg-dark-red-copper transition-colors"
 	on:click
 	{...$$restProps}
 >

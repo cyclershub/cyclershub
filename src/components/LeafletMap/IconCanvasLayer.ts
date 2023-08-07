@@ -17,7 +17,7 @@ export class IconCanvasLayer extends CanvasLayer {
 		poi: Place;
 	}[] = [];
 
-	public constructor(public options: { sparse: number } & LayerOptions) {
+	public constructor(public options: LayerOptions = {}) {
 		super(options);
 	}
 
@@ -52,58 +52,6 @@ export class IconCanvasLayer extends CanvasLayer {
 				};
 
 				img.src = `/icons/${poi.type}.svg`;
-			}
-		});
-	}
-
-	private sortPlacesIntoBuckets(info: IViewInfo) {
-		this.renderable = [];
-		// Sort the points based on their longitude and latitude
-		const sortedPoints = Array.from(this.places).filter((place) => {
-			return info.bounds.contains([place[1].poi.lat, place[1].poi.lng]);
-		});
-
-		// Calculate the number of grid cells
-		let gridSize = Math.ceil(1 / (this.options.sparse || 1));
-		const numGridCells = gridSize ** 2;
-
-		// Calculate the number of points to be rendered per grid cell
-		const numPointsPerCell = Math.ceil(
-			(sortedPoints.length * ((this.options.sparse || 1) / 1)) / numGridCells
-		);
-
-		// Create the grid cells
-		const gridCells = new Array(numGridCells);
-		for (let i = 0; i < numGridCells; i++) {
-			gridCells[i] = [];
-		}
-
-		// Assign points to grid cells
-		sortedPoints.forEach((point) => {
-			const rangeX =
-				info.bounds.getNorthEast().lng - info.bounds.getSouthWest().lng;
-			const adjustedX = info.bounds.getNorthEast().lng - point[1].poi.lng;
-			const cellX = Math.floor(normalize(adjustedX, 0, rangeX) * gridSize);
-
-			const rangeY =
-				info.bounds.getNorthEast().lat - info.bounds.getSouthWest().lat;
-			const adjustedY = info.bounds.getNorthEast().lat - point[1].poi.lat;
-			const cellY = Math.floor(normalize(adjustedY, 0, rangeY) * gridSize);
-
-			const cellIndex = cellY * gridSize + cellX;
-
-			gridCells[cellIndex].push(point);
-		});
-
-		// Randomly select the points from each grid cell
-		gridCells.forEach((cell) => {
-			for (let i = 0; i < numPointsPerCell; i++) {
-				if (cell.length === 0) {
-					break;
-				}
-				const randomIndex = Math.floor(Math.random() * cell.length);
-				const selectedPoint = cell.splice(randomIndex, 1)[0];
-				this.renderable.push(selectedPoint[1]);
 			}
 		});
 	}

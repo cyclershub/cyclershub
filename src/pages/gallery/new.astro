@@ -1,0 +1,15 @@
+---
+import CreateGalleryContent from "~/components/Gallery/CreateGalleryContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+import { isLoggedIn } from "~/lib/SharedVerification";
+
+const loggedIn = await isLoggedIn(Astro);
+
+if (!loggedIn) {
+	return Astro.redirect("/user/login")
+}
+---
+
+<Layout title="Gallery | CyclersHub">
+	<CreateGalleryContent client:load></CreateGalleryContent>
+</Layout>
