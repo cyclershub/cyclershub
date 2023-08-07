@@ -82,7 +82,7 @@ touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyc
 docker run -d \
 	--name $APP_NAME \
 	--network $NETWORK \
-	-v "${PERSISTENT_DIR}:/persistent" \ \
+	-v "${PERSISTENT_DIR}:/persistent" \
 	-p "80:80" \
 	-p "443:443" \
 	-e DB_NAME=$DB_NAME \
