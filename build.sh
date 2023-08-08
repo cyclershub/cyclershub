@@ -49,7 +49,7 @@ docker stop $DB_CONTAINER_NAME
 docker rm $DB_CONTAINER_NAME
 
 # Und löschen alle nicht mehr benötigten container und images.
-docker system prune --all --force
+# docker system prune --all --force
 
 # Dann bauen wir das Docker Image unserer Application
 cd ~/apps/$APP_NAME
@@ -82,6 +82,7 @@ docker run -d --name $DB_CONTAINER_NAME --network $NETWORK -e POSTGRES_USER=$DB_
 # gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER main
 
 # Wir legen einen .env file für unsere letsencrypt keys an.
+cd ~/apps/$APP_NAME;
 rm -f ~/apps/$APP_NAME/.env;
 touch ~/apps/$APP_NAME/.env
 echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env;
