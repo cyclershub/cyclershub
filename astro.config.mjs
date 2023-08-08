@@ -5,9 +5,6 @@ import tailwind from "@astrojs/tailwind";
 import node from "@astrojs/node";
 
 // https://astro.build/config
-import compress from "astro-compress";
-
-// https://astro.build/config
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
@@ -15,13 +12,7 @@ export default defineConfig({
 	experimental: {
 		assets: true
 	},
-  integrations: [svelte(), tailwind(), compress({
-    img: {
-      jpeg: {
-        quality: 75
-      }
-    }
-  }), sitemap()],
+  integrations: [svelte(), tailwind(), sitemap()],
 	site: "https://cyclershub.com",
   output: "server",
   adapter: node({
