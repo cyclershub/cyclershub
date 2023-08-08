@@ -75,6 +75,9 @@ done
 # Und wenden das Backup an.
 gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER main
 
+# Alte build strukturen löschen
+rm -r ~/apps/$APP_NAME/dist;
+
 # Wir legen einen .env file für unsere letsencrypt keys an.
 rm -f ~/apps/$APP_NAME/.env;
 touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env
