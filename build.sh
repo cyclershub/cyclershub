@@ -27,6 +27,9 @@ git_pull_force;
 
 # Dann bauen wir das Docker Image unserer Application
 cd ~/apps/$APP_NAME
+# Alte build strukturen löschen
+rm -r ~/apps/$APP_NAME/dist;
+
 pnpm install
 docker stop $APP_NAME
 docker rm $APP_NAME
@@ -68,19 +71,18 @@ docker build --no-cache -t $DB_CONTAINER_NAME .
 docker run -d --name $DB_CONTAINER_NAME --network $NETWORK -e POSTGRES_USER=$DB_USER -e POSTGRES_PASSWORD=$DB_PASSWORD -p "$DB_PORT:5432" -v $DB_VOLUME:/var/lib/postgresql/data $DB_CONTAINER_NAME
 
 # Wir müssen warten bis die Datenbank wieder läuft.
-while ! docker exec $DB_CONTAINER_NAME pg_isready -U $DB_USER -h localhost -p $DB_PORT > /dev/null 2>&1; do
-    sleep 1
-done
+# while ! docker exec $DB_CONTAINER_NAME pg_isready -U $DB_USER -h localhost -p $DB_PORT > /dev/null 2>&1; do
+#     sleep 1
+# done
 
 # Und wenden das Backup an.
-gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER main
-
-# Alte build strukturen löschen
-rm -r ~/apps/$APP_NAME/dist;
+# gunzip -c $BACKUP_FILENAME | docker exec -i $DB_CONTAINER_NAME psql -U $DB_USER main
 
 # Wir legen einen .env file für unsere letsencrypt keys an.
 rm -f ~/apps/$APP_NAME/.env;
-touch ~/apps/$APP_NAME/.env && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env
+touch ~/apps/$APP_NAME/.env
+echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/cyclershub.com/privkey.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env;
+echo "CERTIFICATE=$(cat /etc/letsencrypt/live/cyclershub.com/fullchain.pem | base64 | tr -d '\n')" >> ~/apps/$APP_NAME/.env;
 # Danach starten wir unsere App wieder.
 docker run -d \
 	--name $APP_NAME \
