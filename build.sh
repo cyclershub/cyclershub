@@ -25,16 +25,6 @@ git_pull_force;
 cd ~/apps/$DB_CONTAINER_NAME
 git_pull_force;
 
-# Dann bauen wir das Docker Image unserer Application
-cd ~/apps/$APP_NAME
-# Alte build strukturen löschen
-rm -r ~/apps/$APP_NAME/dist;
-
-pnpm install
-docker stop $APP_NAME
-docker rm $APP_NAME
-docker build --no-cache -t $APP_NAME .
-
 # SECTION: Startup jobs zu crontab hinzufügen.
 # Erstmal den cronfile leeren.
 crontab -r;
@@ -57,6 +47,19 @@ docker stop $DB_CONTAINER_NAME
 
 # Wir entfernen das "database" Image um Komplikationen vorzusorgen
 docker rm $DB_CONTAINER_NAME
+
+# Und löschen alle nicht mehr benötigten container und images.
+docker system prune --all --force
+
+# Dann bauen wir das Docker Image unserer Application
+cd ~/apps/$APP_NAME
+# Alte build strukturen löschen
+rm -r ~/apps/$APP_NAME/dist;
+
+pnpm install
+docker stop $APP_NAME
+docker rm $APP_NAME
+docker build --no-cache -t $APP_NAME .
 
 # Wir erstellen ein docker volume, damit wir unsere PostgreSQL Daten sichern können.
 docker volume rm $DB_VOLUME
