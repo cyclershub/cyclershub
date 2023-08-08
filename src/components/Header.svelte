@@ -5,8 +5,6 @@
 	import { notifications, dismissNotification } from "./NotificationStore";
 	import Close from "./Icons/Close.svelte";
 
-	export let fullwidth: boolean = false;
-
 	let subActive: number = 1;
 	let isScrollingDown = false;
 	let lastScrollY = 0;
@@ -29,8 +27,7 @@
 	lastScrollY > 250 && isScrollingDown
 }>
 	<div
-		class="mx-auto w-full px-4 md:px-0 flex flex-row justify-between h-full items-center relative"
-		style={`max-width: ${fullwidth ? "100%" : "1440px"};`}>
+		class="mx-auto w-full px-4 md:px-0 flex flex-row justify-between h-full items-center relative max-w-[1440px]">
 		<a href="/"><Logo width={75} height={50} /></a>
 		<div class="nav flex gap-2 h-full menu">
 			<a on:mouseenter={() => subActive = 1} href="">Explore</a>

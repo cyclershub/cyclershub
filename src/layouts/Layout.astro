@@ -1,8 +1,7 @@
 ---
 import "../style/global.scss";
-import Header from '../components/Header.svelte';
+import Header from '~/components/Header.svelte';
 import Footer from "~/components/Footer.astro";
-import NotificationSystem from "~/components/NotificationSystem.svelte";
 
 export interface Props {
 	title: string;
@@ -22,10 +21,10 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header fullwidth={false} client:load></Header>
+		<Header client:load></Header>
 		<main class="mx-auto max-w-[1440px] min-h-[calc(100vh-60px)] py-16">
 			<slot />
 		</main>
-		<Footer fullwidth={false}></Footer>
+		<Footer client:load></Footer>
 	</body>
 </html>
