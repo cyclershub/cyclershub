@@ -1,6 +1,7 @@
 ---
 import RegisterContent from "~/components/RegisterContent.svelte";
 import Layout from "~/layouts/Layout.astro";
+import MinimalLayout from "~/layouts/MinimalLayout.astro";
 
 import { isLoggedIn } from "~/lib/SharedVerification";
 
@@ -12,6 +13,6 @@ if (loggedIn) {
 
 ---
 
-<Layout title="Signup | CyclersHub">
+<MinimalLayout title="Signup | CyclersHub">
 	<RegisterContent client:load></RegisterContent>
-</Layout>
+</MinimalLayout>

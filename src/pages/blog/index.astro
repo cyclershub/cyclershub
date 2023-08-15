@@ -1,0 +1,40 @@
+---
+import { getCollection, getEntryBySlug } from "astro:content";
+import Preview from "../../components/Gallery/Preview.svelte";
+import Layout from "../../layouts/Layout.astro";
+
+let entries = await getCollection("blog");
+
+entries = await Promise.all(entries.map(async (review) => {
+	review.data.author = await getEntryBySlug("authors", review.data.author.slug);
+	return review
+}));
+---
+
+<Layout title="Reviews | The CyclersHub">
+	<div class="bg-stone-200 py-16 px-8 lg:px-16 text-center">
+		<h1 class="font-bold tracking-wide m-0">The CyclersHub Blog</h1>
+		<h2 class="font-bold text-lg tracking-wider mb-4">Exploring the world around</h2>
+		<p class="font-semibold text-base max-w-[800px] mx-auto">
+			Sharing experiences, adventures and stories from the road. We love to explore and discover new places, let us take you with us!
+		</p>
+	</div>
+	<div class="bg-stone-100 py-16 px-8 lg:px-16 text-center">
+		<div class="columns-1 md:columns-2 lg:columns-3 gap-8 [&>*]:mb-8">
+			{
+				entries.map(async (entry) => (
+					<Preview
+						entry={{
+							title: entry.data.title,
+							author: entry.data.author.data.name,
+							cover: entry.data.cover,
+						}}
+						href={`/blog/${entry.slug}`}
+					/>
+				))
+			}
+
+			{entries.length == 0 ? <h2>There are currently no reviews in this category.</h2> : ""}
+		</div>
+	</div>
+</Layout>

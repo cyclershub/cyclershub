@@ -1,9 +1,32 @@
 ---
 import Layout from "~/layouts/Layout.astro";
-
 import Content from "~/components/Editor/Content.svelte";
+import { db } from "~/lib/shared";
+import { getUser } from "~/lib/SharedVerification";
+
+const user = await getUser(Astro);
+
+if (!user) {
+	return Astro.redirect("/user/login")
+}
+
+const images = await db<{ uid: string, alt: string, category: string, created_on: string }>("images").where("users_id", user.id).limit(100)
+
+let { content, title } = { content: "", title: "" }
+if (Astro.url.searchParams.has("uid")) {
+	const uid = Astro.url.searchParams.get("uid") as string;
+
+	let result = await db<{ content: string, title: string }>("setups").where({ uid }).first()
+
+	if (result) {
+		content = result.content
+		title = result.title
+	} else {
+		return Astro.redirect("/editor");
+	}
+}
 ---
 
 <Layout title="Editor | CyclersHub">
-	<Content client:load></Content>
+	<Content images={images} content={content} title={title} client:only></Content>
 </Layout>

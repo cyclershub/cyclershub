@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import ExternalLink from "~/components/Icons/ExternalLink.svelte";
+import Instagram from "~/components/Icons/Instagram.svelte";
+import Twitter from "~/components/Icons/Twitter.svelte";
+import Layout from "~/layouts/Layout.astro";
+
+const authors = await getCollection("authors");
+---
+
+<Layout title="About Us | The CyclersHub">
+	<div class="bg-stone-200 py-16 px-32 text-center">
+		<h1 class="font-bold tracking-wide m-0">Our Story</h1>
+		<h2 class="font-bold text-lg tracking-wider mb-4">About The CyclersHub</h2>
+		<p class="font-semibold text-base max-w-[800px] mx-auto">
+			Welcome to The CyclersHub, where bikepacking and touring are serious fun!
+			We're your trusty sidekicks for all things pedal-powered. Our team dishes
+			out top-notch info, reviews, and tips to fuel your two-wheeled escapades.
+			Join us and let the good times roll! 🚴‍♂️🚴‍♀️
+		</p>
+	</div>
+	<div class="bg-stone-100 py-16 px-32 text-center">
+		<h2 class="font-bold">Editorial Team</h2>
+		<span>Meet the folks behind The CyclersHub</span>
+		<div class="grid grid-cols-3 mt-16">
+			{authors.map(author => (<div class="flex flex-col items-center">
+				<img src={author.data.image} alt={author.data.name} class="author-image w-[250px] aspect-square object-cover">
+				<h3 class="font-bold tracking-wide mt-2 text-stone-800">{author.data.name}</h3>
+				<p class="text-sm text-stone-600 leading-6">{author.data.bio}</p>
+				<div class="flex flex-row gap-2">
+					<a href={`/team/${author.slug}`} class="text-sm font-semibold uppercase underline">View Full Bio</a>
+					/
+					{author.data.twitter && (<a href={author.data.twitter} target="_blank"><Twitter width={20} height={20} class="fill-stone-800"></Twitter></a>)}
+					{author.data.instagram && (<a href={author.data.instagram} target="_blank"><Instagram width={20} height={20} class="fill-stone-800"></Instagram></a>)}
+					{author.data.website && (<a href={author.data.website} target="_blank"><ExternalLink width={20} height={20} class="fill-stone-800"></ExternalLink></a>)}
+				</div>
+			</div>))}
+		</div>
+	</div>
+</Layout>
+
+<style>
+
+	.author-image {
+		clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%);
+
+	}
+
+	</style>

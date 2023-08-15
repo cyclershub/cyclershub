@@ -1,0 +1,110 @@
+.full-width {
+	@apply w-[100vw];
+}
+
+article blockquote {
+
+	& p {
+		@apply pl-4 font-semibold leading-8 text-lg;
+	}
+
+	@apply border-l-4 border-l-stone-600 my-8;
+}
+
+body article p {
+	@apply text-base leading-8 mb-4;
+}
+
+body article p:has(img + img) {
+	@apply grid grid-cols-2 gap-4 lg:w-[1000px] lg:max-w-[1000px] lg:ml-[-100px] my-8;
+}
+
+body article p:has(img + img + img) {
+	@apply grid grid-cols-2 gap-4 lg:w-[1000px] lg:max-w-[1000px] lg:ml-[-100px] my-8;
+
+	& img:nth-child(1) {
+		@apply col-span-2;
+	}
+}
+
+body article p:has(img + img + img + img) {
+	@apply grid grid-cols-2 gap-4 w-[1000px] lg:ml-[-100px] my-8;
+}
+
+body article p:has(img + img + img + img + img) {
+	@apply flex flex-row flex-wrap gap-4 w-[1000px] lg:ml-[-100px] my-8;
+
+	& img:nth-child(1) {
+		@apply w-[calc(50%-1rem)];
+	}
+
+	& img:nth-child(2) {
+		@apply w-[calc(50%-1rem)];
+	}
+
+	& img {
+		@apply w-[calc(33%-0.8rem)]
+	}
+}
+
+body article h2 {
+	@apply text-4xl font-bold my-4;
+}
+
+body article h3 {
+	@apply text-2xl font-bold my-4;
+}
+
+body article p img:only-child {
+	@apply lg:ml-[-100px] my-8 lg:w-[1000px] lg:max-w-[1000px];
+}
+
+body article table {
+	@apply w-full;
+
+	& tr {
+		@apply text-stone-600 w-full flex flex-row justify-between items-center px-2 py-1 bg-stone-100;
+
+		& td:nth-child(1) {
+			@apply font-semibold;
+		}
+
+		&:nth-child(2n+1) {
+			@apply bg-stone-200 border-b border-t border-stone-300;
+		}
+	}
+}
+
+body article img {
+	@apply cursor-pointer;
+
+	&::after {
+		content: attr(alt);
+		@apply text-stone-600 text-sm font-semibold;
+	}
+}
+
+body article a {
+	@apply text-stone-600 pb-0.5 shadow-stone-300 transition-shadow;
+	box-shadow: inset 0 -3px 0 -1px #d6d3d1;
+
+	&:hover {
+		box-shadow: inset 0 -23px 0 -1px #d6d3d1;
+	}
+}
+
+body article ul {
+	@apply list-disc list-inside ml-4;
+
+	& li {
+		@apply my-1;
+	}
+}
+
+body article ol {
+	@apply list-decimal list-inside my-4;
+}
+
+body article hr {
+	@apply my-4;
+}

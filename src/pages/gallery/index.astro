@@ -28,7 +28,7 @@ for (const entry of entries) {
 <Layout title="Gallery | CyclersHub">
 	<div class="flex flex-row justify-between items-center">
 		<h1>Gallery</h1>
-		{loggedIn ? <a href="/gallery/new"><Plus width={35} height={35} class="fill-black-brown"></Plus></a> : null}
+		{loggedIn ? <a href="/editor"><Plus width={35} height={35} class="fill-black-brown"></Plus></a> : null}
 	</div>
 	<div class="columns-3 gap-8 [&>*]:mb-8">
 		{entries.map(entry => (

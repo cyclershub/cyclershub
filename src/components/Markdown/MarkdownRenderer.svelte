@@ -1,6 +1,5 @@
 <script lang="ts">
 	import SvelteMarkdown from "svelte-markdown";
-	import Paragraph from "./Paragraph.svelte";
 	import Overlay from "../Overlay.svelte";
 	import Slideshow from "../Slideshow.svelte";
 	import Slide from "../Slide.svelte";

@@ -1,0 +1,73 @@
+---
+import "../../style/article.scss";
+
+import Layout from "../../layouts/Layout.astro";
+import { getEntryBySlug, getCollection } from "astro:content";
+import Preview from "../../components/Gallery/Preview.svelte";
+
+const name = Astro.params.name as string;
+
+const author = await getEntryBySlug("authors", name);
+
+if (!author) {
+	return Astro.redirect("/about");
+}
+
+const reviews = (await getCollection("reviews")).filter(
+	(review) => review.data.author.slug === author.slug
+);
+
+const spotlights = (await getCollection("spotlight")).filter(
+	(spotlight) => spotlight.data.author.slug === author.slug
+);
+---
+
+<Layout title={author.data.name}>
+	<div
+		class="bg-stone-200 py-16 px-32 text-center flex flex-col items-center gap-4">
+		<h1 class="font-bold tracking-wide m-0">{author.data.name}</h1>
+		<img
+			src={author.data.image}
+			alt={author.data.name}
+			class="author-image w-[250px] aspect-square object-cover"
+		/>
+		<p class="font-semibold text-base max-w-[600px] mx-auto">
+			{author.data.bio}
+		</p>
+	</div>
+	<div class="bg-stone-100 py-16 px-32 text-center">
+		<h2 class="font-bold tracking-wide mb-8">Articles by {author.data.name}</h2>
+		<div class="columns-3 gap-8 [&>*]:mb-8">
+			{
+				reviews.map((review) => (
+					<Preview
+						entry={{
+							title: review.data.title,
+							author: author.data.name,
+							cover: review.data.cover,
+						}}
+						href={`/reviews/${review.slug}`}
+					/>
+				))
+			}
+			{
+				spotlights.map((spotlight) => (
+					<Preview
+						entry={{
+							title: spotlight.data.title,
+							author: author.data.name,
+							cover: spotlight.data.cover,
+						}}
+						href={`/spotlight/${spotlight.slug}`}
+					/>
+				))
+			}
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.author-image {
+		clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%);
+	}
+</style>

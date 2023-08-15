@@ -82,6 +82,11 @@ Thanks for joining us at The Cyclershub. Now let's ride off into the sunset (or,
   - [ ] Submitting a User's Position
   - [ ] Finding Users depending on location
   - [ ] Chat Integration (WhatsApp/Discord)
+- [ ] Team contributed Reviews
+- [ ] Weekly news
+- [ ] Team contributed Brand Presentations
+- [ ] User contributed Gallery Entries
+- [ ] User contributed Routes
 
 ## Phase 3: Optimization and Expansion
 

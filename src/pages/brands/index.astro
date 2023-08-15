@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Preview from "../../components/Gallery/Preview.svelte";
+import Layout from "../../layouts/Layout.astro";
+
+let brands = await getCollection("brands");
+
+---
+
+<Layout title="Brands | The CyclersHub">
+	<div class="bg-stone-200 py-16 px-32 text-center">
+		<span class="uppercase text-stone-900 font-bold tracking-wide text-sm">All Brands</span>
+		<h1 class="font-bold tracking-wide m-0">Bicycles & Accessories</h1>
+		<h2 class="font-bold text-lg tracking-wider mb-4">Brands & Companies</h2>
+		<p class="font-semibold text-base max-w-[800px] mx-auto">A growing compilation of reviews, from bikepacking bags to bike components, apparel and camping gear. Sort through reviews by category, or find the latest below.</p>
+	</div>
+	<div class="bg-stone-100 py-16 px-32 text-center">
+		<div class="columns-3 gap-8 [&>*]:mb-8">
+			{brands.map(brand => <Preview entry={{title: brand.data.name, author: brand.data.author, cover: brand.data.logo}} href={`/brands/${brand.slug}`} />)}
+		</div>
+	</div>
+</Layout>

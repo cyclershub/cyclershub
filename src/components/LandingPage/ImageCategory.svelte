@@ -6,7 +6,7 @@
 
 </script>
 
-<a class="w-1/4 aspect-square group relative cursor-pointer" {href}>
+<a class="w-full aspect-square group relative cursor-pointer" {href}>
 	<img src={src} class="w-full h-full object-cover group-hover:brightness-50 transition-all" alt="">
 	<div class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] invisible group-hover:visible text-center">
 		<h2 class="uppercase text-white">{heading}</h2>

@@ -29,13 +29,13 @@
 	<div
 		class="mx-auto w-full px-4 md:px-0 flex flex-row justify-between h-full items-center relative max-w-[1440px]">
 		<a href="/"><Logo width={75} height={50} /></a>
-		<div class="nav flex gap-2 h-full menu">
-			<a on:mouseenter={() => subActive = 1} href="">Explore</a>
+		<div class="nav gap-2 h-full menu hidden lg:flex">
+			<a on:mouseenter={() => subActive = 1} href="/reviews">Explore</a>
 			<a on:mouseenter={() => subActive = 2} href="/places/map">Routes</a>
 			<a on:mouseenter={() => subActive = 3} href="/gallery">Gallery</a>
-			<a href="">Forum</a>
-			<a href="">Events</a>
-			<a href="">Blog</a>
+			<a href="/forum">Forum</a>
+			<a href="/events">Events</a>
+			<a href="/blog">Blog</a>
 		</div>
 		<div class="subnav absolute top-[calc(100%+1px)] px-64 py-16 z-10 w-full">
 			<div class="sub" class:on={subActive == 1}>
@@ -53,23 +53,21 @@
 					</div>
 					<div>
 						<h2>GEAR/REVIEWS</h2>
-						<a href="">View Latest/All</a>
-						<a href="">Bags/Panniers</a>
-						<a href="">Components</a>
-						<a href="">Camping Gear</a>
-						<a href="">Accessories</a>
+						<a href="/reviews/category/all">View Latest/All</a>
+						<a href="/reviews/category/bags">Bags/Panniers</a>
+						<a href="/reviews/category/components">Components</a>
+						<a href="/reviews/category/gear">Camping Gear</a>
+						<a href="/reviews/category/accessories">Accessories</a>
+						<a href="/reviews/category/clothing">Clothing</a>
 					</div>
 					<div>
-						<h2>BIKEPACKING BIKES</h2>
-						<a href="">View Latest/All</a>
-						<h3>Reviews</h3>
-						<a href="">Hardtails</a>
-						<a href="">Rigid & Plus Bikes</a>
-						<a href="">Drop-Bar & Gravel</a>
-						<a href="">Full Suspension</a>
-						<a href="">Fat Bikes</a>
-						<h3>Rigs & Roundups</h3>
-						<a href="">Rider & Rig</a>
+						<h2>Reviews</h2>
+						<a href="/reviews/category/hardtail">Hardtails</a>
+						<a href="/reviews/category/gravel">Drop-Bar & Gravel</a>
+						<a href="/reviews/category/full-suspension">Full Suspension</a>
+						<a href="/reviews/category/fat-bike">Fat Bikes</a>
+						<h3>Brands & Companies</h3>
+						<a href="/brands">View All</a>
 					</div>
 					<div>
 						<h2>PLAN YOUR TRIP</h2>

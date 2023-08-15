@@ -1,6 +1,6 @@
 ---
 import LoginContent from "~/components/LoginContent.svelte";
-import Layout from "~/layouts/Layout.astro";
+import MinimalLayout from "~/layouts/MinimalLayout.astro";
 import { isLoggedIn } from "~/lib/SharedVerification";
 
 const loggedIn = await isLoggedIn(Astro);
@@ -11,6 +11,6 @@ if (loggedIn) {
 
 ---
 
-<Layout title="Login | CyclersHub">
+<MinimalLayout title="Login | CyclersHub">
 	<LoginContent client:load></LoginContent>
-</Layout>
+</MinimalLayout>

@@ -1,0 +1,12 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CompareContent from "../../components/CompareContent.svelte";
+
+let products = [];
+---
+
+<Layout title="Compare Products">
+	<div class="bg-stone-100 py-16 px-16 grid grid-cols-3 gap-8">
+		<CompareContent client:load></CompareContent>
+	</div>
+</Layout>

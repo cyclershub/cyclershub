@@ -1,0 +1,20 @@
+---
+import RouteContent from "~/components/User/RouteContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+import { getUser, isLoggedIn } from "~/lib/SharedVerification";
+import { db } from "~/lib/shared";
+
+const loggedIn = await isLoggedIn(Astro);
+
+if (!loggedIn) {
+	return Astro.redirect("/user/login");
+}
+
+const user = await getUser(Astro);
+
+const routes = await db<{ uid: string, alt: string, category: string, created_on: string }>("routes").where("users_id", user.id).limit(50);
+---
+
+<Layout title="Dashboard | CyclersHub">
+	<RouteContent routes={routes} user={user} client:only></RouteContent>
+</Layout>
