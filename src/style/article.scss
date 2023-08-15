@@ -48,11 +48,11 @@ body article p:has(img + img + img + img + img) {
 }
 
 body article h2 {
-	@apply text-4xl font-bold my-4;
+	@apply text-2xl md:text-3xl font-bold my-4;
 }
 
 body article h3 {
-	@apply text-2xl font-bold my-4;
+	@apply text-xl md:text-2xl font-bold my-4;
 }
 
 body article p img:only-child {

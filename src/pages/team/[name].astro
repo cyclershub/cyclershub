@@ -24,7 +24,7 @@ const spotlights = (await getCollection("spotlight")).filter(
 
 <Layout title={author.data.name}>
 	<div
-		class="bg-stone-200 py-16 px-32 text-center flex flex-col items-center gap-4">
+		class="bg-stone-200 py-16 px-8 lg:px-16 text-center flex flex-col items-center gap-4">
 		<h1 class="font-bold tracking-wide m-0">{author.data.name}</h1>
 		<img
 			src={author.data.image}
@@ -35,9 +35,9 @@ const spotlights = (await getCollection("spotlight")).filter(
 			{author.data.bio}
 		</p>
 	</div>
-	<div class="bg-stone-100 py-16 px-32 text-center">
+	<div class="bg-stone-100 py-16 px-8 lg:px-16 text-center">
 		<h2 class="font-bold tracking-wide mb-8">Articles by {author.data.name}</h2>
-		<div class="columns-3 gap-8 [&>*]:mb-8">
+			<div class="columns-1 md:columns-2 lg:columns-3 gap-8 [&>*]:mb-8">
 			{
 				reviews.map((review) => (
 					<Preview
