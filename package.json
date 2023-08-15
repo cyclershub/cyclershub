@@ -26,6 +26,7 @@
 		"@tiptap/starter-kit": "^2.0.4",
 		"@types/leaflet.markercluster": "^1.5.1",
 		"astro": "^2.8.1",
+		"astro-compress": "^2.0.11",
 		"astro-image": "^0.0.7",
 		"bytemd": "^1.21.0",
 		"cookiejs": "^2.1.2",
