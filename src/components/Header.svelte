@@ -31,10 +31,10 @@
 		<a href="/"><Logo width={75} height={50} /></a>
 		<div class="nav gap-2 h-full menu hidden lg:flex">
 			<a on:mouseenter={() => subActive = 1} href="/reviews">Explore</a>
-			<a on:mouseenter={() => subActive = 2} href="/places/map">Routes</a>
+			<a on:mouseenter={() => subActive = 2} href="/pedalpoint/map">Routes</a>
 			<a on:mouseenter={() => subActive = 3} href="/gallery">Gallery</a>
 			<a href="/forum">Forum</a>
-			<a href="/events">Events</a>
+			<a href="/spotlight">Events</a>
 			<a href="/blog">Blog</a>
 		</div>
 		<div class="subnav absolute top-[calc(100%+1px)] px-64 py-16 z-10 w-full">
@@ -81,7 +81,7 @@
 						<h2>Where to Begin</h2>
 						<p>We have over 300 original and curated bikepacking routes in our global network spanning nearly 50 countries.</p>
 						<img src="/images/bikepacking-routes-map_0.jpg" alt="Bikepacking Routes Map">
-						<p>Start at our <a href="/places/map" class="inline">worldwide routes map</a> to dig into our detailed guides with GPS maps and inspiring photography.</p>
+						<p>Start at our <a href="/pedalpoint/map" class="inline">worldwide routes map</a> to dig into our detailed guides with GPS maps and inspiring photography.</p>
 					</div>
 					<div>
 						<h2>By Location</h2>
@@ -121,7 +121,7 @@
 						<a href="">Odysseys (11-30)</a>
 						<a href="">"Freakouts" (31+)</a>
 						<h3>Camping Spots</h3>
-						<p>Discover the <a href="/places/map" class="inline">Global Wild Camping Project</a> — an initiative to map hidden camping spots worldwide. Join our community of nature enthusiasts and find untouched wilderness for unforgettable adventures</p>
+						<p>Discover the <a href="/pedalpoint/map" class="inline">Global Wild Camping Project</a> — an initiative to map hidden camping spots worldwide. Join our community of nature enthusiasts and find untouched wilderness for unforgettable adventures</p>
 					</div>
 				</div>
 			</div>

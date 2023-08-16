@@ -8,76 +8,111 @@ import Flag from "~/components/Flag.svelte";
 import Arrow from "~/components/Arrow.svelte";
 import SpotlightContainer from "~/components/SpotlightContainer.svelte";
 
-import { getCollection, getEntry, getEntryBySlug } from "astro:content"
+import { getCollection, getEntryBySlug } from "astro:content";
 import { ReviewCategories } from "~/lib/ReviewCategories";
 import type { CollectionEntry } from "astro:content";
-import type { ContentEntryType } from "astro";
+import moment from "moment";
+import { LeafletMap } from "~/components/LeafletMap";
 
-const spotlightPosts = await getCollection("spotlight")
-const reviewPosts = await getCollection("reviews")
-const blogPosts = await getCollection("blog")
+const spotlightPosts = await getCollection("spotlight");
+const reviewPosts = await getCollection("reviews");
+const blogPosts = await getCollection("blog");
 
 // Take the first 5 posts from each category
-let reviews: (CollectionEntry<"reviews"> & { data: { author: CollectionEntry<"authors"> }})[] = await getCollection("reviews");
-let spotlight: (CollectionEntry<"spotlight"> & { data: { author: CollectionEntry<"authors"> }})[]  = await getCollection("spotlight");
-let blog: (CollectionEntry<"blog"> & { data: { author: CollectionEntry<"authors"> }})[]  = await getCollection("blog");
+let reviews: (CollectionEntry<"reviews"> & {
+	data: { author: CollectionEntry<"authors"> };
+})[] = await getCollection("reviews");
+let spotlight: (CollectionEntry<"spotlight"> & {
+	data: { author: CollectionEntry<"authors"> };
+})[] = await getCollection("spotlight");
+let blog: (CollectionEntry<"blog"> & {
+	data: { author: CollectionEntry<"authors"> };
+})[] = await getCollection("blog");
 
-
-reviews = await Promise.all(reviews.slice(0, 5).map(async (review) => {
-	review.data.author = await getEntryBySlug("authors", review.data.author.slug);
-	return review
-}));
-spotlight = await Promise.all(spotlight.slice(0, 5).map(async (review) => {
-	review.data.author = await getEntryBySlug("authors", review.data.author.slug);
-	return review
-}));
-blog = await Promise.all(blog.slice(0, 5).map(async (review) => {
-	review.data.author = await getEntryBySlug("authors", review.data.author.slug);
-	return review
-}));
-
+reviews = await Promise.all(
+	reviews.slice(0, 5).map(async (review) => {
+		review.data.author = await getEntryBySlug(
+			"authors",
+			review.data.author.slug
+		);
+		return review;
+	})
+);
+spotlight = await Promise.all(
+	spotlight
+		.sort((a, b) => moment(b.data.date).unix() - moment(a.data.date).unix())
+		.slice(0, 5)
+		.map(async (review) => {
+			review.data.author = await getEntryBySlug(
+				"authors",
+				review.data.author.slug
+			);
+			return review;
+		})
+);
+blog = await Promise.all(
+	blog.slice(0, 5).map(async (review) => {
+		review.data.author = await getEntryBySlug(
+			"authors",
+			review.data.author.slug
+		);
+		return review;
+	})
+);
 ---
 
 <Layout title="CyclersHub">
-	<Slideshow slide={0} numSlides={[...reviews, ...spotlight, ...blog].length} client:load>
-		{[...reviews, ...spotlight, ...blog].map(entry => (<Slide>
-			<div class="relative h-[80vh] cursor-pointer">
-				<Parallax
-					src={entry.data.cover}
-					client:only
-				/>
-				<a
-					class="group absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] select-none text-center"
-					href={`/${entry.collection}/${entry.slug}`}>
-					<div class="flex flex-row gap-2 justify-center">
-						<span class="text-white text-base font-bold tracking-wider">
-							{ReviewCategories[entry.data.category]}
-						</span>
+	<Slideshow
+		slide={0}
+		numSlides={[...reviews, ...spotlight, ...blog].length}
+		client:load>
+		{
+			[...reviews, ...spotlight, ...blog].map((entry) => (
+				<Slide>
+					<div class="relative h-[80vh] cursor-pointer">
+						<Parallax
+							src={entry.data.cover}
+							client:only
+						/>
+						<a
+							class="group absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] select-none text-center"
+							href={`/${entry.collection}/${entry.slug}`}>
+							<div class="flex flex-row gap-2 justify-center">
+								<span class="text-white text-base font-bold tracking-wider">
+									{ReviewCategories[entry.data.category]}
+								</span>
+							</div>
+							<h1 class="uppercase text-white text-4xl sm:text-5xl font-bold tracking-wider">
+								{entry.data.title}
+							</h1>
+							<span class="uppercase text-white text-base font-bold tracking-wider h-[30px] group-hover:opacity-0 group-hover:h-0 block transition-all">
+								By {entry.data.author.data.name}
+							</span>
+							<Arrow
+								class="group-hover:opacity-100 group-hover:h-[30px] group-hover:visible h-0 opacity-0 bg-white invisible"
+								style="width: 140px;">
+								Read More
+							</Arrow>
+						</a>
 					</div>
-					<h1 class="uppercase text-white text-4xl sm:text-5xl font-bold tracking-wider">
-						{entry.data.title}
-					</h1>
-					<span
-						class="uppercase text-white text-base font-bold tracking-wider h-[30px] group-hover:opacity-0 group-hover:h-0 block transition-all">
-						By {entry.data.author.data.name}
-					</span>
-					<Arrow class="group-hover:opacity-100 group-hover:h-[30px] group-hover:visible h-0 opacity-0 bg-white invisible" style="width: 140px;">Read More</Arrow>
-				</a>
-			</div>
-		</Slide>))}
+				</Slide>
+			))
+		}
 	</Slideshow>
 	<div class="flex flex-col items-center py-8 px-16 bg-gray-100">
 		<h3 class="font-semibold text-xl tracking-wide">Spotlight</h3>
 		<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8">
-			{spotlightPosts.slice(0, 4).map(post => (
-				<SpotlightContainer
-					href={`/spotlight/${post.slug}`}
-					title={post.data.title}
-					author={post.data.author}
-					date={post.data.date}
-					image={post.data.cover}
-				/>
-			))}
+			{
+				spotlightPosts.slice(0, 4).map((post) => (
+					<SpotlightContainer
+						href={`/spotlight/${post.slug}`}
+						title={post.data.title}
+						author={post.data.author}
+						date={post.data.date}
+						image={post.data.cover}
+					/>
+				))
+			}
 		</div>
 		<button
 			class="uppercase text-sm font-bold tracking-wide text-gray-600 hover:text-gray-400 transition-colors">
@@ -97,7 +132,10 @@ blog = await Promise.all(blog.slice(0, 5).map(async (review) => {
 			</a> in the world of cycling.
 		</p>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 relative">
-			<Flag class="bg-stone-900 border text-white absolute top-[-15px] left-[50%] translate-x-[-50%] z-10">Explore</Flag>
+			<Flag
+				class="bg-stone-900 border text-white absolute top-[-15px] left-[50%] translate-x-[-50%] z-10">
+				Explore
+			</Flag>
 			<ImageCategory
 				href="/routes/map"
 				src="/images/tour-view.jpg"
@@ -117,7 +155,7 @@ blog = await Promise.all(blog.slice(0, 5).map(async (review) => {
 				subheading="& Touring Rigs"
 			/>
 			<ImageCategory
-				href="/places/map"
+				href="/pedalpoint/map"
 				src="/images/camping-spot.jpg"
 				heading="Wildcamping"
 				subheading="Advice & Spots"
@@ -127,46 +165,66 @@ blog = await Promise.all(blog.slice(0, 5).map(async (review) => {
 	<div class="flex flex-col items-center py-8 px-16 bg-gray-100">
 		<h3 class="font-semibold text-xl tracking-wide">Reviews</h3>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-			{reviewPosts.slice(0, 4).map(post => (
-				<SpotlightContainer
-					href={`/reviews/${post.slug}`}
-					title={post.data.title}
-					author={post.data.author}
-					date={post.data.date}
-					image={post.data.cover}
-				/>
-			))}
+			{
+				reviewPosts.slice(0, 4).map((post) => (
+					<SpotlightContainer
+						href={`/reviews/${post.slug}`}
+						title={post.data.title}
+						author={post.data.author}
+						date={post.data.date}
+						image={post.data.cover}
+					/>
+				))
+			}
 		</div>
 		<button
 			class="uppercase text-sm font-bold tracking-wide text-gray-600 hover:text-gray-400 transition-colors">
 			Load 4 More
 		</button>
 	</div>
-	<div class="flex flex-col items-center py-16 px-16 bg-stone-200 gap-16">
-		<p class="text-base font-semibold text-center max-w-[800px]">
-			Welcome to the CyclersHub, your ultimate destination for discovering the
-			most thrilling <a href="/routes/map">bikepacking routes</a>, <a
-				href="/reviews">
-				in-depth gear reviews
-			</a>, <a href="/blog">inspiring tales of adventure</a>, <a href="/advice">
-				expert planning tips
-			</a>, <a href="/news">latest news</a>, and <a href="/events">
-				exciting events
-			</a> in the world of cycling.
-		</p>
+	<div class="flex flex-col items-center p-8 md:p-16 bg-stone-200 gap-16 md:flex-row">
+		<div class="md:w-1/3"><h2 class="font-bold text-2xl tracking-wide m-0">Find places near you!</h2>
+			<p class="text-sm">
+				Every touring enthusiast knows the thrill of the open road
+				- the winding paths, the vast landscapes, and the sheer joy of discovery.
+				But sometimes, the journey can throw a few surprises our way: a punctured
+				tire in an unfamiliar town or a descending night with no camp spot in sight.
+			</p>
+			<p class="text-sm">
+				Enter PedalPoint, the cyclist's compass.
+				Designed exclusively for the biking community ensuring you're
+				never truly lost. Instead of endlessly searching or asking strangers, tap
+				into a vast network of bike-friendly spots.
+			</p>
+			<p class="text-sm">
+				What sets PedalPoint apart is the voice of the community. Each spot
+				comes with insights and reviews from fellow bikepackers, ensuring you have
+				an authentic experience every time.
+				So, the next time you saddle up, let PedalPoint be your guide.
+			</p>
+		<a href="/pedalpoint/map" class="button">Learn More</a></div>
+		<div class="h-[40vh] md:w-2/3 w-full">
+			<LeafletMap
+				limit={5000}
+				radius={500}
+				client:only
+			/>
+		</div>
 	</div>
 	<div class="flex flex-col items-center py-8 px-16 bg-gray-100">
 		<h3 class="font-semibold text-xl tracking-wide">Blog</h3>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-			{blogPosts.slice(0, 4).map(post => (
-				<SpotlightContainer
-					href={`/blog/${post.slug}`}
-					title={post.data.title}
-					author={post.data.author}
-					date={post.data.date}
-					image={post.data.cover}
-				/>
-			))}
+			{
+				blogPosts.slice(0, 4).map((post) => (
+					<SpotlightContainer
+						href={`/blog/${post.slug}`}
+						title={post.data.title}
+						author={post.data.author}
+						date={post.data.date}
+						image={post.data.cover}
+					/>
+				))
+			}
 		</div>
 		<button
 			class="uppercase text-sm font-bold tracking-wide text-gray-600 hover:text-gray-400 transition-colors">

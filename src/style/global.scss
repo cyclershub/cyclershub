@@ -13,10 +13,10 @@ h1, h2, h3, h4, h5, h6 {
 
 
 body .button {
-	@apply py-2 px-6 rounded-bl-xl rounded-tl-xl rounded-tr-xl bg-light-driftwood text-black-brown font-medium outline-none border-none transition-colors flex items-center text-lg;
+	@apply py-2 px-6 rounded-sm bg-stone-300 text-stone-800 font-semibold outline-none border-none transition-colors flex items-center text-lg;
 
 	&:hover {
-		@apply bg-light-golden-brown;
+		@apply bg-stone-400;
 	}
 }
 

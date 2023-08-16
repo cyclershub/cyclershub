@@ -1,12 +1,8 @@
 ---
-import "../../style/article.scss";
-
-import Layout from "../../layouts/Layout.astro";
 import { getEntryBySlug } from "astro:content";
-import Arrow from "../../components/Arrow.svelte";
-import Parallax from "../../components/Parallax.svelte";
 import { ReviewCategories } from "~/lib/ReviewCategories";
 import AttributionContainer from "~/components/AttributionContainer.svelte";
+import ArticleLayout from "~/layouts/ArticleLayout.astro";
 
 const name = Astro.params.name as string;
 
@@ -25,41 +21,26 @@ if (!author) {
 const { Content } = await article.render();
 ---
 
-<Layout title={article.data.title}>
-	<div class="relative h-[50vh] lg:h-[80vh]">
-		<Parallax
-			src={article.data.cover}
-			client:load
-		/>
-		<h1
-			class="text-stone-200 text-3xl lg:text-6xl absolute z-10 bottom-8 max-w-[800px] left-0 px-8 lg:left-[220px]">
-			{article.data.title}
-		</h1>
-		<Arrow
-			class="bg-stone-600 text-stone-200 absolute bottom-[-15px] left-8 lg:left-[252px]">
-			{ReviewCategories[article.data.category]}
-		</Arrow>
-	</div>
-
-	<div class="bg-stone-100 py-16">
-		<article class="text-left max-w-[800px] mx-auto px-8">
-			{
-				article.data.recommendation && (
-					<AttributionContainer
-						href={article.data.link}
-						image={article.data.logo}
-						title={`Learn more at ${new URL(article.data.link).hostname}`}>
-						Where you can find this product and many more!
-					</AttributionContainer>
-				)
-			}
-			<Content />
+<ArticleLayout
+	title={article.data.title}
+	cover={article.data.cover}
+	heading={article.data.title}
+	category={ReviewCategories[article.data.category]}>
+	{
+		article.data.recommendation && (
 			<AttributionContainer
-				href={`/team/${author.slug}`}
-				image={author.data.image}
-				title={`Written by ${author.data.name}`}>
-				{author.data.bio}
+				href={article.data.link}
+				image={article.data.logo}
+				title={`Learn more at ${new URL(article.data.link).hostname}`}>
+				Where you can find this product and many more!
 			</AttributionContainer>
-		</article>
-	</div>
-</Layout>
+		)
+	}
+	<Content />
+	<AttributionContainer
+		href={`/team/${author.slug}`}
+		image={author.data.image}
+		title={`Written by ${author.data.name}`}>
+		{author.data.bio}
+	</AttributionContainer>
+</ArticleLayout>

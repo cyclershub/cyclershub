@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntryBySlug } from "astro:content";
+import Preview from "~/components/Gallery/Preview.svelte";
+import OverviewLayout from "~/layouts/OverviewLayout.astro";
+import { ReviewCategories } from "~/lib/ReviewCategories";
+
+let articles = await getCollection("spotlight");
+---
+
+<OverviewLayout title="Spotlight | The CyclersHub">
+	<div slot="head">
+		<span class="uppercase text-stone-900 font-bold tracking-wide text-sm">
+			Spotlight
+		</span>
+		<h1 class="font-bold tracking-wide m-0">Bicycles & Accessories</h1>
+		<h2 class="font-bold text-lg tracking-wider mb-4">News & Developments</h2>
+		<p class="font-semibold text-base max-w-[800px] mx-auto">
+			We shine a spotlight on the latest news in the cycling and touring
+			industry. From new product releases to the latest developments in the
+			cycling world, we cover it all.
+		</p>
+	</div>
+	<div class="columns-1 md:columns-2 lg:columns-3 gap-8 [&>*]:mb-8">
+		{
+			Promise.all(articles.map(async (article) => {
+				const author = await getEntryBySlug("authors", article.data.author.slug);
+				
+				return (
+				<Preview
+					entry={{
+						title: article.data.title,
+						author: author.data.name,
+						cover: article.data.cover,
+						tags:	article.data.tags,
+						category: ReviewCategories[article.data.category]
+					}}
+					href={`/spotlight/${article.slug}`}
+				/>
+			)}))
+		}
+	</div>
+</OverviewLayout>

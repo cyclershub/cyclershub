@@ -4,7 +4,10 @@ import { ApiRouteError } from "~/lib/ApiRouteError";
 import { db } from "~/lib/shared";
 
 const PlaceSearchValidator = z.object({
-	limit: z.number().max(250000).int().optional().default(10000)
+	limit: z.number().max(250000).int().optional().default(10000),
+	lat: z.number().min(-90).max(90),
+	lng: z.number().min(-180).max(180),
+	radius: z.number().min(0).max(250000).optional().default(500)
 })
 
 export const post: APIRoute = async ({ request }) => {
@@ -16,7 +19,14 @@ export const post: APIRoute = async ({ request }) => {
 	}
 
 
-	const result = await db.raw(`SELECT id, lat, lng, type FROM places WHERE lat > 0 AND lng > 0 LIMIT ?`, [body.limit]);
+	const result = await db.raw(`SELECT id, lat, lng, type
+	FROM (
+		SELECT *, haversine(lat, lng, ?, ?) AS distance 
+		FROM places 
+	) AS subquery
+	WHERE distance <= ?
+	ORDER BY distance ASC 
+	LIMIT ?`, [body.lat, body.lng, body.radius, body.limit]);
 
 	// Encode the places to a bitstream with following encoding:
 	// 16 bits for lat

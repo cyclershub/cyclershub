@@ -1,11 +1,8 @@
 ---
-import "../../style/article.scss";
-
-import Layout from "../../layouts/Layout.astro";
 import { db } from "~/lib/shared";
 import moment from "moment";
 import {marked} from "marked";
-import Arrow from "~/components/Arrow.svelte";
+import ArticleLayout from "~/layouts/ArticleLayout.astro";
 
 const uid = Astro.params.uid;
 
@@ -21,19 +18,10 @@ const author = await db("users").select("*").where({ id: entry.users_id }).first
 const html = marked(entry.content, {});
 ---
 
-<Layout title={entry.title}>
-	<div class="relative h-[80vh]">
-		<!-- <Parallax
-			src={entry.title}
-			client:load
-		/> -->
-		<h1 class="text-stone-200 text-6xl absolute z-10 bottom-8 max-w-[800px] left-[220px]">{entry.title}</h1>
-		<Arrow class="bg-stone-600 text-stone-200 absolute bottom-[-15px] left-[220px]">{author.username} on {moment(entry.created_on).format("MMMM Do YYYY")}</Arrow>
-	</div>
-	
-	<div class="bg-stone-100 py-16">
-		<article class="text-left max-w-[800px] mx-auto">
-			<div set:html={html}></div>
-		</article>
-	</div>
-</Layout>
+<ArticleLayout
+	title={entry.title}
+	cover={entry.title}
+	heading={entry.title}
+	category={`${author.username} on ${moment(entry.created_on).format("MMMM Do YYYY")}`}>
+	<div set:html={html}></div>
+</ArticleLayout>

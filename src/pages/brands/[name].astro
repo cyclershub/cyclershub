@@ -1,60 +1,43 @@
 ---
-import "../../style/article.scss";
-
-import Parallax from "~/components/Parallax.svelte";
-import Layout from "../../layouts/Layout.astro";
 import { getEntryBySlug } from "astro:content";
-import Arrow from "~/components/Arrow.svelte";
-import { convertToUrlSafe } from "~/lib/URL";
 import { ReviewCategories } from "~/lib/ReviewCategories";
 import AttributionContainer from "~/components/AttributionContainer.svelte";
+import ArticleLayout from "~/layouts/ArticleLayout.astro";
 
 const slug = Astro.params.name as string;
 
 const brand = await getEntryBySlug("brands", slug);
 
 if (!brand) {
-	return Astro.redirect("/brands")
+	return Astro.redirect("/brands");
 }
 
 const author = await getEntryBySlug("authors", brand.data.author);
 
 if (!author) {
-	return Astro.redirect("/brands")
+	return Astro.redirect("/brands");
 }
 
-
 const { Content } = await brand.render();
-
 ---
 
-<Layout title={`${brand.data.name} | Brands - CyclersHub`}>
-	<div class="relative h-[80vh]">
-		<Parallax
-			src={brand.data.logo}
-			client:load
-		/>
-		<h1 class="text-stone-200 text-6xl absolute z-10 bottom-8 max-w-[800px] left-[220px]">{brand.data.name}</h1>
-		<Arrow class="bg-stone-600 text-stone-200 absolute bottom-[-15px] left-[220px]">{ReviewCategories[brand.data.category]}</Arrow>
-	</div>
-	
-	<div class="bg-stone-100 py-16">
-		<article class="text-left max-w-[800px] mx-auto">
-			<AttributionContainer
-				href={brand.data.link}
-				image={brand.data["logo-small"]}
-				title={`Learn more at ${new URL(brand.data.link).hostname}`}>
-				Where you can find this product and many more!
-			</AttributionContainer>
-			<Content></Content>
-			<hr>
-			<AttributionContainer
-				href={`/team/${author.slug}`}
-				image={author.data.image}
-				title={`Written by ${author.data.name}`}>
-				{author.data.bio}
-			</AttributionContainer>
-		</article>
-		
-	</div>
-</Layout>
+<ArticleLayout
+	title={`${brand.data.name} | Brands - CyclersHub`}
+	cover={brand.data.logo}
+	heading={brand.data.name}
+	category={ReviewCategories[brand.data.category]}>
+	<AttributionContainer
+		href={brand.data.link}
+		image={brand.data["logo-small"]}
+		title={`Learn more at ${new URL(brand.data.link).hostname}`}>
+		Where you can find this product and many more!
+	</AttributionContainer>
+	<Content />
+	<hr />
+	<AttributionContainer
+		href={`/team/${author.slug}`}
+		image={author.data.image}
+		title={`Written by ${author.data.name}`}>
+		{author.data.bio}
+	</AttributionContainer>
+</ArticleLayout>

@@ -30,7 +30,7 @@
 
 <div class="grid grid-cols-[80px,1fr] w-full h-full">
 	<Sidebar bind:history bind:showCity bind:saved />
-	<LeafletMap />
+	<LeafletMap radius={25000} />
 </div>
 
 <SearchOverlay
@@ -39,5 +39,5 @@ bind:showCity
 bind:history />
 
 {#if user}
-	<AddButton href="/places/add" />
+	<AddButton href="/pedalpoint/add" />
 {/if}

@@ -8,7 +8,7 @@
 </script>
 
 <a class="group cursor-pointer" {href}>
-	<span class="text-xs text-gray-500 font-semibold">{moment(date).format("MMM d")}</span>
+	<span class="text-xs text-gray-500 font-semibold">{moment(date).format("MMM Do")}</span>
 	<div class="overflow-hidden">
 		<img
 			src={image}

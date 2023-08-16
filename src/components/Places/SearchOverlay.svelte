@@ -105,22 +105,23 @@
 			</span>
 		</div>
 		<div class="px-4 py-2 mt-2">
-			<span class="text-gray-400">
-				{moment($placesVisible[0].created_on).format("MMM DD, YYYY")}
+			<span class="text-stone-600 font-semibold text-sm uppercase">
+				{moment($placesVisible[0].created_on).format("MMM Do, YYYY")}
 			</span>
 			<h1 class="break-words">{$placesVisible[0].title}</h1>
+			<span class="text-sm font-bold">{$placesVisible[0].street} {$placesVisible[0].zip} {$placesVisible[0].city}</span>
 			<hr />
 			<div class="flex flex-row gap-8 py-4 items-center">
 				<a
-					href="https://maps.google.com/?q={latitude},{longitude}"
+					href="geo:{$latitude},{$longitude}"
 					rel="noreferrer"
 					target="_blank"
 					class="flex flex-col items-center gap-2 w-fit">
 					<img
 						src="/icons/maps.svg"
 						alt="Google Maps"
-						class="bg-blue-500 p-2 w-10 h-10 rounded-full" />
-					<span class="text-blue-700 text-sm">Maps</span>
+						class="bg-stone-600 p-2 w-10 h-10 rounded-full" />
+					<span class="text-stone-800 text-sm font-semibold">Maps</span>
 				</a>
 				<button
 					on:click={() => {
@@ -130,25 +131,24 @@
 					}}
 					class="flex flex-col items-center gap-2 w-fit">
 					<Bookmark
-						width={15}
-						height={15}
-						class="bg-blue-500 p-2 w-10 h-10 rounded-full fill-white" />
-					<span class="text-blue-700 text-sm">Bookmark</span>
+						width={10}
+						height={10}
+						class="bg-stone-600 p-2 w-10 h-10 rounded-full fill-white" />
+					<span class="text-stone-800 text-sm font-semibold">Bookmark</span>
 				</button>
 				<button
 					on:click={() => {}}
 					class="flex flex-col items-center gap-2 w-fit">
 					<Share
-						width={15}
-						height={15}
-						class="bg-blue-500 p-2 w-10 h-10 rounded-full fill-white" />
-					<span class="text-blue-700 text-sm">Share</span>
+						width={10}
+						height={10}
+						class="bg-stone-600 p-2 w-10 h-10 rounded-full fill-white" />
+					<span class="text-stone-800 text-sm font-semibold">Share</span>
 				</button>
 			</div>
-			<hr />
-			<span class="text-gray-400">Rating: {$placesVisible[0].rating}</span>
-			<p class="break-words">{$placesVisible[0].description}</p>
-			<strong>{$placesVisible[0].street} {$placesVisible[0].zip} {$placesVisible[0].city}</strong>
+			<hr class="mb-4" />
+			<span class="text-stone-600 font-semibold text-sm uppercase">Rating: {$placesVisible[0].rating}</span>
+			<p class="break-words text-base text-stone-800">{$placesVisible[0].description}</p>
 		</div>
 	{/if}
 

@@ -4,7 +4,7 @@ date: 2023-08-12
 author: moritz-utcke
 cover: /spotlight/brakes.jpg
 category: bike-gear
-tags: [Roadcycling]
+tags: [Roadcycling, Brakes, News]
 ---
 
 The world of bikepacking has witnessed a significant uptick in enthusiasts over recent years. The allure of merging the joys of cycling with the rustic charm of camping has captivated many. As the community grows, so does the evolution of gear tailored to enhance this unique experience. Dive into some of the freshest bikepacking innovations that promise to elevate your next escapade.

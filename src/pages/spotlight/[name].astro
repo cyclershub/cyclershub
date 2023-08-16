@@ -1,36 +1,22 @@
 ---
-import "../../style/article.scss";
-
-import Layout from "../../layouts/Layout.astro";
 import { getEntryBySlug } from "astro:content";
-import Arrow from "../../components/Arrow.svelte";
-import Parallax from "../../components/Parallax.svelte";
+import ArticleLayout from "~/layouts/ArticleLayout.astro";
 
 const name = Astro.params.name as string;
 
 const article = await getEntryBySlug("spotlight", name);
 
 if (!article) {
-	return Astro.redirect("/spotlight")
+	return Astro.redirect("/spotlight");
 }
 
 const { Content } = await article.render();
-
 ---
 
-<Layout title={article.data.title}>
-	<div class="relative h-[50vh] lg:h-[80vh]">
-		<Parallax
-			src={article.data.cover}
-			client:load
-		/>
-		<h1 class="text-stone-200 text-3xl lg:text-6xl absolute z-10 bottom-8 max-w-[800px] left-0 px-8 lg:left-[220px]">{article.data.title}</h1>
-		<Arrow class="bg-stone-600 text-stone-200 absolute bottom-[-15px] left-8 lg:left-[220px]">{article.data.tags[0]}</Arrow>
-	</div>
-	
-	<div class="bg-stone-100 py-16">
-		<article class="text-left max-w-[800px] mx-auto px-8">
-			<Content></Content>
-		</article>
-	</div>
-</Layout>
+<ArticleLayout
+	title={article.data.title}
+	cover={article.data.cover}
+	heading={article.data.title}
+	category={article.data.tags[0]}>
+	<Content />
+</ArticleLayout>

@@ -1,26 +1,24 @@
 ---
-import { getCollection } from "astro:content";
-import Preview from "../../../components/Gallery/Preview.svelte";
-import Layout from "../../../layouts/Layout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+import Preview from "~/components/Gallery/Preview.svelte";
 import { ReviewCategories } from "~/lib/ReviewCategories";
+import OverviewLayout from "~/layouts/OverviewLayout.astro";
 
 let category = Astro.params.category as string;
 
-const reviews = await getCollection("reviews");
+let articles = await getCollection("reviews");
 
 if (!ReviewCategories.hasOwnProperty(category)) {
 	category = "all";
 }
 
-let entries = reviews;
-
 if (category !== "all") {
-	entries = reviews.filter((entry) => entry.data.category === category);
+	articles = articles.filter((article) => article.data.category === category);
 }
 ---
 
-<Layout title="Reviews | The CyclersHub">
-	<div class="bg-stone-200 py-16 px-8 lg:px-16 text-center">
+<OverviewLayout title="Reviews | The CyclersHub">
+	<div slot="head">
 		<span class="uppercase text-stone-900 font-bold tracking-wide text-sm">
 			{ReviewCategories[category]}
 		</span>
@@ -32,22 +30,24 @@ if (category !== "all") {
 			find the latest below.
 		</p>
 	</div>
-	<div class="bg-stone-100 py-16 px-8 lg:px-16 text-center">
-		<div class="columns-1 md:columns-2 lg:columns-3 gap-8 [&>*]:mb-8">
-			{
-				entries.map((entry) => (
-					<Preview
-						entry={{
-							title: entry.data.title,
-							author: entry.data.author,
-							cover: entry.data.cover,
-						}}
-						href={`/reviews/${entry.slug}`}
-					/>
-				))
-			}
+	<div class="columns-1 md:columns-2 lg:columns-3 gap-8 [&>*]:mb-8">
+		{
+			Promise.all(articles.map(async (article) => {
+				const author = await getEntryBySlug("authors", article.data.author.slug);
+				
+				return (
+				<Preview
+					entry={{
+						title: article.data.title,
+						author: author.data.name,
+						cover: article.data.cover,
+					}}
+					href={`/reviews/${article.slug}`}
+				/>
+			)}))
+		}
+		
 
-			{entries.length == 0 ? <h2>There are currently no reviews in this category.</h2> : ""}
-		</div>
+		{articles.length == 0 ? <h2>There are currently no reviews in this category.</h2> : ""}
 	</div>
-</Layout>
+</OverviewLayout>

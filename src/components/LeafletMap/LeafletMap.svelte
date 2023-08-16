@@ -28,11 +28,17 @@
 		return map;
 	}
 
-	onMount(async () => {
+	export let limit = 250000;
+	export let radius = 500;
+
+	async function streamPlaces() {
 		const allPlaces = await fetch("/api/places.stream", {
 			method: "POST",
 			body: JSON.stringify({
-				limit: 250000
+				limit,
+				lat: $latitude,
+				lng: $longitude,
+				radius
 			})
 		}).then(res => res.json())
 
@@ -47,6 +53,30 @@
 				
 				createMarker(place);
 			}
+	}
+
+	onMount(async () => {
+		// Try to get the current location.
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(async (position) => {
+				if (!$latitude) {
+					latitude.set(position.coords.latitude);
+				}
+
+				if (!$longitude) {
+					longitude.set(position.coords.longitude);
+				}
+
+				map.setView([$latitude, $longitude], 12);
+				await streamPlaces();
+
+				//const location = placeLayer.addCustomIcon("LOC", L.latLng($latitude, $longitude));
+			});
+		} else {
+			await streamPlaces();
+		}
+
+		
 	})
 
 	async function createMarker(location: { lat: number, lng: number, id: number }): Promise<L.CircleMarker> {
@@ -78,23 +108,6 @@
 			latitude.set(map.getCenter().lat);
 			longitude.set(map.getCenter().lng);
 		})
-
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(async (position) => {
-				if (!$latitude) {
-					latitude.set(position.coords.latitude);
-				}
-
-				if (!$longitude) {
-					longitude.set(position.coords.longitude);
-				}
-
-				map.setView([$latitude, $longitude], 12);
-
-
-				//const location = placeLayer.addCustomIcon("LOC", L.latLng($latitude, $longitude));
-			});
-		}
 
 		placeLayer.addTo(map);
 
