@@ -1,6 +1,6 @@
----
-import Logo from "./Icons/Logo.svelte";
----
+<script lang="ts">
+	import Logo from "./Icons/Logo.svelte";
+</script>
 
 <footer
 	class="items-center flex flex-col gap-4 border-t bg-stone-100 py-16 px-8">
@@ -13,7 +13,7 @@ import Logo from "./Icons/Logo.svelte";
 			by bicycle has the power to encourage conservation, inclusivity, and
 			respect for all people and cultures. <a href="">More here</a>.
 		</p>
-		<Logo width={120}></Logo>	
+		<Logo width={120} height={60}></Logo>	
 		<div class="flex flex-row gap-8">
 			<a href=""></a>
 			<a href=""></a>
