@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
-		"build:production": "astro build && node server.js",
+		"build:production": "astro build && nohup node server.js & ENV_NODE_PID=$!",
+		"update:production": "astro build && kill $ENV_NODE_PID && nohup node server.js & ENV_NODE_PID=$!",
 		"preview": "astro preview",
 		"astro": "astro",
 		"test:e2e": "cypress run",
