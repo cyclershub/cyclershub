@@ -2,6 +2,7 @@ import express from "express";
 import { handler as ssrHandler } from "./dist/server/entry.mjs";
 import * as http from "http";
 import * as https from "https";
+import "dotenv/config";
 
 const privateKey = atob(process.env.PRIVATE_KEY);
 const certificate = atob(process.env.CERTIFICATE);

@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
-		"build:production": "astro build && node server.js",
+		"build:production": "astro build && nodemon",
 		"preview": "astro preview",
 		"astro": "astro",
 		"test:e2e": "cypress run",
@@ -65,6 +65,8 @@
 		"@types/uuid": "^9.0.1",
 		"@types/yaml-front-matter": "^4.1.0",
 		"cypress": "^12.7.0",
+		"dotenv": "^16.3.1",
+		"nodemon": "^3.0.1",
 		"prettier": "^2.8.4",
 		"sass": "^1.58.3",
 		"svelte-preprocess": "^5.0.1",
