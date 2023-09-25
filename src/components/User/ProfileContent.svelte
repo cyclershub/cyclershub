@@ -3,9 +3,11 @@
 import Overlay from "../Overlay.svelte";
 	import Slideshow from "../ImageSlideshow.svelte";
 	import type { User } from "~/lib/types";
+	import Preview from "../Gallery/Preview.svelte";
 
 	export let user: User;
 	export let images: any[];
+	export let stories: any[];
 
 	let overlayVisible = false;
 	let slide: number = 0;
@@ -21,7 +23,7 @@ import Overlay from "../Overlay.svelte";
 		<button on:click={() => {
 			slide = i;
 			overlayVisible = true
-			}}><img src={`/api/image/${image.uid}.png`} class="max-w-[280px] h-auto object-cover rounded-xl"></button>
+			}}><img src={`/api/image/${image.uid}.png`} class="max-w-[280px] h-auto object-cover rounded-sm"></button>
 	{/each}
 </div>
 <div class="flex justify-between items-center">
@@ -33,7 +35,23 @@ import Overlay from "../Overlay.svelte";
 		<button on:click={() => {
 			slide = i;
 			overlayVisible = true
-			}}><img src={`/api/route/${image.uid}.gpx`} class="max-w-[280px] h-auto object-cover rounded-xl"></button>
+			}}><img src={`/api/route/${image.uid}.gpx`} class="max-w-[280px] h-auto object-cover rounded-sm"></button>
+	{/each}
+</div>
+<div class="flex justify-between items-center">
+	<p>And all the stories you've written:</p>
+	<a href="/user/stories"><ArrowRight width={25} height={25} class="fill-black-brown"></ArrowRight></a>
+</div>
+<div class="flex flex-row overflow-scroll scrollbar-hide gap-4">
+	{#each stories as story, i}
+		<Preview entry={{
+			author: user.username,
+			title: story.title,
+			uid: story.uid,
+			category: story.category,
+			tags: story.tags,
+			cover: story.cover,
+		}} href="/editor?uid={story.uid}"></Preview>
 	{/each}
 </div>
 

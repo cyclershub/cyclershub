@@ -54,7 +54,7 @@
 		<div
 			class="flex flex-col gap-4 sm:flex-row items-center justify-between"
 		>
-			<Button on:click={loginUser}>Login</Button>
+			<Button class="text-stone-600" on:click={loginUser}>Login</Button>
 			<a href="/user/signup">Register instead</a>
 		</div>
 	</div>

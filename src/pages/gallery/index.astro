@@ -11,13 +11,6 @@ const entries = await db("setups").select("*").orderBy("setups.created_on", "des
 
 // For each entry, select all images and add them to the entry
 for (const entry of entries) {
-	const images = await db("setups_images").select("images.*").leftJoin("images", "setups_images.images_id", "images.id").where("setups_images.setups_id", entry.id);
-	entry.images = images;
-
-	if (images.length > 0) {
-		entry.cover = `/api/image/${images[0].uid}.png`;
-	}
-
 	// Get the author name
 	const author = await db("users").select("users.username").where("users.id", entry.users_id).first();
 	entry.author = author.username;

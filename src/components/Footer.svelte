@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { l } from "astro-i18n";
 	import Logo from "./Icons/Logo.svelte";
 </script>
 
@@ -55,6 +56,7 @@
 				<a href="">Share Your Route</a>
 				<a href="">CyclersHub Login</a>
 				<a href="">Support Us</a>
+				<a href="/docs">For Developers</a>
 			</div>
 		</div>
 	</div>

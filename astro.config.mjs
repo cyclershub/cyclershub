@@ -1,3 +1,4 @@
+import i18n from "astro-i18n"
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
@@ -14,7 +15,8 @@ export default defineConfig({
   experimental: {
     assets: true
   },
-  integrations: [svelte(), tailwind(), sitemap(), mdx(), compress({
+	compressHTML: true,
+  integrations: [i18n(),svelte(), tailwind(), sitemap(), mdx(), compress({
 		Image: {
 			jpeg: {
 				quality: 80,

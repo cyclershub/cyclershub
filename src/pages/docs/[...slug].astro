@@ -1,0 +1,30 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { l, astroI18n } from "astro-i18n";
+import { getEntry, getCollection } from "astro:content";
+
+astroI18n.init(Astro);
+
+let slug = Astro.params.slug;
+
+if (!slug) {
+	return Astro.redirect(l("docs"));
+}
+
+
+const entry = await getEntry("docs", slug);
+
+//if (!entry) {
+//	return Astro.redirect(l("docs"));
+//}
+
+console.log(entry);
+
+
+const {Content} = await entry.render();
+
+---
+
+<DocsLayout title={entry.data.title}>
+	<Content></Content>
+</DocsLayout>

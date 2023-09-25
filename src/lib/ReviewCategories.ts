@@ -29,5 +29,6 @@ export const ReviewCategories: Record<string, string> = {
 	pumps: "Pumps",
 	lubes: "Lubes",
 	cleaners: "Cleaners",
-	"touring": "Bicycle Touring Advice"
+	"touring": "Bicycle Touring Advice",
+	"money": "Budgets & Money"
 };

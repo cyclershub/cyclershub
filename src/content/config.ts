@@ -61,5 +61,13 @@ export const collections = {
 			date: z.date(),
 			category: z.enum(Object.keys(ReviewCategories) as unknown as [string, ...string[]]),
 		}),
+	}),
+	docs: defineCollection({
+		type: "content",
+		schema: z.object({
+			title: z.string(),
+			author: reference("authors"),
+			date: z.date()
+		})
 	})
 };

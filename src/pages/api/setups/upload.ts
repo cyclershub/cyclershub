@@ -11,6 +11,7 @@ export const put: APIRoute = async ({ request, cookies }) => {
 	const validate = z.object({
 		title: z.string().min(5).max(150),
 		content: z.string(),
+		cover: z.string()
 	}).safeParse(body);
 	if (!validate.success) {
 		return ApiRouteError(validate.error.issues.map(x => x.message));
@@ -26,7 +27,8 @@ export const put: APIRoute = async ({ request, cookies }) => {
 	const result = await db("setups").insert({
 		title: body.title,
 		content: body.content,
-		users_id: user.id
+		users_id: user.id,
+		cover: body.cover
 	}, ["id", "uid"]);
 
 	if (!result) {
@@ -43,7 +45,8 @@ export const post: APIRoute = async ({ request, cookies }) => {
 	const validate = z.object({
 		title: z.string().min(0).max(150),
 		content: z.string(),
-		uid: z.string()
+		uid: z.string(),
+		cover: z.string()
 	}).safeParse(body);
 	if (!validate.success) {
 		return ApiRouteError(validate.error.issues.map(x => x.message));
@@ -64,7 +67,8 @@ export const post: APIRoute = async ({ request, cookies }) => {
 
 	const result = await db("setups").update({
 		title: body.title,
-		content: body.content
+		content: body.content,
+		cover: body.cover
 	}, ["id", "uid"]).where({ uid: body.uid, users_id: user.id });
 
 	if (!result) {

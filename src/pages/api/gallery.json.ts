@@ -37,14 +37,5 @@ export const put: APIRoute = async ({ request, cookies }) => {
 		return ApiRouteError(["Couldn't insert. Something went wrong!"]);
 	}
 
-	// Try inserting all the image relations
-	for (const uid of body.images) {
-		const image = await db("images").where({ uid }).first();
-		await db("setups_images").insert({
-			setups_id: result[0].id,
-			images_id: image.id
-		})
-	}
-
 	return ApiRouteSuccess({ uid: result[0].uid });
 }

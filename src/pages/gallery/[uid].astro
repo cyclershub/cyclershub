@@ -20,7 +20,7 @@ const html = marked(entry.content, {});
 
 <ArticleLayout
 	title={entry.title}
-	cover={entry.title}
+	cover={entry.cover}
 	heading={entry.title}
 	category={`${author.username} on ${moment(entry.created_on).format("MMMM Do YYYY")}`}>
 	<div set:html={html}></div>

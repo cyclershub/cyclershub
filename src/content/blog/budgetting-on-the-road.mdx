@@ -1,0 +1,87 @@
+---
+title: Budgetting on the road - How to get along with money.
+date: 2023-08-21
+author: moritz-utcke
+cover: https://images.unsplash.com/photo-1643229901525-520622ac26f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80
+category: money
+---
+
+import PictureLayout from "~/components/Markdown/PictureLayout.svelte";
+import Chart from "~/components/Chart.svelte";
+
+I've been pedaling my way across continents, soaking in sights most only dream
+of. Biking through winding mountain passes, vast deserts, and bustling cities
+has given me a unique perspective on our beautiful planet. But one question I
+often get asked (besides "Aren't your legs tired?") is, "How do you afford it?"
+
+Today, I'm pulling back the curtain on the financial side of this incredible
+journey. While the views are priceless, the costs of food, accommodation, gear,
+and the occasional unexpected hiccup can add up. So how do I keep the wheels
+turning and the bank balance in check? Here's a hint: when I'm not riding, I
+might just be buried in code. That's right, I've been moonlighting as a software
+engineer to fund this grand adventure.
+
+Join me as I break down my world tour budget, from the pennies spent at roadside
+stalls to what I earn from tapping away on my keyboard. If you've ever wondered
+about the costs of a globetrotting expedition or how to fund your own dream
+trip, you're in for a treat. Let's dive into the fascinating balance of work,
+passion, and the open road
+
+These are the costs after one year of cycling, starting in Hamburg, Germany and ending in Osh, Kyrgyzstan.
+
+<div class="mx-auto w-[400px] h-[400px] my-8">
+	<Chart
+		data={{
+			labels: ["Accomodation", "Groceries", "Eating Out", "Visa", "Transport", "Bike Stuff", "Other"],
+			datasets: [
+				{
+					data: [4307, 1238.05, 235.77, 99.34, 377.14, 109.15, 1262.79],
+				},
+			],
+		}}
+		type="pie"
+		width="400px"
+		height="400px"
+		client:load
+	/>
+	Total: 8.198,88€
+</div>
+
+## Income
+
+<div class="mx-auto w-[800px] h-[400px] my-8 flex flex-row gap-8">
+	<Chart
+		data={{
+			labels: ["August 2022", "September 2022", "October 2022", "November 2022", "December 2022", "January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023"],
+			datasets: [
+				{
+					label: "Software Engineer Salary",
+					data: [510, 510, 510, 510, 510, 550, 550, 550, 700, 700, 700, 700, 2224.60],
+				},
+			],
+		}}
+		type="line"
+		width="400px"
+		height="400px"
+		client:load
+	/>
+	<Chart
+		data={{
+			labels: ["August 2022", "September 2022", "October 2022", "November 2022", "December 2022", "January 2023", "February 2023", "March 2023", "April 2023", "May 2023", "June 2023", "July 2023", "August 2023"],
+			datasets: [
+				{
+					label: "Software Engineer Salary",
+					data: [510, 1071.6, 1071.6, 1071.6, 1001.66, 1001.66, 1001.66, 1610, 1610, 1610, 1610, 1610, 1610],
+				},
+			],
+		}}
+		type="line"
+		width="400px"
+		height="400px"
+		client:load
+	/>
+</div>
+
+Total: 9.224,60€
+
+Outstanding: 8046,92€

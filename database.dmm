@@ -1641,10 +1641,28 @@
 						"generated": ""
 					},
 					"estimatedSize": ""
+				},
+				{
+					"id": "1ad8943f-f714-4193-8261-baea836cd22f",
+					"name": "cover",
+					"datatype": "varchar",
+					"param": "255",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"collation": null,
+					"pg": {
+						"generatedIdentity": "no",
+						"generated": ""
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
-				"14b3af06-ccca-4a0d-9f1f-1abcb83f28a3",
 				"e82a488e-1dfe-449a-a5e5-9b95802844b5"
 			],
 			"lines": [],
@@ -1803,7 +1821,6 @@
 				}
 			],
 			"relations": [
-				"b1bd4717-a327-4977-b9cf-2f9a663c4e11",
 				"a9462d83-3548-4e9a-9f24-582c641a79fd"
 			],
 			"lines": [],
@@ -1818,85 +1835,6 @@
 							"colid": "abeea5ee-d435-4418-a713-d69f2d7ea24a"
 						}
 					]
-				}
-			],
-			"indexes": [],
-			"embeddable": false,
-			"generate": true,
-			"generateCustomCode": true,
-			"customCode": "",
-			"beforeScript": "",
-			"afterScript": "",
-			"objectType": "table",
-			"pg": {
-				"rowsecurity": false,
-				"schema": "",
-				"tablespace": "",
-				"inherits": "",
-				"storageParameters": "",
-				"partition": "",
-				"partitionNames": []
-			}
-		},
-		"8c27d04e-c3b2-445c-8159-e9e88bb62c48": {
-			"id": "8c27d04e-c3b2-445c-8159-e9e88bb62c48",
-			"visible": true,
-			"name": "setups_images",
-			"desc": "",
-			"estimatedSize": "",
-			"cols": [
-				{
-					"id": "14181b62-8f11-4400-a81a-8855397dc342",
-					"name": "setups_id",
-					"datatype": "integer",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"defaultvalue": "",
-					"data": "",
-					"after": "",
-					"collation": null,
-					"pg": {
-						"generatedIdentity": "no",
-						"generated": ""
-					},
-					"estimatedSize": "",
-					"fk": true
-				},
-				{
-					"id": "0870d6c8-c537-4f50-852b-3fa6d9273681",
-					"name": "images_id",
-					"datatype": "integer",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"defaultvalue": "",
-					"data": "",
-					"after": "",
-					"collation": null,
-					"pg": {
-						"generatedIdentity": "no",
-						"generated": ""
-					},
-					"estimatedSize": "",
-					"fk": true
-				}
-			],
-			"relations": [
-				"14b3af06-ccca-4a0d-9f1f-1abcb83f28a3",
-				"b1bd4717-a327-4977-b9cf-2f9a663c4e11"
-			],
-			"lines": [],
-			"keys": [
-				{
-					"id": "a3f3ccb9-c1e1-473a-a9ed-3c7c81252331",
-					"name": "setups_images_pkey",
-					"isPk": true,
-					"cols": []
 				}
 			],
 			"indexes": [],
@@ -2382,58 +2320,6 @@
 			"generateCustomCode": true,
 			"customCode": ""
 		},
-		"14b3af06-ccca-4a0d-9f1f-1abcb83f28a3": {
-			"id": "14b3af06-ccca-4a0d-9f1f-1abcb83f28a3",
-			"visible": true,
-			"name": "setups_images_setups_id_fkey",
-			"desc": "",
-			"type": "identifying",
-			"parent_key": "2d2022f5-58e2-46d2-ae5e-f9611b69c0b7",
-			"parent": "67c1c072-94c8-4d5f-8a47-f48e2a79fc13",
-			"child": "8c27d04e-c3b2-445c-8159-e9e88bb62c48",
-			"c_mp": "true",
-			"c_mch": "true",
-			"c_p": "one",
-			"c_ch": "many",
-			"c_cp": "",
-			"c_cch": "",
-			"cols": [
-				{
-					"id": "de361593-2a9e-4b9f-9a39-676388697c6a",
-					"parentcol": "c3efcb2f-dcb7-4bc6-9605-66bf5adb98f9",
-					"childcol": "14181b62-8f11-4400-a81a-8855397dc342"
-				}
-			],
-			"generate": true,
-			"generateCustomCode": true,
-			"customCode": ""
-		},
-		"b1bd4717-a327-4977-b9cf-2f9a663c4e11": {
-			"id": "b1bd4717-a327-4977-b9cf-2f9a663c4e11",
-			"visible": true,
-			"name": "setups_images_images_id_fkey",
-			"desc": "",
-			"type": "identifying",
-			"parent_key": "10baa3b5-d360-4c86-af84-98fdb5124eff",
-			"parent": "0c9722b6-b700-4101-bd60-ccf19d79ff16",
-			"child": "8c27d04e-c3b2-445c-8159-e9e88bb62c48",
-			"c_mp": "true",
-			"c_mch": "true",
-			"c_p": "one",
-			"c_ch": "many",
-			"c_cp": "",
-			"c_cch": "",
-			"cols": [
-				{
-					"id": "4ebdba49-5c14-4c80-b1c8-bbf7fdcdfb25",
-					"parentcol": "abeea5ee-d435-4418-a713-d69f2d7ea24a",
-					"childcol": "0870d6c8-c537-4f50-852b-3fa6d9273681"
-				}
-			],
-			"generate": true,
-			"generateCustomCode": true,
-			"customCode": ""
-		},
 		"e82a488e-1dfe-449a-a5e5-9b95802844b5": {
 			"id": "e82a488e-1dfe-449a-a5e5-9b95802844b5",
 			"visible": true,
@@ -2560,7 +2446,7 @@
 			"indexes": true,
 			"relations": true
 		},
-		"lastSaved": "Tue Aug 15 2023 12:32:20 GMT+0600 (Kyrgyzstan Time)",
+		"lastSaved": "Tue Aug 22 2023 11:24:48 GMT+0600 (Kyrgyzstan Time)",
 		"authorName": "",
 		"companyDetails": "",
 		"companyUrl": ""
@@ -2573,7 +2459,7 @@
 			"id": "06452187-1da2-4037-882b-45b529195005",
 			"keysgraphics": true,
 			"linegraphics": "detailed",
-			"zoom": 1.4,
+			"zoom": 1.5,
 			"background": "transparent",
 			"lineColor": "transparent",
 			"isOpen": true,
@@ -2689,9 +2575,9 @@
 				},
 				"67c1c072-94c8-4d5f-8a47-f48e2a79fc13": {
 					"referencedItemId": "67c1c072-94c8-4d5f-8a47-f48e2a79fc13",
-					"x": 830,
-					"y": 491,
-					"gHeight": 135,
+					"x": 824,
+					"y": 481,
+					"gHeight": 153,
 					"gWidth": 219,
 					"color": "#ffffff",
 					"background": "#03a9f4",
@@ -2705,18 +2591,6 @@
 					"y": 651,
 					"gHeight": 135,
 					"gWidth": 219,
-					"color": "#ffffff",
-					"background": "#03a9f4",
-					"resized": false,
-					"autoExpand": true,
-					"backgroundOpacity": "10"
-				},
-				"8c27d04e-c3b2-445c-8159-e9e88bb62c48": {
-					"referencedItemId": "8c27d04e-c3b2-445c-8159-e9e88bb62c48",
-					"x": 1104,
-					"y": 516,
-					"gHeight": 63,
-					"gWidth": 193,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -2770,7 +2644,6 @@
 		"820cd9fc-3223-44d6-b5f9-c546dc0d2396",
 		"a1e8985f-7d7d-48cc-8d84-d9c42e02770c",
 		"67c1c072-94c8-4d5f-8a47-f48e2a79fc13",
-		"8c27d04e-c3b2-445c-8159-e9e88bb62c48",
 		"6e2f9fdb-240e-4947-8cab-0ea9ed324051",
 		"27e769a5-ae5e-4198-a992-80742780cc9f",
 		"fdda6ad1-e127-47a9-8e48-b06016132cc6",
@@ -2787,8 +2660,6 @@
 		"a15fd7db-1e0f-4092-b486-5607bddb7353",
 		"c6515647-52b5-43ca-bd42-01a2f60861d1",
 		"60285a7f-26b5-4b3d-9200-aa0a4d38d430",
-		"14b3af06-ccca-4a0d-9f1f-1abcb83f28a3",
-		"b1bd4717-a327-4977-b9cf-2f9a663c4e11",
 		"e82a488e-1dfe-449a-a5e5-9b95802844b5",
 		"a9462d83-3548-4e9a-9f24-582c641a79fd",
 		"58266ca8-ecb3-468a-9f43-170248f8d31e"

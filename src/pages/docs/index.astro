@@ -1,0 +1,11 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+import { getCollection} from "astro:content";
+
+const collection = await getCollection("docs");
+---
+
+<DocsLayout title="Documentation">
+	{collection.map(entry => (<a href={`/docs/${entry.slug}`}>{entry.data.title}</a>))}
+</DocsLayout>

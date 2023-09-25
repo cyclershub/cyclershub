@@ -10,8 +10,9 @@ if (!user) {
 	return Astro.redirect("/user/login");
 }
 const images = await db<{ uid: string, alt: string, category: string, created_on: string }>("images").where("users_id", user.id).limit(10);
+const stories = await db("setups").where("users_id", user.id).limit(10);
 ---
 
 <Layout title="Dashboard | CyclersHub">
-	<ProfileContent images={images} user={user} client:load></ProfileContent>
+	<ProfileContent images={images} stories={stories} user={user} client:load></ProfileContent>
 </Layout>
