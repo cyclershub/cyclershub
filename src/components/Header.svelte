@@ -33,8 +33,6 @@
 			<a on:mouseenter={() => subActive = 1} href="/reviews">Explore</a>
 			<a on:mouseenter={() => subActive = 2} href="/pedalpoint/map">Routes</a>
 			<a on:mouseenter={() => subActive = 3} href="/gallery">Gallery</a>
-			<a href="/forum">Forum</a>
-			<a href="/spotlight">Events</a>
 			<a href="/blog">Blog</a>
 		</div>
 		<div class="subnav absolute top-[calc(100%+1px)] px-64 py-16 z-10 w-full">
@@ -167,7 +165,9 @@
 										height={15}
 										class="cursor-pointer fill-stone-600"
 										on:click={() => {
-											dismissNotification(notification.id);
+											if (notification.id) {
+												dismissNotification(notification.id)
+											}
 										}} />
 								{/if}
 							</div>
@@ -177,14 +177,6 @@
 					{/if}
 				</div>
 			</div>
-			
-			<button>
-				<Search
-					width={30}
-					height={30}
-					class="fill-stone-600"
-				/>
-			</button>
 			<a href="/user/">
 				<img src="/user-placeholder.svg" class="rounded-full w-[40px] border-2 border-stone-200" alt="Profile">
 			</a>

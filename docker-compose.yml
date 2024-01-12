@@ -19,14 +19,16 @@ services:
       - 3000:3000
     volumes:
       - ./:/cyclershub
+      - ./node_modules/@cyclershub/database:/online-energieausweis/node_modules/@cyclershub/database
       - ./persistent:/persistent
     networks:
       - postgres
   cyclershub-db:
-    container_name: database
     build: ../database
+    env_file:
+      - ../database/.env
     ports:
-      - "5436:5432"
+      - "5432:5432"
     networks:
       - postgres
 

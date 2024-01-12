@@ -4,6 +4,7 @@ import Preview from "../../components/Gallery/Preview.svelte";
 import { db } from "~/lib/shared";
 import { isLoggedIn } from "~/lib/SharedVerification";
 import Plus from "~/components/Icons/Plus.svelte";
+import OverviewLayout from "~/layouts/OverviewLayout.astro";
 
 const loggedIn = await isLoggedIn(Astro);
 
@@ -18,14 +19,20 @@ for (const entry of entries) {
 
 ---
 
-<Layout title="Gallery | CyclersHub">
-	<div class="flex flex-row justify-between items-center">
-		<h1>Gallery</h1>
-		{loggedIn ? <a href="/editor"><Plus width={35} height={35} class="fill-black-brown"></Plus></a> : null}
+<OverviewLayout title="Blog | The CyclersHub">
+	<div slot="head">
+		<h1 class="font-bold tracking-wide m-0">Gallery</h1>
+		<h2 class="font-bold text-lg tracking-wider mb-4">A place to show off your very own rigs and share stories with the world!</h2>
+		<p class="font-semibold text-base max-w-[800px] mx-auto">
+			Sharing experiences, adventures and stories from the road. We love to explore and discover new places, let us take you with us!
+		</p>
 	</div>
-	<div class="columns-3 gap-8 [&>*]:mb-8">
+	<div class="columns-1 md:columns-2 lg:columns-3 gap-8 [&>*]:mb-8">
 		{entries.map(entry => (
 			<Preview entry={entry} href={`/gallery/${entry.uid}`} />
 		))}
+		{entries.length == 0 ? <h2>There are currently no published stories.</h2> : ""}
+		
 	</div>
-</Layout>
+	{loggedIn ? <a href="/editor"><Plus width={35} height={35} class="fill-black-brown"></Plus></a> : null}
+</OverviewLayout>

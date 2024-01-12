@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { l } from "astro-i18n";
 	import Logo from "./Icons/Logo.svelte";
 </script>
 

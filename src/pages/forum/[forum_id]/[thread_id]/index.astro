@@ -4,6 +4,7 @@ import Layout from "~/layouts/Layout.astro";
 import { getUser } from "~/lib/SharedVerification";
 import { db } from "~/lib/shared";
 import type { Message, User } from "~/lib/types";
+import { prisma } from "@cyclershub/database";
 
 const { forum_id, thread_id } = Astro.params;
 
@@ -25,7 +26,18 @@ if (user) {
 	}
 }
 
-const currentThread = await db("threads").select(db.raw("threads.*, array_agg(tags.tag) tags")).leftJoin("threads_tags", "threads_tags.threads_id", "threads.id").leftJoin("tags", "tags.id", "threads_tags.tags_id").where("uid", thread_id).groupBy("threads.id").first();
+const currentThread = await prisma.threads.findUnique({
+	where: {
+		uid: thread_id
+	},
+	include: {
+		threads_tags: {
+			include: {
+				tags: true
+			}
+		}
+	}
+})
 
 if (!currentThread) {
 	return Astro.redirect(`/forum/${forum_id}`)

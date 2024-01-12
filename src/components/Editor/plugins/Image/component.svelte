@@ -4,6 +4,12 @@
 
 	let selectedImages: Record<string, boolean> = {};
 	let inlineImageSelectionOverlayVisible: boolean = false;
+	export let images: Array<{
+		uid: string;
+		alt: string;
+		category: string;
+		created_on: string;
+	}> = [];
 </script>
 
 <Image width={25} height={25} class="fill-stone-200"></Image>

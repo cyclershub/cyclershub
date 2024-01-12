@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
-	import cookie from "cookiejs"
+	import Cookies from "js-cookie"
   import { addNotification } from "./NotificationStore";
 
 	let username: string;
@@ -16,8 +16,8 @@
 		}).then((r) => r.json());
 
 		if (result.success == true) {
-			cookie.set("token", result.data.token);
-			cookie.set("expires", result.data.expires);
+			Cookies.set("token", result.data.token);
+			Cookies.set("expires", result.data.expires);
 			window.location.href = "/user";
 		} else {
 			addNotification({
